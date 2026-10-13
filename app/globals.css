@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ink: #050607;
+  --color-ink-2: #0b0d10;
+  --color-ink-3: #121519;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-cyan: #22d3d3;
+  --color-cyan-2: #35e6e6;
+  --color-cyan-dim: rgba(34, 211, 211, 0.18);
+  --color-pink: #ff2d8a;
+  --color-blue: #3b8bff;
+  --color-lime: #c6ff00;
+  --color-gold: #e2b85f;
+  --color-mute: #a7adb5;
+  --font-display: var(--font-bebas), "Impact", sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent: var(--color-cyan);
+  --accent-rgb: 34 211 211;
+  --curtain: #4a0a12;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html { scroll-behavior: smooth; }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
+
+.font-display { font-family: var(--font-display); letter-spacing: 0.01em; }
+.display { font-family: var(--font-display); line-height: 0.92; letter-spacing: 0.01em; text-transform: uppercase; }
+.eyebrow { font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.container-x { width: 100%; max-width: 1360px; margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 768px) { .container-x { padding-inline: 2rem; } }
+@media (min-width: 1280px) { .container-x { padding-inline: 2.5rem; } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.8rem; padding: 0.95rem 1.6rem; border-radius: 4px; transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s; white-space: nowrap; }
+.btn-primary { background: var(--accent); color: #041012; box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / 0.5); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -6px rgb(var(--accent-rgb) / 0.55); }
+.btn-outline { border: 1px solid var(--accent); color: var(--accent); background: rgba(0,0,0,0.25); }
+.btn-outline:hover { background: rgb(var(--accent-rgb) / 0.12); transform: translateY(-2px); }
+.btn-ghost { color: var(--accent); padding-inline: 0.2rem; }
+.btn-ghost:hover { gap: 0.9rem; }
+
+.glass { background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border: 1px solid var(--color-line); backdrop-filter: blur(10px); }
+.glow-border { border: 1px solid rgb(var(--accent-rgb) / 0.55); box-shadow: 0 0 24px -6px rgb(var(--accent-rgb) / 0.55), inset 0 0 24px -12px rgb(var(--accent-rgb) / 0.35); }
+.neon-line { height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+.text-accent { color: var(--accent); }
+.bg-accent { background: var(--accent); }
+
+/* red stage curtain edges */
+.curtain::before, .curtain::after { content: ""; position: absolute; top: 0; bottom: 0; width: 18vw; max-width: 260px; pointer-events: none; z-index: 0;
+  background: radial-gradient(60% 50% at 0% 40%, rgba(120, 12, 24, 0.55), transparent 70%), repeating-linear-gradient(90deg, rgba(90,8,18,0.35) 0 14px, rgba(40,3,8,0.55) 14px 28px); opacity: 0.55;
+  mask-image: linear-gradient(90deg, #000 0%, transparent 100%); }
+.curtain::before { left: 0; }
+.curtain::after { right: 0; transform: scaleX(-1); }
+
+/* subtle spotlight */
+.spotlight { background: radial-gradient(60% 55% at 50% 0%, rgb(var(--accent-rgb) / 0.14), transparent 70%); }
+
+/* marquee */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* progress line draw */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* theme variants for landing pages */
+[data-theme="pink"] { --accent: var(--color-pink); --accent-rgb: 255 45 138; }
+[data-theme="lime"] { --accent: var(--color-lime); --accent-rgb: 198 255 0; }
+[data-theme="gold"] { --accent: var(--color-gold); --accent-rgb: 226 184 95; }

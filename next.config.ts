@@ -1,16 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
+      "*.css": { loaders: ["@tailwindcss/turbopack"], as: "*.css" },
     },
+  },
+  async redirects() {
+    return [
+      { source: "/private-classes-booking", destination: "https://maddspace.trafft.com", permanent: false },
+      { source: "/blog-feed.xml", destination: "/blog", permanent: false },
+    ];
   },
 };
 
