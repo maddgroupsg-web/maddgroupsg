@@ -75,7 +75,7 @@ export const landings: Landing[] = [
       url: FILLOUT,
     },
     faq: [{ q: "What age can my child start singing lessons?" }, { q: "Do I need any prior singing experience?" }, { q: "How long is each class and how many students are in a class?" }, { q: "What should my child bring to class?" }, { q: "How do I book a trial class?" }],
-    final: { headline: ["READY TO HEAR", "THEIR VOICE?"], cta: "BOOK A TRIAL", image: "/images/classes/age-10-18/age-10-18-03.jpg" },
+    final: { headline: ["READY TO HEAR", "THEIR VOICE?"], cta: "BOOK A TRIAL", image: "/images/classes/age-10-18/age-10-18-01.jpg" },
   },
   {
     slug: "kpop",
@@ -91,7 +91,7 @@ export const landings: Landing[] = [
       chips: ["Group or private", "From $28", "Limited slots"],
       cta: "BOOK A K-POP TRIAL",
       secondary: "EXPLORE THE PROGRAMME",
-      image: "/images/classes/age-10-18/age-10-18-04.jpg",
+      image: "/images/classes/age-10-18/age-10-18-07.jpg",
     },
     video: {
       eyebrow: "WE DON'T JUST TEACH DANCE, WE TRAIN PERFORMERS",
@@ -107,7 +107,7 @@ export const landings: Landing[] = [
         { title: "Foundations & Technique", copy: "From grooves and isolations to footwork and control, students build strong fundamentals that form the base for all future dance training.", image: "/images/classes/age-6-9/age-6-9-05.jpg" },
         { title: "Formations & Musicality", copy: "Students are trained in formations, musicality, expressions, and stage presence — the same elements that define real idol performances.", image: "/images/classes/holiday-camps/holiday-camps-02.jpg" },
         { title: "Confidence & Stage Presence", copy: "Through regular performance training, students develop the confidence to express themselves, perform in front of others, and own the stage.", image: "/images/classes/holiday-camps/holiday-camps-03.jpg" },
-        { title: "Performance & Teamwork", copy: "Students train towards showcases, recitals, and potential crew performances — learning discipline, teamwork, and what it takes to perform as a group.", image: "/images/classes/age-10-18/age-10-18-05.jpg" },
+        { title: "Performance & Teamwork", copy: "Students train towards showcases, recitals, and potential crew performances — learning discipline, teamwork, and what it takes to perform as a group.", image: "/images/classes/age-10-18/age-10-18-08.jpg" },
       ],
     },
     journey: {

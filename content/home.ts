@@ -69,7 +69,7 @@ export const ourClasses = {
   tiles: [
     { title: "PRESCHOOLERS", sub: "3 – 5.5 years old", href: "/preschool-classes", image: "/images/classes/age-3-5/age-3-5-08.jpg", alt: "Preschool classes in MADDspace" },
     { title: "JUNIOR KIDS", sub: "6 – 9 years old", href: "/junior-kids", image: "/images/classes/age-6-9/age-6-9-04.jpg", alt: "Kids classes in MADDspace" },
-    { title: "PRE TEENS – TEENS", sub: "10 – 18 years old", href: "/preteens-teens-classes", image: "/images/classes/age-10-18/age-10-18-04.jpg", alt: "Teens classes in MADDspace" },
+    { title: "PRE TEENS – TEENS", sub: "10 – 18 years old", href: "/preteens-teens-classes", image: "/images/classes/age-10-18/age-10-18-10.jpg", alt: "Teens classes in MADDspace" },
     { title: "YOUTH – ADULTS", sub: "18 – 35 years old", href: "/youth-adults", image: "/images/classes/age-18-35/age-18-35-02.jpg", alt: "Adult classes in MADDspace" },
     { title: "HOLIDAY CAMPS", sub: "K-Pop, Hip Hop, Sing & Dance, Popstars", href: "/holiday-camps", image: "/images/classes/holiday-camps/holiday-camps-03.jpg", alt: "K-Pop Dance and other holiday camps in MADDspace" },
     { title: "DSA PREPARATION", sub: "Direct Schools Admission", href: "/dsaacademy", image: "/images/classes/dsa/dsa-05.jpg", alt: "Direct Schools Admission Preparation DSA in MADDspace" },

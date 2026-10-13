@@ -9,7 +9,7 @@ import { Button, Reveal } from "@/components/ui";
 import { SHORT_COURSE_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/short-courses"].title, description: seo["/short-courses"].description, alternates: { canonical: "/short-courses" } };
-const g = ["/images/classes/age-10-18/age-10-18-05.jpg", "/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/age-6-9/age-6-9-06.jpg", "/images/classes/age-10-18/age-10-18-10.jpg", "/images/classes/holiday-camps/holiday-camps-02.jpg"];
+const g = ["/images/classes/holiday-camps/holiday-camps-02.jpg", "/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/age-6-9/age-6-9-06.jpg", "/images/classes/age-10-18/age-10-18-10.jpg", "/images/classes/holiday-camps/holiday-camps-02.jpg"];
 
 export default function Page() {
   return (

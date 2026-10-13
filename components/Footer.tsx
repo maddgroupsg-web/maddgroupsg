@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="relative border-t border-line bg-ink-2 mt-auto">
       <div className="container-x py-14 grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <Image src="/images/brand/maddspace-logo.png" alt="MADDspace" width={1640} height={924} className="h-14 w-auto" />
+          <Image src="/images/brand/maddspace-logo.png" alt="MADDspace" width={738} height={738} className="h-14 w-auto" />
           <h3 className="display text-3xl mt-6">CONTACT US</h3>
           <ul className="mt-4 space-y-2 text-sm text-white/80">
             <li><a href={`tel:${contact.phoneIntl}`} className="hover:text-cyan">{contact.phone}</a></li>

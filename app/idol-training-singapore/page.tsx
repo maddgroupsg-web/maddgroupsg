@@ -55,7 +55,7 @@ export default function Page() {
       <LogoMarquee />
       <section className="py-16 text-center bg-ink-2 border-t border-line"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
       <Locations formTitle="Enquire about the Artiste Programme" preset="Idol / Artiste Training" />
-      <FinalCta image="/images/classes/age-10-18/age-10-18-06.jpg" />
+      <FinalCta image="/images/classes/age-10-18/age-10-18-09.jpg" />
     </Shell>
   );
 }

@@ -13,7 +13,7 @@ import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/kpop"].title, description: seo["/kpop"].description, alternates: { canonical: "/kpop" } };
-const g = ["/images/classes/age-10-18/age-10-18-04.jpg", "/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/holiday-camps/holiday-camps-02.jpg", "/images/classes/age-6-9/age-6-9-05.jpg", "/images/classes/holiday-camps/holiday-camps-04.jpg", "/images/classes/age-10-18/age-10-18-08.jpg", "/images/classes/age-10-18/age-10-18-05.jpg", "/images/classes/holiday-camps/holiday-camps-03.jpg"];
+const g = ["/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/age-10-18/age-10-18-09.jpg", "/images/classes/holiday-camps/holiday-camps-02.jpg", "/images/classes/age-6-9/age-6-9-05.jpg", "/images/classes/holiday-camps/holiday-camps-04.jpg", "/images/classes/age-10-18/age-10-18-08.jpg", "/images/classes/holiday-camps/holiday-camps-01.jpg", "/images/classes/holiday-camps/holiday-camps-03.jpg"];
 
 export default function Page() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 import { progression } from "@/content/home";
 import { Button } from "@/components/ui";
@@ -12,6 +12,8 @@ export default function Progression() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const line = useTransform(scrollYProgress, [0.08, 0.92], [0, 1]);
   const n = progression.stages.length;
+  const [desktop, setDesktop] = useState(true);
+  useEffect(() => { const m = window.matchMedia("(min-width: 1024px)"); const f = () => setDesktop(m.matches); f(); m.addEventListener("change", f); return () => m.removeEventListener("change", f); }, []);
   // on small screens the row pans horizontally so the reveal still reads left → right
   const panX = useTransform(scrollYProgress, [0.1, 0.9], ["0%", `-${((n - 1) / n) * 100}%`]);
 
@@ -35,7 +37,7 @@ export default function Progression() {
             {/* stage floor */}
             <div className="absolute -inset-x-8 -bottom-6 h-24 bg-[radial-gradient(60%_100%_at_50%_100%,rgba(34,211,211,0.16),transparent)] pointer-events-none" />
             <div className="overflow-hidden">
-              <motion.div className="flex gap-3 sm:gap-4 lg:grid lg:grid-cols-3" style={reduce ? undefined : { x: panX }} whileInView={undefined}>
+              <motion.div className="flex gap-3 sm:gap-4 lg:grid lg:grid-cols-3" style={reduce || desktop ? undefined : { x: panX }}>
                 {progression.stages.map((s, i) => (
                   <Stage key={s.title} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} />
                 ))}

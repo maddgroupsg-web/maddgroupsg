@@ -14,7 +14,7 @@ import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { PRIVATE_VOCAL_TRIAL_URL, BOOK_TRIAL_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/singing-classes-singapore"].title, description: seo["/singing-classes-singapore"].description, alternates: { canonical: "/singing-classes-singapore" } };
-const gallery = ["/images/classes/age-10-18/age-10-18-01.jpg", "/images/classes/age-6-9/age-6-9-03.jpg", "/images/classes/age-3-5/age-3-5-02.jpg", "/images/classes/age-6-9/age-6-9-01.jpg", "/images/classes/age-10-18/age-10-18-02.jpg", "/images/classes/age-6-9/age-6-9-02.jpg", "/images/classes/dsa/dsa-03.jpg", "/images/classes/age-3-5/age-3-5-03.jpg"];
+const gallery = ["/images/classes/age-10-18/age-10-18-01.jpg", "/images/classes/age-6-9/age-6-9-03.jpg", "/images/classes/age-3-5/age-3-5-02.jpg", "/images/classes/age-6-9/age-6-9-01.jpg", "/images/classes/age-10-18/age-10-18-02.jpg", "/images/classes/age-6-9/age-6-9-02.jpg", "/images/classes/dsa/dsa-03.jpg", "/images/classes/age-6-9/age-6-9-07.jpg"];
 
 export default function Page() {
   const j = studentJourneys[0];

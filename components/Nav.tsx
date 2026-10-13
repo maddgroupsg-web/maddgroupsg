@@ -27,7 +27,7 @@ export default function Nav() {
       </div>
       <div className="container-x flex h-16 lg:h-[72px] items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="MADDspace home">
-          <Image src="/images/brand/maddspace-logo.png" alt="MADDspace — Music, Art, Drama, Dance Space" width={1640} height={924} className="h-10 lg:h-12 w-auto" priority />
+          <Image src="/images/brand/maddspace-logo.png" alt="MADDspace — Music, Art, Drama, Dance Space" width={738} height={738} className="h-10 lg:h-12 w-auto" priority />
         </Link>
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {nav.map((item) => (

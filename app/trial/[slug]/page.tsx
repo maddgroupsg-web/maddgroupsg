@@ -28,7 +28,7 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
       {/* minimal campaign nav */}
       <header className="fixed inset-x-0 top-0 z-50 bg-ink/80 backdrop-blur border-b border-line">
         <div className="container-x flex h-16 items-center justify-between gap-4">
-          <Link href="/" aria-label="MADDspace"><Image src="/images/brand/maddspace-logo.png" alt="MADDspace" width={1640} height={924} className="h-10 w-auto" priority /></Link>
+          <Link href="/" aria-label="MADDspace"><Image src="/images/brand/maddspace-logo.png" alt="MADDspace" width={738} height={738} className="h-10 w-auto" priority /></Link>
           <nav className="hidden md:flex gap-6 text-[11px] tracking-[0.2em] text-white/80">{l.nav.map((n) => <a key={n.href} href={n.href} className="hover:text-accent">{n.label}</a>)}</nav>
           <a href={l.trial.url} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px]">BOOK A TRIAL</a>
         </div>

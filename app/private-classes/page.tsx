@@ -10,7 +10,7 @@ import { Button, Reveal } from "@/components/ui";
 import { PRIVATE_BOOKING_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/private-classes"].title, description: seo["/private-classes"].description, alternates: { canonical: "/private-classes" } };
-const g = ["/images/classes/age-6-9/age-6-9-02.jpg", "/images/classes/age-10-18/age-10-18-01.jpg", "/images/classes/age-3-5/age-3-5-01.jpg", "/images/classes/age-6-9/age-6-9-03.jpg", "/images/classes/age-10-18/age-10-18-03.jpg", "/images/classes/dsa/dsa-04.jpg"];
+const g = ["/images/classes/age-6-9/age-6-9-02.jpg", "/images/classes/age-10-18/age-10-18-01.jpg", "/images/classes/age-3-5/age-3-5-01.jpg", "/images/classes/age-6-9/age-6-9-03.jpg", "/images/classes/age-10-18/age-10-18-02.jpg", "/images/classes/dsa/dsa-04.jpg"];
 
 export default function Page() {
   return (
