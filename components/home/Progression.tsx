@@ -99,9 +99,9 @@ function Marker({ s, i, n, progress, reduce }: { s: (typeof progression.stages)[
   const color = useTransform(on, (v) => `rgba(${34 + (255 - 34) * (1 - v)},${211 + (255 - 211) * (1 - v)},${211 + (255 - 211) * (1 - v)},${0.4 + 0.6 * v})`);
   const bg = useTransform(on, (v) => (v > 0.5 ? "#22d3d3" : "rgba(255,255,255,0.25)"));
   return (
-    <div className="relative flex items-center gap-3 text-xs tracking-[0.2em]">
+    <div className="relative flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs tracking-[0.2em]">
       <motion.span style={reduce ? { background: "#22d3d3" } : { background: bg }} className="h-3 w-3 rounded-full shadow-[0_0_10px_#22d3d3]" />
-      <motion.span style={reduce ? undefined : { color }} className="font-semibold">{s.n} {s.title}</motion.span>
+      <motion.span style={reduce ? undefined : { color }} className="font-semibold whitespace-nowrap">{s.n}<span className="hidden sm:inline"> {s.title}</span></motion.span>
     </div>
   );
 }

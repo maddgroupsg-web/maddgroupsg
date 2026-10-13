@@ -61,8 +61,8 @@ function Card({ p, active, open, setOpen, onFocusCard }: { p: Instructor; active
         )}
         {active && !open && (
           <div className="absolute inset-x-0 bottom-0 p-5 flex items-end justify-between gap-4">
-            <div><div className="display text-4xl sm:text-5xl">{p.name}</div><div className="text-xs tracking-[0.2em] uppercase text-cyan mt-1">{p.role}</div></div>
-            <div className="text-[11px] tracking-[0.2em] text-cyan whitespace-nowrap">{p.video ? "HOVER TO WATCH ▶" : "HOVER TO DISCOVER +"}</div>
+            <div><div className="display text-3xl sm:text-5xl">{p.name}</div><div className="text-xs tracking-[0.2em] uppercase text-cyan mt-1">{p.role}</div></div>
+            <div className="text-[11px] tracking-[0.2em] text-cyan whitespace-nowrap"><span className="sm:hidden">{p.video ? "TAP TO WATCH ▶" : "TAP TO DISCOVER +"}</span><span className="hidden sm:inline">{p.video ? "HOVER TO WATCH ▶" : "HOVER TO DISCOVER +"}</span></div>
           </div>
         )}
         {active && open && (
