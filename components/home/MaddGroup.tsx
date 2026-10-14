@@ -46,45 +46,8 @@ export default function MaddGroup() {
           </div>
         </div>
 
-        {/* Ecosystem in action — orbit */}
-        <div className="mt-20 grid gap-10 lg:grid-cols-2 lg:items-center">
-          <Reveal>
-            <h3 className="display text-5xl sm:text-6xl"><span className="block">{maddGroup.orbit.headline[0]}</span><span className="block text-cyan">{maddGroup.orbit.headline[1]}</span></h3>
-            <p className="mt-4 text-mute max-w-md">MADDspace isn't operating in isolation. There is an entire ecosystem behind the student's development.</p>
-            <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
-              {maddGroup.orbit.nodes.map((n) => <li key={n.k}><span className="display text-cyan text-xl">{n.k}</span><div className="text-white/70 text-xs">{n.v}</div></li>)}
-            </ul>
-          </Reveal>
-          <Reveal className="relative mx-auto aspect-square w-full max-w-[520px]">
-            <Orbit />
-          </Reveal>
-        </div>
       </div>
     </section>
   );
 }
 
-function Orbit() {
-  const nodes = maddGroup.orbit.nodes;
-  return (
-    <div className="relative h-full w-full">
-      <div className="absolute inset-[6%] rounded-full border border-cyan/20" />
-      <div className="absolute inset-[22%] rounded-full border border-cyan/15 border-dashed" />
-      <motion.div className="absolute inset-[6%] rounded-full" animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }}>
-        {nodes.map((n, i) => {
-          const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
-          const x = 50 + 50 * Math.cos(a), y = 50 + 50 * Math.sin(a);
-          return (
-            <motion.div key={n.k} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%`, top: `${y}%` }} animate={{ rotate: -360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }}>
-              <div className="glass rounded-full px-3 py-1.5 text-[10px] sm:text-xs tracking-[0.18em] text-cyan whitespace-nowrap shadow-[0_0_18px_-4px_rgba(34,211,211,0.6)]">{n.k}</div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-      <div className="absolute inset-[30%] overflow-hidden rounded-full glow-border">
-        <Image src="/images/classes/age-6-9/age-6-9-08.jpg" alt="A MADDspace student at the centre of the ecosystem" fill sizes="240px" className="object-cover" />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent p-3 text-center text-[10px] tracking-[0.25em]">THE STUDENT</div>
-      </div>
-    </div>
-  );
-}
