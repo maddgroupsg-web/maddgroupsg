@@ -13,8 +13,8 @@ export default function LogoMarquee({ title = "AS FEATURED IN LEADING MEDIA PLAT
       <div className="marquee relative mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
         <div className="marquee-track items-center gap-16 px-8">
           {logos.map((l, i) => (
-            <div key={i} className="flex h-16 w-[170px] sm:w-[210px] shrink-0 items-center justify-center">
-              <Image src={l.src} alt={l.name} width={l.w} height={l.h} className="max-h-12 w-auto object-contain" />
+            <div key={i} className="flex h-16 w-[150px] sm:w-[190px] shrink-0 items-center justify-center">
+              <Image src={l.src} alt={l.name} width={l.w} height={l.h} className="max-h-11 max-w-full w-auto object-contain" />
             </div>
           ))}
         </div>

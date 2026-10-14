@@ -20,7 +20,7 @@ export default function Preloader() {
 
   useEffect(() => {
     if (reduce) return;
-    try { if (sessionStorage.getItem("madd-intro")) return; sessionStorage.setItem("madd-intro", "1"); } catch {}
+    try { if (sessionStorage.getItem("madd-intro")) return; } catch {}
     setShow(true);
     document.documentElement.style.overflow = "hidden";
     const t1 = setTimeout(() => setOpen(true), T.open * 1000);
@@ -29,7 +29,7 @@ export default function Preloader() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const finish = () => { setShow(false); document.documentElement.style.overflow = ""; };
+  const finish = () => { setShow(false); document.documentElement.style.overflow = ""; try { sessionStorage.setItem("madd-intro", "1"); } catch {} };
   const skip = () => { setOpen(true); setTimeout(finish, 900); };
 
   return (
@@ -78,16 +78,16 @@ function Logo() {
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" fill="none">
         <motion.rect x="2" y="2" width="96" height="96" stroke="#22d3d3" strokeWidth="2.2" initial={{ pathLength: 0, opacity: 0.4 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.1, delay: T.box, ease: "easeInOut" }} style={{ filter: "drop-shadow(0 0 6px rgba(34,211,211,.8))" }} />
       </svg>
-      <div className="absolute inset-[11%] flex flex-col justify-between font-light uppercase text-white" style={{ fontFamily: "var(--font-inter)", letterSpacing: "0.08em", fontSize: "min(9.2vw, 44px)", lineHeight: 1 }}>
+      <div className="absolute inset-[11%] flex flex-col justify-between font-light uppercase text-white" style={{ fontFamily: "var(--font-inter)", letterSpacing: "0.1em", fontSize: "min(9.2vw, 44px)", lineHeight: 1 }}>
         {ROWS.map((r, i) => (
           <div key={i} className="flex items-baseline overflow-hidden">
-            <motion.span className="inline-block w-[1.1em] font-medium" initial={{ opacity: 0, y: "-40%" }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: T.lead + i * T.step, ease }}>{r.lead}</motion.span>
+            <motion.span className="inline-block font-medium" initial={{ opacity: 0, y: "-40%" }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: T.lead + i * T.step, ease }}>{r.lead}</motion.span>
             <motion.span className="inline-block" initial={{ opacity: 0, x: "-60%" }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.55, delay: T.rest + i * 0.12, ease }}>{r.rest}</motion.span>
           </div>
         ))}
         <div className="flex items-baseline text-cyan" style={{ textShadow: "0 0 14px rgba(34,211,211,.6)" }}>
           {SPACE.map((c, i) => (
-            <motion.span key={i} className={`inline-block ${i === 0 ? "w-[1.1em] font-medium" : ""}`} initial={{ opacity: 0, x: "-30%" }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3, delay: T.lead + ROWS.length * T.step + i * 0.14, ease }}>{c}</motion.span>
+            <motion.span key={i} className={`inline-block ${i === 0 ? "font-medium" : ""}`} initial={{ opacity: 0, x: "-30%" }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3, delay: T.lead + ROWS.length * T.step + i * 0.14, ease }}>{c}</motion.span>
           ))}
         </div>
       </div>

@@ -103,13 +103,13 @@ export const footerBrowse = [
 ];
 
 export const mediaLogos = [
-  { name: "The Straits Times", src: "/images/media/straits-times.png", w: 900, h: 70 },
-  { name: "Toggle", src: "/images/media/toggle.png", w: 776, h: 263 },
-  { name: "Channel NewsAsia", src: "/images/media/cna.png", w: 300, h: 380 },
-  { name: "Sassy Mama — Top 10 Music Schools", src: "/images/media/sassy-mama.png", w: 441, h: 104 },
-  { name: "TheSmartLocal", src: "/images/media/thesmartlocal.png", w: 534, h: 80 },
-  { name: "Her World Plus", src: "/images/media/herworldplus.png", w: 603, h: 125 },
-  { name: "联合早报 Lianhe Zaobao", src: "/images/media/zaobao.png", w: 900, h: 277 },
+  { name: "The Straits Times", src: "/images/media/straits-times-colour.png", w: 900, h: 70 },
+  { name: "Toggle", src: "/images/media/toggle-colour.png", w: 776, h: 263 },
+  { name: "Channel NewsAsia", src: "/images/media/cna-colour.png", w: 300, h: 380 },
+  { name: "Sassy Mama", src: "/images/media/sassy-mama-colour.png", w: 441, h: 104 },
+  { name: "TheSmartLocal", src: "/images/media/thesmartlocal-colour.png", w: 534, h: 80 },
+  { name: "Her World Plus", src: "/images/media/herworldplus-colour.png", w: 603, h: 125 },
+  { name: "联合早报 Lianhe Zaobao", src: "/images/media/zaobao-colour.png", w: 900, h: 277 },
 ];
 
 export const awards = [
