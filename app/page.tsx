@@ -9,10 +9,12 @@ import Testimonials from "@/components/home/Testimonials";
 import LogoMarquee from "@/components/LogoMarquee";
 import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
+import Preloader from "@/components/Preloader";
 
 export default function Home() {
   return (
     <Shell>
+      <Preloader />
       <Hero />
       <Progression />
       <Pathways />

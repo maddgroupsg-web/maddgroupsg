@@ -31,10 +31,13 @@ export default function InstructorCarousel({ initial = "all" }: { initial?: "all
           {list.map((p, i) => <Card key={p.slug} p={p} active={i === sel} open={open && i === sel} setOpen={setOpen} onFocusCard={() => api?.scrollTo(i)} />)}
         </div>
       </div>
-      <div className="mt-8 flex items-center justify-between">
-        <button onClick={prev} aria-label="Previous instructor" className="h-12 w-12 rounded-full border border-cyan/70 text-cyan flex items-center justify-center hover:bg-cyan/10"><ArrowLeft /></button>
-        <div className="flex-1 mx-6 relative h-px bg-white/10"><div className="absolute left-0 top-0 h-px bg-cyan shadow-[0_0_8px_#22d3d3] transition-all" style={{ width: `${((sel + 1) / list.length) * 100}%` }} /><div className="absolute left-1/2 -translate-x-1/2 top-3 text-[11px] tracking-[0.25em] text-cyan whitespace-nowrap">DRAG TO MEET THE TEAM ↔</div></div>
-        <button onClick={next} aria-label="Next instructor" className="h-12 w-12 rounded-full border border-cyan/70 text-cyan flex items-center justify-center hover:bg-cyan/10"><ArrowRight /></button>
+      <div className="mt-6 relative h-px bg-white/10"><div className="absolute left-0 top-0 h-px bg-cyan shadow-[0_0_8px_#22d3d3] transition-all" style={{ width: `${((sel + 1) / list.length) * 100}%` }} /></div>
+      <div className="mt-6 flex flex-col items-center gap-3">
+        <div className="flex items-center gap-3">
+          <button onClick={prev} aria-label="Previous instructor" className="h-12 w-12 rounded-full border border-cyan/70 text-cyan flex items-center justify-center hover:bg-cyan/10"><ArrowLeft /></button>
+          <button onClick={next} aria-label="Next instructor" className="h-12 w-12 rounded-full border border-cyan/70 text-cyan flex items-center justify-center hover:bg-cyan/10"><ArrowRight /></button>
+        </div>
+        <div className="text-[11px] tracking-[0.25em] text-cyan">DRAG TO MEET THE TEAM ↔</div>
       </div>
     </div>
   );
