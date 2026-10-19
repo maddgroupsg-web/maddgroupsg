@@ -20,7 +20,7 @@ export default function Page() {
   const feats = [stories[1], stories[0]];
   return (
     <Shell>
-      <PageHero eyebrow="MADD ENTERTAINMENT · DEVELOP" title={idol.h1} sub={<>{idol.h2[0]}<br />{idol.h2[1]}</>} image="/images/classes/age-10-18/age-10-18-02.jpg" tall>
+      <PageHero eyebrow="MADD ENTERTAINMENT · LAUNCH" title={idol.h1} sub={<>{idol.h2[0]}<br />{idol.h2[1]}</>} image="/images/classes/age-10-18/age-10-18-02.jpg" tall>
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button>
         <Button href="#who" variant="outline">WHO IS THIS FOR?</Button>
       </PageHero>
