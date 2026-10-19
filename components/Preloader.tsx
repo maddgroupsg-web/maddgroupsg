@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 // Theatre intro: logo builds in an L (M·A·D·D down, S·P·A·C·E across), the rest of the words slide in,
-// the logo fades and the red curtains part to reveal the stage. Plays once per browser session.
+// the logo fades and the black screen splits open to reveal the page. Plays once per browser session.
 const ROWS = [
   { lead: "M", rest: "USIC" },
   { lead: "A", rest: "RT" },
@@ -41,8 +41,6 @@ export default function Preloader() {
           {/* curtains */}
           <Curtain side="left" open={open} />
           <Curtain side="right" open={open} />
-          {/* valance */}
-          <motion.div className="absolute inset-x-0 top-0 h-[9vh] z-20" style={{ background: "linear-gradient(180deg,#5a0b16,#3a060d 70%,transparent)", boxShadow: "0 10px 30px rgba(0,0,0,.6)" }} animate={{ y: open ? "-100%" : 0 }} transition={{ duration: 0.9, delay: 0.5, ease: [0.76, 0, 0.24, 1] }} />
           {/* logo */}
           <motion.div className="absolute inset-0 z-30 flex items-center justify-center" animate={{ opacity: open ? 0 : 1, scale: open ? 1.04 : 1 }} transition={{ duration: 0.5 }}>
             <Logo />
@@ -55,17 +53,15 @@ export default function Preloader() {
 }
 
 function Curtain({ side, open }: { side: "left" | "right"; open: boolean }) {
-  const folds = "repeating-linear-gradient(90deg, #7a1020 0px, #4a0810 22px, #8a1526 44px, #3b060c 70px)";
   return (
     <motion.div
-      className={`absolute top-0 bottom-0 w-1/2 z-10 ${side === "left" ? "left-0 origin-left" : "right-0 origin-right"}`}
-      style={{ background: folds, boxShadow: side === "left" ? "12px 0 40px rgba(0,0,0,.7)" : "-12px 0 40px rgba(0,0,0,.7)" }}
+      className={`absolute top-0 bottom-0 w-1/2 z-10 bg-ink ${side === "left" ? "left-0" : "right-0"}`}
       initial={false}
-      animate={open ? { x: side === "left" ? "-100%" : "100%", scaleX: 0.75 } : { x: 0, scaleX: 1 }}
-      transition={{ duration: 1.15, ease: [0.76, 0, 0.24, 1] }}
+      animate={open ? { x: side === "left" ? "-100%" : "100%" } : { x: 0 }}
+      transition={{ duration: 1.0, ease: [0.76, 0, 0.24, 1] }}
     >
-      <div className="absolute inset-0" style={{ background: "radial-gradient(60% 80% at 50% 50%, rgba(255,120,140,0.10), transparent 70%)" }} />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,.35), transparent 30%, transparent 70%, rgba(0,0,0,.5))" }} />
+      {/* thin cyan seam that glows as the screen opens */}
+      <motion.div className={`absolute top-0 bottom-0 w-px ${side === "left" ? "right-0" : "left-0"}`} style={{ background: "linear-gradient(180deg, transparent, #22d3d3 30%, #22d3d3 70%, transparent)", boxShadow: "0 0 18px 2px rgba(34,211,211,0.6)" }} initial={{ opacity: 0 }} animate={{ opacity: open ? 1 : 0 }} transition={{ duration: 0.3 }} />
     </motion.div>
   );
 }
