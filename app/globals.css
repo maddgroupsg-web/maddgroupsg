@@ -80,3 +80,8 @@ body {
 [data-theme="pink"] { --accent: var(--color-pink); --accent-rgb: 255 45 138; }
 [data-theme="lime"] { --accent: var(--color-lime); --accent-rgb: 198 255 0; }
 [data-theme="gold"] { --accent: var(--color-gold); --accent-rgb: 226 184 95; }
+
+/* review scroller */
+.review-scroller::-webkit-scrollbar { height: 4px; }
+.review-scroller::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); border-radius: 4px; }
+.review-scroller::-webkit-scrollbar-thumb { background: rgba(34,211,211,0.6); border-radius: 4px; }

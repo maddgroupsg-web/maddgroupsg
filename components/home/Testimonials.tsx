@@ -1,7 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, MessageCircle, ExternalLink } from "lucide-react";
 import { reviews, googleProfile } from "@/content/reviews";
 import { contact } from "@/content/site";
@@ -10,9 +8,8 @@ import { SectionHeading } from "@/components/ui";
 import { waLink } from "@/lib/utils";
 
 export default function Testimonials({ heading = "PARENTS SAY IT BEST", eyebrow = "GOOGLE REVIEWS" }: { heading?: string; eyebrow?: string }) {
-  const [ref, api] = useEmblaCarousel({ loop: true, align: "start" }, [Autoplay({ delay: 6500, stopOnMouseEnter: true, stopOnInteraction: false })]);
-  const [idx, setIdx] = useState(0);
-  useEffect(() => { if (!api) return; const f = () => setIdx(api.selectedScrollSnap()); api.on("select", f); f(); }, [api]);
+  const scroller = useRef<HTMLDivElement>(null);
+  const scrollBy = (dir: number) => { const el = scroller.current; if (!el) return; const card = el.querySelector<HTMLElement>("[data-card]"); el.scrollBy({ left: dir * ((card?.offsetWidth ?? 360) + 16), behavior: "smooth" }); };
 
   return (
     <section className="relative py-20 lg:py-24 curtain overflow-hidden">
@@ -29,32 +26,16 @@ export default function Testimonials({ heading = "PARENTS SAY IT BEST", eyebrow 
           </a>
         </div>
 
-        {/* review cards */}
+        {/* review cards — native horizontal scroll with snap (drag, trackpad, arrows) */}
         <div className="relative mt-10">
-          <div ref={ref} className="overflow-hidden">
-            <div className="flex gap-4">
-              {reviews.map((r) => (
-                <figure key={r.name + r.text.slice(0, 12)} className="shrink-0 basis-[88%] sm:basis-[56%] lg:basis-[38%]">
-                  <div className="glass rounded-xl p-6 sm:p-7 h-full flex flex-col">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 text-accent font-semibold">{r.name.charAt(0)}</span>
-                        <div><div className="font-semibold text-sm">{r.name}</div><div className="text-[11px] text-white/50">{r.when || "Parent review"}</div></div>
-                      </div>
-                      {r.source === "google" ? <GoogleG size={18} /> : <span className="text-[10px] tracking-[0.2em] text-white/40">REVIEW</span>}
-                    </div>
-                    <Stars value={r.rating} size={15} className="mt-3" />
-                    <blockquote className="mt-3 text-sm sm:text-[15px] leading-relaxed text-white/85 line-clamp-[9]">{r.text}</blockquote>
-                  </div>
-                </figure>
-              ))}
-            </div>
+          <div ref={scroller} className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth review-scroller [scrollbar-width:thin] [scrollbar-color:rgba(34,211,211,.6)_rgba(255,255,255,.08)]">
+            {reviews.map((r) => <ReviewCard key={r.name + r.text.slice(0, 12)} r={r} />)}
           </div>
-          <div className="mt-5 flex items-center justify-between">
-            <div className="flex gap-1.5">{reviews.map((_, i) => <button key={i} aria-label={`Review ${i + 1}`} onClick={() => api?.scrollTo(i)} className={`h-1 rounded-full transition-all ${i === idx ? "w-8 bg-accent" : "w-3 bg-white/25"}`} />)}</div>
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-[11px] tracking-[0.2em] text-white/50">SCROLL OR DRAG TO READ MORE ↔</p>
             <div className="flex items-center gap-2">
-              <button onClick={() => api?.scrollPrev()} aria-label="Previous review" className="h-11 w-11 rounded-full border border-accent/60 text-accent hover:bg-accent/10 flex items-center justify-center"><ArrowLeft size={18} /></button>
-              <button onClick={() => api?.scrollNext()} aria-label="Next review" className="h-11 w-11 rounded-full border border-accent/60 text-accent hover:bg-accent/10 flex items-center justify-center"><ArrowRight size={18} /></button>
+              <button onClick={() => scrollBy(-1)} aria-label="Previous reviews" className="h-11 w-11 rounded-full border border-accent/60 text-accent hover:bg-accent/10 flex items-center justify-center"><ArrowLeft size={18} /></button>
+              <button onClick={() => scrollBy(1)} aria-label="Next reviews" className="h-11 w-11 rounded-full border border-accent/60 text-accent hover:bg-accent/10 flex items-center justify-center"><ArrowRight size={18} /></button>
             </div>
           </div>
         </div>
@@ -62,6 +43,27 @@ export default function Testimonials({ heading = "PARENTS SAY IT BEST", eyebrow 
         <LeaveReview />
       </div>
     </section>
+  );
+}
+
+function ReviewCard({ r }: { r: (typeof reviews)[number] }) {
+  const [open, setOpen] = useState(false);
+  const long = r.text.length > 260;
+  return (
+    <figure data-card className="shrink-0 snap-start basis-[86%] sm:basis-[54%] lg:basis-[36%] xl:basis-[31%]">
+      <div className="glass rounded-xl p-6 sm:p-7 h-full flex flex-col">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 text-accent font-semibold">{r.name.charAt(0)}</span>
+            <div><div className="font-semibold text-sm">{r.name}</div><div className="text-[11px] text-white/50">{r.when || "Parent review"}</div></div>
+          </div>
+          {r.source === "google" ? <GoogleG size={18} /> : <span className="text-[10px] tracking-[0.2em] text-white/40">REVIEW</span>}
+        </div>
+        <Stars value={r.rating} size={15} className="mt-3" />
+        <blockquote className={`mt-3 text-sm sm:text-[15px] leading-relaxed text-white/85 ${open ? "" : "line-clamp-6"}`}>{r.text}</blockquote>
+        {long && <button onClick={() => setOpen(!open)} className="mt-3 self-start text-[11px] tracking-[0.2em] text-accent font-semibold">{open ? "SHOW LESS" : "READ MORE"}</button>}
+      </div>
+    </figure>
   );
 }
 

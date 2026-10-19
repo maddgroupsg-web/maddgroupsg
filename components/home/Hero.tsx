@@ -36,7 +36,7 @@ export default function Hero() {
           </ul>
         </motion.div>
       </div>
-      <a href="#journey" aria-label="Scroll to journey" className="absolute bottom-5 left-1/2 -translate-x-1/2 text-cyan/80 animate-bounce hidden lg:block"><ChevronDown /></a>
+      <a href="#madd-group" aria-label="Scroll to the MADD Group" className="absolute bottom-5 left-1/2 -translate-x-1/2 text-cyan/80 animate-bounce hidden lg:block"><ChevronDown /></a>
     </section>
   );
 }

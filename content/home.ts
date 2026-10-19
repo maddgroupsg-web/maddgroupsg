@@ -116,3 +116,15 @@ export const finalCta = {
   primary: "FIND MY CHILD'S PATHWAY",
   secondary: "BOOK A TRIAL",
 };
+
+// Section 2 — The MADD Group pillars, revealed one by one on scroll
+export const pillarsProgression = {
+  id: "madd-group",
+  eyebrow: "THE MADD GROUP",
+  headline: ["MORE THAN A PERFORMING ARTS SCHOOL.", "Four pillars. One ecosystem."],
+  intro: maddGroup.copy,
+  stages: maddGroup.pillars.map((p, i) => ({ n: `0${i + 1}`, kicker: p.verb, title: p.name, copy: p.copy, image: p.image, alt: `${p.name} — ${p.verb}`, href: p.href })),
+  footer: ["ONE STARTING POINT. MANY POSSIBILITIES.", "Students may interact with one or several pillars depending on their goals."] as [string, string],
+  cta: { label: "FIND YOUR PATHWAY", href: "#pathway" },
+  aspect: "aspect-[4/5] sm:aspect-[3/4] lg:aspect-[3/4]",
+};
