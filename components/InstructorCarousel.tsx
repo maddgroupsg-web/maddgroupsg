@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight, Play, User, CalendarDays, Ticket } from "lucide-react";
+import { ArrowLeft, ArrowRight, Play, User, CalendarDays, Ticket, Mic, Music2, Users } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { instructors, type Instructor } from "@/content/instructors";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { cn, youtubeId } from "@/lib/utils";
 
-const filters = [{ key: "all", label: "ALL" }, { key: "vocal", label: "VOCAL" }, { key: "dance", label: "DANCE" }] as const;
+const filters = [{ key: "all", label: "ALL", icon: Users }, { key: "vocal", label: "VOCAL", icon: Mic }, { key: "dance", label: "DANCE", icon: Music2 }] as const;
 
 export default function InstructorCarousel({ initial = "all" }: { initial?: "all" | "vocal" | "dance" }) {
   const [filter, setFilter] = useState<(typeof filters)[number]["key"]>(initial);
@@ -23,8 +23,16 @@ export default function InstructorCarousel({ initial = "all" }: { initial?: "all
 
   return (
     <div>
-      <div className="flex items-center justify-end gap-6 text-xs tracking-[0.2em]">
-        {filters.map((f) => <button key={f.key} onClick={() => setFilter(f.key)} className={cn("pb-1 border-b-2 transition-colors", filter === f.key ? "border-cyan text-cyan" : "border-transparent text-white/60 hover:text-white")}>{f.label}</button>)}
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <p className="text-xs tracking-[0.2em] text-white/50 hidden sm:block">{list.length} INSTRUCTORS · SWITCH ANYTIME</p>
+        <div role="tablist" aria-label="Filter instructors" className="glass rounded-full p-1 flex w-full sm:w-auto">
+          {filters.map((f) => (
+            <button key={f.key} role="tab" aria-selected={filter === f.key} onClick={() => { setFilter(f.key); setOpen(false); }}
+              className={cn("flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full px-4 sm:px-6 py-2.5 text-xs font-semibold tracking-[0.2em] transition-all", filter === f.key ? "bg-cyan text-ink shadow-[0_0_18px_-4px_rgba(34,211,211,.8)]" : "text-white/70 hover:text-white hover:bg-white/5")}>
+              <f.icon size={14} />{f.label}
+            </button>
+          ))}
+        </div>
       </div>
       <div ref={ref} className="mt-8 overflow-hidden cursor-grab active:cursor-grabbing">
         <div className="flex items-center">
