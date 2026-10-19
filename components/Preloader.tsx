@@ -35,9 +35,7 @@ export default function Preloader() {
   return (
     <AnimatePresence>
       {show && (
-        <motion.div key="intro" className="fixed inset-0 z-[100] overflow-hidden select-none" onClick={skip} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} aria-hidden>
-          {/* stage behind the curtain: dark + spotlight */}
-          <div className="absolute inset-0 bg-ink" />
+        <motion.div key="intro" className="fixed inset-0 z-[100] overflow-hidden select-none pointer-events-none" onClick={skip} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} aria-hidden style={{ pointerEvents: open ? "none" : "auto" }}>
           {/* curtains */}
           <Curtain side="left" open={open} />
           <Curtain side="right" open={open} />
