@@ -1,7 +1,6 @@
 import Shell from "@/components/Shell";
 import Hero from "@/components/home/Hero";
 import Progression from "@/components/home/Progression";
-import Journey from "@/components/home/Journey";
 import Pathways from "@/components/home/Pathways";
 import ClassesTiles from "@/components/home/ClassesTiles";
 import Journeys from "@/components/home/Journeys";
@@ -20,7 +19,6 @@ export default function Home() {
       <Progression config={pillarsProgression} />
       <Pathways />
       <ClassesTiles />
-      <Journey />
       <Journeys />
       <Testimonials />
       <LogoMarquee />
