@@ -4,7 +4,6 @@ import Progression from "@/components/home/Progression";
 import ClassesTiles from "@/components/home/ClassesTiles";
 import Journeys from "@/components/home/Journeys";
 import Testimonials from "@/components/home/Testimonials";
-import LogoMarquee from "@/components/LogoMarquee";
 import ShowcaseWall from "@/components/home/ShowcaseWall";
 import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";

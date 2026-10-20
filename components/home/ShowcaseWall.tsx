@@ -27,17 +27,16 @@ const ROW_B = [
 export default function ShowcaseWall() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center 40%"] });
-  const rotateX = useTransform(scrollYProgress, [0, 1], [62, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.78, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [140, 0]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
+  // flat diagonal slant (2D) that levels out — no 3D, no vertical drift, so normal scrolling never feels held
+  const rotate = useTransform(scrollYProgress, [0, 1], [-9, 0]);
   const xA = useTransform(scrollYProgress, [0, 1], ["-22%", "0%"]);
   const xB = useTransform(scrollYProgress, [0, 1], ["22%", "0%"]);
 
   return (
     <section ref={ref} className="relative pt-10 pb-10 lg:pt-14 lg:pb-16 overflow-hidden">
-      <div style={{ perspective: "1100px" }}>
-        <motion.div style={reduce ? undefined : { rotateX, scale, y, transformOrigin: "50% 0%" }} className="space-y-4 will-change-transform">
+      <div className="-mx-[8vw]">
+        <motion.div style={reduce ? undefined : { rotate, transformOrigin: "50% 50%" }} className="space-y-4 will-change-transform py-[6vw]">
           {/* media logos ride on the same tilted plane */}
           <h2 className="sr-only">As featured in leading media platforms</h2>
           <div className="marquee relative overflow-hidden pb-6 [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
