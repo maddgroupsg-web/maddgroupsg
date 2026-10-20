@@ -3,7 +3,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Button({ href, children, variant = "primary", className, external, ...rest }: { href: string; children: ReactNode; variant?: "primary" | "outline" | "ghost"; className?: string; external?: boolean }) {
   const cls = cn("btn", variant === "primary" && "btn-primary", variant === "outline" && "btn-outline", variant === "ghost" && "btn-ghost", className);
@@ -12,10 +12,22 @@ export function Button({ href, children, variant = "primary", className, externa
   return <Link href={href} className={cls} {...rest}>{children}{variant === "ghost" && <ArrowRight size={16} />}</Link>;
 }
 
-export function Reveal({ children, className, delay = 0, y = 24, once = true }: { children: ReactNode; className?: string; delay?: number; y?: number; once?: boolean }) {
+// Scroll-in reveal. When several Reveals sit side by side in the same parent, they queue left → right
+// automatically (each waits STEP s longer than the previous sibling), unless an explicit delay is given.
+const STEP = 0.09;
+export function Reveal({ children, className, delay, y = 24, once = true, stagger = true }: { children: ReactNode; className?: string; delay?: number; y?: number; once?: boolean; stagger?: boolean }) {
   const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const [auto, setAuto] = useState(0);
+  useEffect(() => {
+    if (delay !== undefined || !stagger) return;
+    const el = ref.current; if (!el?.parentElement) return;
+    const sibs = Array.from(el.parentElement.children).filter((c) => c.hasAttribute("data-reveal"));
+    const i = sibs.indexOf(el);
+    if (i > 0) setAuto(i * STEP);
+  }, [delay, stagger]);
   return (
-    <motion.div className={className} initial={reduce ? false : { opacity: 0, y }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once, margin: "-10% 0px" }} transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.div ref={ref} data-reveal className={className} initial={reduce ? false : { opacity: 0, y, x: -14 }} whileInView={{ opacity: 1, y: 0, x: 0 }} viewport={{ once, margin: "-10% 0px" }} transition={{ duration: 0.7, delay: delay ?? auto, ease: [0.22, 1, 0.36, 1] }}>
       {children}
     </motion.div>
   );

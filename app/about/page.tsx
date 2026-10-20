@@ -57,7 +57,7 @@ export default function AboutPage() {
           <Reveal><SectionHeading title={about.valuesTitle} align="center" /></Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {about.values.map((v, i) => (
-              <Reveal key={v.name} delay={i * 0.06} className="glass rounded-xl p-6">
+              <Reveal key={v.name} delay={i * 0.09} className="glass rounded-xl p-6">
                 <div className="display text-cyan text-6xl leading-none">{v.letter}</div>
                 <h3 className="display text-3xl mt-2">{v.name}</h3>
                 <p className="mt-3 text-sm text-mute leading-relaxed">{v.copy}</p>

@@ -15,7 +15,7 @@ export function WhyGrid({ title, items, images }: { title: string; items: { titl
         <Reveal><h2 className="display text-4xl sm:text-6xl max-w-3xl">{title}</h2></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {items.map((w, i) => (
-            <Reveal key={w.title} delay={i * 0.06} className="group rounded-xl overflow-hidden border border-line bg-ink-3 hover:border-accent/60 transition-colors">
+            <Reveal key={w.title} delay={i * 0.09} className="group rounded-xl overflow-hidden border border-line bg-ink-3 hover:border-accent/60 transition-colors">
               <div className="relative aspect-[4/3]"><Image src={images[i % images.length]} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-ink-3 to-transparent" /></div>
               <div className="p-6"><h3 className="display text-3xl">{w.title}</h3>{w.copy.map((p) => <p key={p} className="mt-2 text-sm text-mute leading-relaxed">{p}</p>)}</div>
             </Reveal>
@@ -33,7 +33,7 @@ export function LearnGrid({ title, intro, items, images }: { title: string; intr
         <Reveal><h2 className="display text-4xl sm:text-6xl">{title}</h2>{intro && <p className="mt-4 max-w-3xl text-mute">{intro}</p>}</Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((l, i) => (
-            <Reveal key={l.title} delay={i * 0.06} className="glass rounded-xl overflow-hidden">
+            <Reveal key={l.title} delay={i * 0.09} className="glass rounded-xl overflow-hidden">
               <div className="relative aspect-[16/10]"><Image src={images[i % images.length]} alt="" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" /></div>
               <div className="p-5"><h3 className="display text-2xl sm:text-3xl">{l.title}</h3><p className="mt-2 text-sm text-mute">{l.copy}</p></div>
             </Reveal>
@@ -51,7 +51,7 @@ export function PathSteps({ title, intro, steps, images }: { title: string; intr
         <Reveal><h2 className="display text-4xl sm:text-6xl">{title}</h2>{intro && <p className="mt-3 text-mute">{intro}</p>}</Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {steps.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08} className="relative rounded-xl overflow-hidden border border-line min-h-[320px] group">
+            <Reveal key={s.title} delay={i * 0.09} className="relative rounded-xl overflow-hidden border border-line min-h-[320px] group">
               <Image src={images[i % images.length]} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
               <div className="absolute inset-0 p-6 flex flex-col justify-end">

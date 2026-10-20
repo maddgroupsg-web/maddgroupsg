@@ -27,7 +27,7 @@ export default function Page() {
       <section id="who" className="py-16 lg:py-24 scroll-mt-20">
         <div className="container-x">
           <Reveal><SectionHeading title={idol.whoTitle} /><div className="mt-5 max-w-3xl space-y-3 text-mute leading-relaxed">{idol.who.map((p, i) => <p key={p} className={i === 0 ? "text-white text-lg font-semibold" : ""}>{p}</p>)}</div></Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{idol.pillars.map((p, i) => <Reveal key={p.title} delay={i * 0.05} className="glass rounded-xl p-6"><div className="display text-accent text-4xl">0{i + 1}</div><h3 className="display text-3xl mt-2">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>)}</div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{idol.pillars.map((p, i) => <Reveal key={p.title} delay={i * 0.09} className="glass rounded-xl p-6"><div className="display text-accent text-4xl">0{i + 1}</div><h3 className="display text-3xl mt-2">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>)}</div>
         </div>
       </section>
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line overflow-hidden">

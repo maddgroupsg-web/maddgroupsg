@@ -27,7 +27,7 @@ export default function Page() {
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
         <div className="container-x">
           <Reveal><SectionHeading title={dsa.whyTitle} sub={dsa.whySub} /></Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{dsa.why.map((w, i) => { const I = icons[i]; return <Reveal key={w.title} delay={i * 0.05} className="glass rounded-xl p-6"><I className="text-accent" /><h3 className="display text-3xl mt-3">{w.title}</h3><p className="mt-2 text-sm text-mute">{w.copy}</p></Reveal>; })}</div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{dsa.why.map((w, i) => { const I = icons[i]; return <Reveal key={w.title} delay={i * 0.09} className="glass rounded-xl p-6"><I className="text-accent" /><h3 className="display text-3xl mt-3">{w.title}</h3><p className="mt-2 text-sm text-mute">{w.copy}</p></Reveal>; })}</div>
         </div>
       </section>
       <section className="py-16 lg:py-24">
@@ -35,7 +35,7 @@ export default function Page() {
           <Reveal><SectionHeading eyebrow="THE DSA PATHWAY" title={dsa.stagesTitle} sub={dsa.stagesSub} /></Reveal>
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {dsa.stages.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.08} className="relative rounded-xl overflow-hidden border border-line min-h-[340px] group">
+              <Reveal key={s.n} delay={i * 0.09} className="relative rounded-xl overflow-hidden border border-line min-h-[340px] group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={g[(i + 1) % g.length]} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-transparent" />

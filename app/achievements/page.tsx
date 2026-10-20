@@ -32,7 +32,7 @@ export default function AchievementsPage() {
         <div className="container-x">
           <Reveal><SectionHeading title={achievementsPage.pillarsHeadline} sub={achievementsPage.pillarsSub} align="center" /></Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {achievementsPage.pillars.map((p, i) => { const I = icons[i]; return <Reveal key={p.title} delay={i * 0.05} className="glass rounded-xl p-6"><I className="text-cyan" /><h3 className="display text-3xl mt-3">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>; })}
+            {achievementsPage.pillars.map((p, i) => { const I = icons[i]; return <Reveal key={p.title} delay={i * 0.09} className="glass rounded-xl p-6"><I className="text-cyan" /><h3 className="display text-3xl mt-3">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>; })}
           </div>
         </div>
       </section>

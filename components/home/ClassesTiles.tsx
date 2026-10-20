@@ -16,7 +16,7 @@ export default function ClassesTiles() {
         </Reveal>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {ourClasses.tiles.map((t, i) => (
-            <Reveal key={t.title} delay={i * 0.05}>
+            <Reveal key={t.title} delay={i * 0.09}>
               <Link href={t.href} className="group relative block aspect-[4/5] overflow-hidden rounded-lg border border-line">
                 <Image src={t.image} alt={t.alt} fill sizes="(max-width: 1024px) 50vw, 20vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />

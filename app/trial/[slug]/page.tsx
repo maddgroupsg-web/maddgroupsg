@@ -64,7 +64,7 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
       <section className="py-16 lg:py-24">
         <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <Reveal><div className="eyebrow">{l.mentors.eyebrow}</div><h2 className="display mt-3 text-5xl sm:text-6xl">{l.mentors.headline}</h2><p className="mt-4 text-mute">{l.mentors.copy}</p><div className="mt-6"><Button href="/instructors" variant="outline">MEET THE INSTRUCTORS</Button></div></Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">{mentors.map((m, i) => <Reveal key={m.slug} delay={i * 0.05}><figure className="rounded-lg overflow-hidden border border-line bg-ink-3"><div className="relative aspect-[3/4]"><Image src={m.image} alt={m.name} fill sizes="25vw" className="object-cover object-top" /></div><figcaption className="p-3"><div className="font-semibold text-sm uppercase">{m.name}</div><div className="text-[10px] tracking-wider uppercase text-accent">{m.role}</div></figcaption></figure></Reveal>)}</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">{mentors.map((m, i) => <Reveal key={m.slug} delay={i * 0.09}><figure className="rounded-lg overflow-hidden border border-line bg-ink-3"><div className="relative aspect-[3/4]"><Image src={m.image} alt={m.name} fill sizes="25vw" className="object-cover object-top" /></div><figcaption className="p-3"><div className="font-semibold text-sm uppercase">{m.name}</div><div className="text-[10px] tracking-wider uppercase text-accent">{m.role}</div></figcaption></figure></Reveal>)}</div>
         </div>
       </section>
 

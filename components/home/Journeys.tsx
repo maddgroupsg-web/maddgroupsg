@@ -17,7 +17,7 @@ export default function Journeys() {
         {/* Student journeys */}
         <div className="mt-12 grid gap-4 lg:grid-cols-2">
           {studentJourneys.map((j, i) => (
-            <Reveal key={j.name} delay={i * 0.08} className="glass rounded-xl overflow-hidden grid sm:grid-cols-[200px_1fr]">
+            <Reveal key={j.name} delay={i * 0.09} className="glass rounded-xl overflow-hidden grid sm:grid-cols-[200px_1fr]">
               <div className="relative aspect-[4/3] sm:aspect-auto sm:min-h-full"><Image src={j.image} alt={`${j.name} performing`} fill sizes="(max-width: 640px) 100vw, 200px" className="object-cover" /></div>
               <div className="p-6">
                 <div className="eyebrow">{j.discipline}</div>
@@ -33,7 +33,7 @@ export default function Journeys() {
         {/* Stage stories */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stories.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.05}>
+            <Reveal key={s.slug} delay={i * 0.09}>
               <Link href={`/achievements#${s.slug}`} className="group block overflow-hidden rounded-xl border border-line bg-ink-3">
                 <div className="relative aspect-[4/3]"><Image src={s.image} alt={s.title} fill sizes="(max-width: 640px) 100vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" /></div>
                 <div className="p-4">

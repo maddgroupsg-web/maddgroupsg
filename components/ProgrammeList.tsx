@@ -7,7 +7,7 @@ export default function ProgrammeList({ items, galleryImages }: { items: Program
   return (
     <div className="space-y-4">
       {items.map((it, i) => (
-        <Reveal key={it.title} delay={0.03 * i}>
+        <Reveal key={it.title} delay={i * 0.09}>
           <article className="glass rounded-xl p-6 sm:p-8 grid gap-6 lg:grid-cols-[1fr_300px]">
             <div>
               <div className="flex flex-wrap items-center gap-2">
