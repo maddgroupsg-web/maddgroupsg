@@ -127,4 +127,6 @@ export const pillarsProgression = {
   footer: ["ONE STARTING POINT. MANY POSSIBILITIES.", "Students may interact with one or several pillars depending on their goals."] as [string, string],
   cta: { label: "EXPLORE PROGRAMMES", href: "/classes" },
   aspect: "aspect-[4/5] sm:aspect-[3/4]",
+  columns: "1.3fr 0.9fr 1.12fr 0.92fr",
+  mixed: true,
 };
