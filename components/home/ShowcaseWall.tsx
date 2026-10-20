@@ -34,9 +34,9 @@ export default function ShowcaseWall() {
   const xB = useTransform(scrollYProgress, [0, 1], ["22%", "0%"]);
 
   return (
-    <section ref={ref} className="relative pt-10 pb-10 lg:pt-14 lg:pb-16 overflow-hidden">
+    <section ref={ref} className="relative pt-2 pb-6 lg:pt-4 lg:pb-10 overflow-hidden">
       <div className="-mx-[8vw]">
-        <motion.div style={reduce ? undefined : { rotate, transformOrigin: "50% 50%" }} className="space-y-4 will-change-transform py-[6vw]">
+        <motion.div style={reduce ? undefined : { rotate, transformOrigin: "50% 50%" }} className="space-y-4 will-change-transform py-[4vw]">
           {/* media logos ride on the same tilted plane */}
           <h2 className="sr-only">As featured in leading media platforms</h2>
           <div className="marquee relative overflow-hidden pb-6 [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
