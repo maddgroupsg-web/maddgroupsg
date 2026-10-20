@@ -1,4 +1,4 @@
-export type Person = { name: string; role: string; image: string; group: "leadership" | "operations" | "instructors" };
+export type Person = { name: string; role: string; image: string; group: "leadership" | "operations" };
 
 export const team: Person[] = [
   { name: "John Khoo", role: "CEO, Founder, Vocal Director", image: "/images/team/john-khoo.jpg", group: "leadership" },
@@ -7,9 +7,7 @@ export const team: Person[] = [
   { name: "Jia Min", role: "Administrative Assistant", image: "/images/team/jia-min.jpg", group: "operations" },
   { name: "Daphinia", role: "Accounts Manager", image: "/images/team/blank.jpg", group: "operations" },
   { name: "Isabelle", role: "Admin Team", image: "/images/team/blank.jpg", group: "operations" },
-  { name: "Paulo", role: "Associate Instructor (Vocals)", image: "/images/team/paulo.jpg", group: "instructors" },
   { name: "Megan", role: "Events Executive", image: "/images/team/megan.jpg", group: "operations" },
-  { name: "Safy Ann", role: "Associate Instructor (Hip Hop)", image: "/images/team/safy-ann.jpg", group: "instructors" },
 ];
 
 export const leader = {

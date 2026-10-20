@@ -4,15 +4,14 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { team, type Person } from "@/content/team";
-import { instructors } from "@/content/instructors";
 import { cn } from "@/lib/utils";
 
-const tabs: { key: Person["group"] | "all"; label: string }[] = [{ key: "all", label: "EVERYONE" }, { key: "leadership", label: "LEADERSHIP" }, { key: "operations", label: "OPERATIONS" }, { key: "instructors", label: "INSTRUCTORS" }];
+const tabs: { key: Person["group"] | "all"; label: string }[] = [{ key: "all", label: "EVERYONE" }, { key: "leadership", label: "LEADERSHIP" }, { key: "operations", label: "OPERATIONS" }];
 
 export default function TeamCarousel() {
   const [tab, setTab] = useState<(typeof tabs)[number]["key"]>("all");
   const [ref, api] = useEmblaCarousel({ align: "start", dragFree: true, containScroll: "trimSnaps" });
-  const list: Person[] = tab === "instructors" ? instructors.map((i) => ({ name: i.name, role: i.role, image: i.image, group: "instructors" })) : team.filter((p) => tab === "all" || p.group === tab);
+  const list: Person[] = team.filter((p) => tab === "all" || p.group === tab);
   return (
     <div>
       <div className="flex items-center justify-between gap-4 flex-wrap">
