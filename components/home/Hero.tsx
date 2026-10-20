@@ -1,12 +1,11 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Users, Theater, Award, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { hero } from "@/content/home";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { Button } from "@/components/ui";
 
-const icons = { users: Users, stage: Theater, award: Award } as const;
 
 export default function Hero() {
   return (
@@ -18,19 +17,14 @@ export default function Hero() {
         <div className="absolute inset-0 spotlight opacity-80" />
       </div>
       <div className="container-x relative z-10 pt-28 pb-20 lg:pt-36 lg:pb-24">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="max-w-3xl">
-          <h1 className="display text-[2.9rem] leading-[0.92] sm:text-6xl lg:text-[4.6rem] xl:text-[5.4rem]">
-            <span className="block">{hero.eyebrow}</span>
-            <span className="block text-cyan">{hero.h1}</span>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="max-w-4xl">
+          <h1 style={{ fontFamily: "var(--font-josefin)" }}>
+            <span className="block font-bold uppercase text-[2.1rem] leading-[1.1] sm:text-5xl lg:text-[3.6rem] tracking-[0.01em]">{hero.eyebrow}</span>
+            <span className="mt-4 sm:mt-6 block font-normal uppercase text-base sm:text-xl lg:text-[1.75rem] tracking-[0.04em] text-white/90">{hero.h1}</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base sm:text-lg text-white/80 leading-relaxed">{hero.copy}</p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
-            <Button href={BOOK_TRIAL_URL}>{hero.primary.label}</Button>
-            <Button href={hero.secondary.href} variant="ghost">{hero.secondary.label}</Button>
+          <div className="mt-9 sm:mt-11">
+            <Button href={BOOK_TRIAL_URL} className="!px-10 !py-4 text-[13px]">BOOK A TRIAL</Button>
           </div>
-          <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[11px] sm:text-xs tracking-[0.14em] uppercase text-white/75">
-            {hero.trust.map((t) => { const I = icons[t.icon as keyof typeof icons]; return <li key={t.label} className="flex items-center gap-2"><I size={18} className="text-cyan" />{t.label}</li>; })}
-          </ul>
         </motion.div>
       </div>
       <a href="#madd-group" aria-label="Scroll to the MADD Group" className="absolute bottom-5 left-1/2 -translate-x-1/2 text-cyan/80 animate-bounce hidden lg:block"><ChevronDown /></a>

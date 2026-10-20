@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Bebas_Neue, Inter, Josefin_Sans } from "next/font/google";
 import "./globals.css";
 
 const bebas = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-bebas", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const josefin = Josefin_Sans({ subsets: ["latin"], weight: ["300", "400", "600", "700"], variable: "--font-josefin", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.maddspace.com.sg"),
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bebas.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${bebas.variable} ${inter.variable} ${josefin.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-ink text-white">{children}</body>
     </html>
   );
