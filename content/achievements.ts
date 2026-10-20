@@ -77,7 +77,8 @@ export const studentJourneys = [
       "Released her own debut Chinese single, 《纯属友谊》 (\"Purely Friendship\") in 2024",
     ],
     outro: "Her journey from a young, talented girl to an accomplished artist exemplifies the transformative power of dedication and the nurturing environment at MADDspace. We are super proud of her!",
-    image: "/images/classes/age-10-18/age-10-18-01.jpg",
+    video: "https://youtu.be/avjir5L3CZk", // Jordin Tan — Heather cover, filmed at IdolLab (MADDspace channel)
+    image: "/images/achievements/jordin-tan.jpg", // the photo MADDspace pairs with her story on the current site
   },
   {
     name: "Emma Wan",
