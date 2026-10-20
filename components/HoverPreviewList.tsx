@@ -79,10 +79,6 @@ export default function HoverPreviewList({ rows }: { rows: PreviewRow[] }) {
               <Image key={`c${frame}`} src={row.images[cur]} alt="" fill sizes="260px" className="object-cover animate-[previewIn_.45s_ease-out]" />
             </>
           ); })()}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-3 flex items-center justify-between">
-            <span className="text-[10px] tracking-[0.25em] text-white/80">VIEW CLASSES</span>
-            <span className="flex gap-1">{row?.images.map((_, k) => <span key={k} className={cn("h-1 w-3 rounded-full", k === frame % (row?.images.length || 1) ? "bg-cyan" : "bg-white/30")} />)}</span>
-          </div>
         </div>
       )}
     </div>
