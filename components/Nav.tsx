@@ -37,7 +37,7 @@ export default function Nav() {
               </Link>
               {item.children && (
                 <div className="absolute left-0 top-full pt-2 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
-                  <div className="glass rounded-md p-2 min-w-[240px] shadow-2xl shadow-black/60">
+                  <div className="rounded-md p-2 min-w-[240px] bg-[#0b0d10] border border-white/10 ring-1 ring-black/40 shadow-2xl shadow-black/80">
                     {groupify(item.children).map(([g, items]) => (
                       <div key={g} className="py-1">
                         {g && <div className="px-3 pt-2 pb-1 text-[10px] tracking-[0.25em] text-cyan/80">{g}</div>}
