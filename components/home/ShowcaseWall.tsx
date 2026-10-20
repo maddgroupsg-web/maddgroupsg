@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Reveal } from "@/components/ui";
 
 // Two rows of class + performance photos. The wall starts tilted back in 3D and straightens as it scrolls into view;
 // the rows also drift in opposite directions.
@@ -35,14 +34,7 @@ export default function ShowcaseWall() {
   const xB = useTransform(scrollYProgress, [0, 1], ["6%", "0%"]);
 
   return (
-    <section ref={ref} className="relative py-10 lg:py-16 overflow-hidden">
-      <div className="container-x mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-        <Reveal>
-          <div className="eyebrow">IN CLASS & ON STAGE</div>
-          <h2 className="display mt-2 text-4xl sm:text-5xl lg:text-6xl">OUR CLASSES. THEIR PERFORMANCES.</h2>
-        </Reveal>
-        <Link href="/classes" className="text-[11px] tracking-[0.25em] text-cyan font-semibold">EXPLORE ALL PROGRAMMES →</Link>
-      </div>
+    <section ref={ref} className="relative pt-6 pb-10 lg:pt-8 lg:pb-16 overflow-hidden">
       <div style={{ perspective: "1400px" }}>
         <motion.div style={reduce ? undefined : { rotateX, scale, y, transformOrigin: "50% 0%" }} className="space-y-4 will-change-transform">
           <motion.div style={reduce ? undefined : { x: xA }} className="flex gap-4 pl-4 lg:pl-10">
