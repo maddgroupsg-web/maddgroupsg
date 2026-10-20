@@ -51,7 +51,7 @@ export default function ShowcaseWall() {
 
 function Tile({ src, label, href }: { src: string; label: string; href: string }) {
   return (
-    <Link href={href} className="group relative shrink-0 w-[62vw] sm:w-[38vw] lg:w-[23vw] aspect-[16/11] overflow-hidden rounded-xl border border-white/10 bg-ink-3">
+    <Link href={href} className="group relative shrink-0 w-[62vw] sm:w-[38vw] lg:w-[23vw] aspect-[16/11] overflow-hidden rounded-[4px] border border-white/10 bg-ink-3">
       <Image src={src} alt={label} fill sizes="(max-width: 640px) 62vw, (max-width: 1024px) 38vw, 23vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
       <div className="absolute left-4 bottom-3 text-[11px] tracking-[0.2em] uppercase text-white/90">{label}</div>
