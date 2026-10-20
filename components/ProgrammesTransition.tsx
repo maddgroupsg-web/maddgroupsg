@@ -11,13 +11,14 @@ const CARDS = [
   "/images/classes/age-6-9/age-6-9-03.jpg", "/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/age-3-5/age-3-5-01.jpg",
   "/images/classes/holiday-camps/holiday-camps-02.jpg", "/images/classes/age-18-35/age-18-35-02.jpg", "/images/classes/age-6-9/age-6-9-08.jpg",
 ];
-const N = CARDS.length;         // 12 cards × 30° = one full turn, so position and angle wrap seamlessly
+const DECK = [...CARDS, ...CARDS]; // 24 cards × 15° = one full turn, so position and angle wrap seamlessly
+const N = DECK.length;
 const STEP_DEG = 360 / N;
 const ORBIT = 35;               // em (osmo: orbitDepth)
-const Y_SPACING = 0.3;          // × card height (osmo: cardYSpacing)
+const Y_SPACING = 0.26;         // × card height (osmo: cardYSpacing)
 const CARD_H_EM = 22.5;         // 18em wide, 4:5
 const DURATION = 1700;          // ms
-const TURNS = 2.6;              // how many full loops stream past
+const TURNS = 1.8;              // how many full loops stream past
 const MIN_HOLD = 1450;          // ms before we are allowed to reveal the page
 
 const easeInOut = (p: number) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
@@ -108,8 +109,8 @@ export default function ProgrammesTransition() {
       <div className="absolute inset-0 spotlight opacity-70" />
       <div ref={stage} className="absolute inset-0 flex items-center justify-center" style={{ perspective: "75em", fontSize: "clamp(.5rem, .75vw, 1.5rem)" }}>
         <div className="relative" style={{ transformStyle: "preserve-3d", width: 0, height: 0 }}>
-          {CARDS.map((src, i) => (
-            <div key={src} ref={(n) => { cards.current[i] = n; }} className="absolute overflow-hidden rounded-[1em] bg-ink-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,.8)] will-change-transform"
+          {DECK.map((src, i) => (
+            <div key={i} ref={(n) => { cards.current[i] = n; }} className="absolute overflow-hidden rounded-[1em] bg-ink-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,.8)] will-change-transform"
               style={{ width: "18em", height: `${CARD_H_EM}em`, left: "-9em", top: `-${CARD_H_EM / 2}em`, backfaceVisibility: "hidden" }}>
               <Image src={src} alt="" fill sizes="20vw" className="object-cover" priority />
             </div>
