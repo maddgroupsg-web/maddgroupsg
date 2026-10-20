@@ -12,7 +12,6 @@ import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
-import Link from "next/link";
 
 export const metadata: Metadata = { title: seo["/idol-training-singapore"].title, description: seo["/idol-training-singapore"].description, alternates: { canonical: "/idol-training-singapore" } };
 
