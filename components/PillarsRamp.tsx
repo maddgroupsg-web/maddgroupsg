@@ -38,10 +38,10 @@ export default function PillarsRamp() {
       {/* mobile: stacked steps that grow downwards, slanted bottoms */}
       <div className="md:hidden flex flex-col">
         {p.map((pl, i) => (
-          <Link key={pl.name} href={pl.href} className="relative -mt-4 first:mt-0" style={{ height: 150 + i * 34, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 86%)" }}>
+          <Link key={pl.name} href={pl.href} className="relative -mt-2 first:mt-0" style={{ height: 160 + i * 34, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 88%)" }}>
             <Image src={pl.image} alt={`${pl.name} — ${pl.verb}`} fill sizes="100vw" className="object-cover opacity-55" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-            <div className="absolute left-4 bottom-8"><div className="display text-accent text-lg">{String(i + 1).padStart(2, "0")} · {pl.verb}</div><div className="display text-3xl leading-none">{pl.name}</div></div>
+            <div className="absolute left-4 bottom-11"><div className="display text-accent text-lg">{String(i + 1).padStart(2, "0")} · {pl.verb}</div><div className="display text-3xl leading-none">{pl.name}</div></div>
           </Link>
         ))}
       </div>
