@@ -91,10 +91,10 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush }: { s: Stage; i: 
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
       {flush && i > 0 && <div className="absolute inset-y-0 left-0 w-px bg-white/10" />}
-      {/* white header */}
+      {/* header: verb as the title, name underneath */}
       <div className="absolute inset-x-0 top-0 p-5 lg:p-6">
-        <div className="text-[11px] tracking-[0.25em] text-white/70">{s.n}{s.kicker && <span className="text-cyan"> · {s.kicker}</span>}</div>
-        <h3 className="display text-3xl sm:text-4xl lg:text-[clamp(1.6rem,3.6vh,2.6rem)] leading-none mt-1 text-white">{s.title}</h3>
+        <h3 className="display text-4xl sm:text-5xl lg:text-[clamp(2rem,4.6vh,3.4rem)] leading-none text-white">{s.kicker ?? s.title}</h3>
+        {s.kicker && <div className="mt-1.5 text-[11px] sm:text-xs tracking-[0.25em] uppercase text-cyan">{s.title}</div>}
       </div>
       <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6">
         {s.copy && <p className="text-[12px] sm:text-sm text-white/85 leading-snug max-w-[34ch] [@media(max-height:760px)]:hidden">{s.copy}</p>}
@@ -113,12 +113,11 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush }: { s: Stage; i: 
 function Marker({ s, i, n, progress, reduce }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean }) {
   const [a, b] = thresholds(i, n);
   const on = useTransform(progress, [a, b], [0, 1]);
-  const color = useTransform(on, (v) => `rgba(${34 + (255 - 34) * (1 - v)},${211 + (255 - 211) * (1 - v)},${211 + (255 - 211) * (1 - v)},${0.4 + 0.6 * v})`);
   const bg = useTransform(on, (v) => (v > 0.5 ? "#22d3d3" : "rgba(255,255,255,0.25)"));
+  const glow = useTransform(on, (v) => `0 0 ${10 * v}px #22d3d3`);
   return (
-    <div className="relative flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs tracking-[0.2em]">
-      <motion.span style={reduce ? { background: "#22d3d3" } : { background: bg }} className="h-3 w-3 rounded-full shadow-[0_0_10px_#22d3d3]" />
-      <motion.span style={reduce ? undefined : { color }} className="font-semibold whitespace-nowrap">{s.n}<span className="hidden sm:inline"> {s.kicker ? s.title : s.title}</span></motion.span>
+    <div className="relative flex items-center justify-center" aria-label={s.title}>
+      <motion.span style={reduce ? { background: "#22d3d3", boxShadow: "0 0 10px #22d3d3" } : { background: bg, boxShadow: glow }} className="h-3 w-3 rounded-full" />
     </div>
   );
 }
