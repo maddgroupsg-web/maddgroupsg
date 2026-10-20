@@ -11,11 +11,11 @@ const CARDS = [
   "/images/classes/age-6-9/age-6-9-03.jpg", "/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/age-3-5/age-3-5-01.jpg",
   "/images/classes/holiday-camps/holiday-camps-02.jpg", "/images/classes/age-18-35/age-18-35-02.jpg", "/images/classes/age-6-9/age-6-9-08.jpg",
 ];
-const DECK = [...CARDS, ...CARDS]; // 24 cards × 15° = one full turn, so position and angle wrap seamlessly
+const DECK = CARDS;              // 12 cards × 30° = one full turn, so position and angle wrap seamlessly
 const N = DECK.length;
 const STEP_DEG = 360 / N;
-const ORBIT = 35;               // em (osmo: orbitDepth)
-const Y_SPACING = 0.13;         // × card height — tight enough that >1 full turn fits on screen (true tornado look)
+const ORBIT = 42;               // em (osmo: orbitDepth) — neighbours sit ~1 card width apart at the front
+const Y_SPACING = 0.32;         // × card height (osmo: cardYSpacing) — one full turn ≈ viewport height
 const CARD_H_EM = 22.5;         // 18em wide, 4:5
 const DURATION = 1900;          // ms
 const TURNS = 2.2;              // how many full loops stream past
@@ -79,11 +79,11 @@ export default function ProgrammesTransition() {
         const z = (Math.cos(rad) - 1) * ORBIT * fs;
         const y = k * spacing - span / 2;
         const depth = (1 - Math.cos(rad)) / 2;          // 0 front, 1 back
-        const edge = Math.min(1, Math.max(0, 1 - (Math.abs(y) - vh * 0.32) / (vh * 0.3)));
-        const scale = 0.55 + 0.45 * edge;
+        const edge = Math.min(1, Math.max(0, 1 - (Math.abs(y) - vh * 0.3) / (vh * 0.3)));
+        const scale = 0.6 + 0.4 * edge;
         c.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${ang}deg) scale(${scale})`;
         c.style.filter = `brightness(${1 - 0.72 * depth}) blur(${0.45 * depth * fs}px)`;
-        c.style.opacity = String(0.35 + 0.65 * edge);
+        c.style.opacity = String(0.45 + 0.55 * edge);
         c.style.zIndex = String(Math.round((1 - depth) * 100));
       }
       if (p < 1) raf.current = requestAnimationFrame(frame);
