@@ -20,7 +20,7 @@ const icons = [GraduationCap, Trophy, Award, BarChart3];
 export default function Page() {
   return (
     <Shell>
-      <ScaleInHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image={g[2]} alt="MADDspace DSA preparation student performing">
+      <ScaleInHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image="/images/misc/dsa-video-poster.jpg" youtube="i4XdpoKIwMQ" alt="KINETIC — MADDspace contemporary dance crew performing Head Above Water">
         <Button href={DSA_ACADEMY_URL}>VISIT THE ACADEMY</Button>
         <Button href="#enquire" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
       </ScaleInHero>

@@ -13,18 +13,20 @@ export default function MaddGroupPanels() {
   const row = useRef<HTMLDivElement>(null);
   // scrubbed to the scrollbar: panels light up one by one as the row travels from the bottom of the
   // viewport to its upper third. Scrolling back dims them again. No pin.
-  const { scrollYProgress } = useScroll({ target: row, offset: ["start 95%", "end 45%"] });
+  const section = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
   return (
-    <section id="madd-group" className="relative py-20 lg:py-28 overflow-hidden">
+    <section id="madd-group" ref={section} className={reduce ? "relative" : "relative lg:h-[260vh]"}>
+      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:flex lg:flex-col lg:justify-center"}`}>
       <div className="absolute inset-0 spotlight opacity-70" />
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
-          <h2 className="display normal-case text-5xl sm:text-6xl lg:text-7xl">The MADD Group</h2>
+          <h2 className="display normal-case text-5xl sm:text-6xl lg:text-[clamp(2.6rem,7vh,4.5rem)]">The MADD Group</h2>
           <p className="mt-3 text-lg sm:text-xl text-cyan">More than a performing arts school.</p>
-          <p className="mt-4 text-mute">{maddGroup.copy[0]}</p>
+          <p className="mt-4 text-mute [@media(max-height:760px)]:hidden">{maddGroup.copy[0]}</p>
         </Reveal>
 
-        <div ref={row} className="mt-12 -mx-4 px-4 lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible snap-x snap-mandatory hide-scrollbar">
+        <div ref={row} className="mt-10 lg:mt-8 -mx-4 px-4 lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible snap-x snap-mandatory hide-scrollbar">
           <div className="flex lg:grid lg:grid-cols-4 lg:rounded-2xl lg:overflow-hidden min-w-max lg:min-w-0">
             {maddGroup.pillars.map((p, i) => (
               <Panel key={p.name} p={p} i={i} n={maddGroup.pillars.length} progress={scrollYProgress} reduce={!!reduce} />
@@ -32,19 +34,20 @@ export default function MaddGroupPanels() {
           </div>
         </div>
       </div>
+      </div>
     </section>
   );
 }
 
 type Pillar = (typeof maddGroup.pillars)[number];
 function Panel({ p, i, n, progress, reduce }: { p: Pillar; i: number; n: number; progress: MotionValue<number>; reduce: boolean }) {
-  const a = (i / n) * 0.85, b = a + 0.22;
+  const a = 0.08 + (i / n) * 0.72, b = a + 0.18;
   const filter = useTransform(progress, [a, b], ["saturate(0.15) brightness(0.45)", "saturate(1) brightness(1)"]);
   const opacity = useTransform(progress, [a, b], [0.35, 1]);
-  const still = reduce || i === 0; // first panel always lit (also what phones see first)
+  const still = reduce || i === 0; // first panel always lit
   return (
     <motion.div className="snap-start shrink-0 w-[78vw] sm:w-[48vw] lg:w-auto" style={still ? undefined : { opacity }}>
-      <Link href={p.href} className="group relative block aspect-[3/4] lg:aspect-[3/4] overflow-hidden">
+      <Link href={p.href} className="group relative block aspect-[3/4] lg:aspect-auto lg:h-[min(62vh,620px)] overflow-hidden">
         <motion.div className="absolute inset-0" style={still ? undefined : { filter }}>
           <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="(max-width: 1024px) 78vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </motion.div>

@@ -12,7 +12,7 @@ const sub = (cb: () => void) => { window.addEventListener("resize", cb); return 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
-export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt, logo, children }: { eyebrow: string; title: string; sub?: string; image: string; alt: string; logo?: string; children?: ReactNode }) {
+export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt, logo, youtube, children }: { eyebrow: string; title: string; sub?: string; image: string; alt: string; logo?: string; youtube?: string; children?: ReactNode }) {
   const section = useRef<HTMLElement>(null);
   const box = useRef<HTMLDivElement>(null);
   const head = useRef<HTMLDivElement>(null);
@@ -58,6 +58,14 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
         {/* the scaling image */}
         <div ref={box} className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-ink-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,.9)] will-change-[width,height,top]" style={{ width: 380, height: 214, top: "60svh", borderRadius: 16 }}>
           <Image src={image} alt={alt} fill priority sizes="100vw" className="object-cover" />
+          {youtube && !reduce && (
+            // muted, looping, no controls — the poster above shows until the player paints
+            <iframe
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              style={{ width: "max(100%, 177.78vh)", height: "max(100%, 56.25vw)", aspectRatio: "16 / 9" }}
+              src={`https://www.youtube-nocookie.com/embed/${youtube}?autoplay=1&mute=1&loop=1&playlist=${youtube}&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
+              title={alt} allow="autoplay; encrypted-media" aria-hidden tabIndex={-1} />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
           {/* CTAs — appear once the image is (nearly) full screen */}
           <div ref={cta} className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14 opacity-0 will-change-transform">
