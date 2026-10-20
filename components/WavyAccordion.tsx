@@ -32,7 +32,7 @@ export default function WavyAccordion({ items, className }: { items: AccordionIt
   const raf = useRef<number | null>(null);
   const last = useRef(0);
   const reduce = useRef(false);
-  const pointer = useRef<string>("mouse");
+  const pressed = useRef(false); // focus caused by a tap/click, not keyboard
 
   const paint = useCallback(() => {
     const el = wrap.current; if (!el) return;
@@ -88,7 +88,7 @@ export default function WavyAccordion({ items, className }: { items: AccordionIt
   const open = (i: number) => { if (activeRef.current === i) return; activeRef.current = i; setActive(i); kick(); };
 
   return (
-    <div ref={wrap} className={cn("flex gap-2 h-[40rem] md:h-[34rem] lg:h-[36rem] flex-col md:flex-row", className)} onPointerDown={(e) => (pointer.current = e.pointerType)}>
+    <div ref={wrap} className={cn("flex gap-2 h-[40rem] md:h-[34rem] lg:h-[36rem] flex-col md:flex-row", className)} onPointerDown={() => { pressed.current = true; }}>
       {items.map((it, i) => {
         const isOpen = active === i;
         return (
@@ -97,8 +97,8 @@ export default function WavyAccordion({ items, className }: { items: AccordionIt
             href={it.href}
             ref={(n) => { panelEls.current[i] = n; }}
             onPointerEnter={(e) => { if (e.pointerType === "mouse") open(i); }}
-            onFocus={() => open(i)}
-            onClick={(e) => { if (activeRef.current !== i) { e.preventDefault(); open(i); } }}
+            onFocus={() => { if (!pressed.current) open(i); }}
+            onClick={(e) => { pressed.current = false; if (activeRef.current !== i) { e.preventDefault(); open(i); } }}
             aria-expanded={isOpen}
             className={cn("group relative block min-w-0 min-h-0 basis-0 outline-none", isOpen ? "z-10" : "z-0")}
             style={{ flexGrow: i === 0 ? OPEN : 1 }}
