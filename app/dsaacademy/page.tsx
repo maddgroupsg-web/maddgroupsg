@@ -3,7 +3,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { dsa } from "@/content/typepages";
 import { everyChild } from "@/content/achievements";
-import PageHero from "@/components/PageHero";
+import ScaleInHero from "@/components/ScaleInHero";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import Locations from "@/components/home/Locations";
@@ -20,10 +20,10 @@ const icons = [GraduationCap, Trophy, Award, BarChart3];
 export default function Page() {
   return (
     <Shell>
-      <PageHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image={g[2]} tall>
+      <ScaleInHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image={g[2]} alt="MADDspace DSA preparation student performing">
         <Button href={DSA_ACADEMY_URL}>VISIT THE ACADEMY</Button>
         <Button href="#enquire" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
-      </PageHero>
+      </ScaleInHero>
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
         <div className="container-x">
           <Reveal><SectionHeading title={dsa.whyTitle} sub={dsa.whySub} /></Reveal>
