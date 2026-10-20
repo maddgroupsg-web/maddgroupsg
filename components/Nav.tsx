@@ -32,7 +32,7 @@ export default function Nav() {
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {nav.map((item) => (
             <div key={item.label} className="relative group">
-              <Link href={item.href} className={cn("flex items-center gap-1 px-3 py-2 text-[12.5px] font-semibold tracking-[0.14em] text-white/85 hover:text-cyan transition-colors", path === item.href && "text-cyan")}>
+              <Link href={item.href} className={cn("flex items-center gap-1 px-2 xl:px-3 py-2 text-[12px] xl:text-[12.5px] font-semibold tracking-[0.1em] xl:tracking-[0.14em] whitespace-nowrap text-white/85 hover:text-cyan transition-colors", path === item.href && "text-cyan")}>
                 {item.label}{item.children && <ChevronDown size={13} className="opacity-70" />}
               </Link>
               {item.children && (
@@ -53,7 +53,7 @@ export default function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px]">BOOK A TRIAL</a>
+          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px] whitespace-nowrap">BOOK A TRIAL</a>
           <button className="lg:hidden p-2 text-white" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
         </div>
       </div>

@@ -84,7 +84,7 @@ function StageCard({ s, i, n, progress, reduce, aspect }: { s: Stage; i: number;
   const shadow = useTransform(glow, (g) => `0 0 ${30 * g}px -6px rgba(34,211,211,${0.6 * g}), inset 0 0 0 1px rgba(34,211,211,${0.2 + 0.6 * g})`);
   const filter = useTransform(progress, [a, b], ["saturate(0.2) brightness(0.55)", "saturate(1) brightness(1)"]);
   const inner = (
-    <div className={`relative lg:h-full lg:!aspect-auto ${aspect ?? "aspect-[4/5] sm:aspect-[4/3]"}`}>
+    <div className={`relative ${aspect ?? "aspect-[4/5] sm:aspect-[4/3]"} lg:aspect-auto lg:h-full`}>
       <motion.div style={reduce ? undefined : { filter }} className="absolute inset-0">
         <Image src={s.image} alt={s.alt} fill sizes={`(max-width: 1024px) 80vw, ${Math.round(100 / n)}vw`} className="object-cover" />
       </motion.div>
@@ -101,7 +101,7 @@ function StageCard({ s, i, n, progress, reduce, aspect }: { s: Stage; i: number;
   );
   return (
     <motion.article style={reduce ? undefined : { opacity, scale, boxShadow: shadow }} className="relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 rounded-xl overflow-hidden glass">
-      {s.href ? <Link href={s.href} className="block">{inner}</Link> : inner}
+      {s.href ? <Link href={s.href} className="block lg:h-full">{inner}</Link> : inner}
     </motion.article>
   );
 }
