@@ -5,7 +5,7 @@ export const hero = {
   copy:
     "From discovering their first passion to performing on bigger stages, earning recognised qualifications, preparing for DSA or developing as an artiste — we help young talents find where they want to go and build the pathway to get there.",
   primary: { label: "BOOK A TRIAL CLASS" },
-  secondary: { label: "FIND YOUR PATHWAY", href: "#pathway" },
+  secondary: { label: "EXPLORE PROGRAMMES", href: "/classes" },
   image: "/images/classes/age-10-18/age-10-18-09.jpg",
   trust: [
     { label: "Ages 3 to 18+", icon: "users" },
@@ -125,6 +125,6 @@ export const pillarsProgression = {
   intro: maddGroup.copy,
   stages: maddGroup.pillars.map((p, i) => ({ n: `0${i + 1}`, kicker: p.verb, title: p.name, copy: p.copy, image: p.image, alt: `${p.name} — ${p.verb}`, href: p.href })),
   footer: ["ONE STARTING POINT. MANY POSSIBILITIES.", "Students may interact with one or several pillars depending on their goals."] as [string, string],
-  cta: { label: "FIND YOUR PATHWAY", href: "#pathway" },
+  cta: { label: "EXPLORE PROGRAMMES", href: "/classes" },
   aspect: "aspect-[4/5] sm:aspect-[3/4] lg:aspect-[3/4]",
 };
