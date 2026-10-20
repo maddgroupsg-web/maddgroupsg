@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { stories, studentJourneys } from "@/content/achievements";
 import { awards } from "@/content/site";
 import { Reveal, SectionHeading, Button } from "@/components/ui";
@@ -25,6 +25,7 @@ export default function Journeys() {
                 <ol className="mt-4 space-y-2 border-l border-cyan/40 pl-4 text-sm text-white/80">
                   {j.steps.map((s, k) => <li key={k} className="relative"><span className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan shadow-[0_0_8px_#22d3d3]" />{s}</li>)}
                 </ol>
+                {j.video && <a href={j.video} target="_blank" rel="noopener" className="mt-4 inline-flex items-center gap-2 text-[11px] tracking-[0.2em] font-semibold text-cyan"><Play size={12} fill="currentColor" /> WATCH</a>}
               </div>
             </Reveal>
           ))}
