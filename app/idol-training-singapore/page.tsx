@@ -4,7 +4,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { idol } from "@/content/typepages";
 import { stories, everyChild } from "@/content/achievements";
-import { maddGroup } from "@/content/home";
+import PillarsRamp from "@/components/PillarsRamp";
 import PageHero from "@/components/PageHero";
 import LogoMarquee from "@/components/LogoMarquee";
 import VideoEmbed from "@/components/VideoEmbed";
@@ -30,10 +30,10 @@ export default function Page() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{idol.pillars.map((p, i) => <Reveal key={p.title} delay={i * 0.05} className="glass rounded-xl p-6"><div className="display text-accent text-4xl">0{i + 1}</div><h3 className="display text-3xl mt-2">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>)}</div>
         </div>
       </section>
-      <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
+      <section className="py-16 lg:py-24 bg-ink-2 border-y border-line overflow-hidden">
         <div className="container-x">
           <Reveal><SectionHeading title={idol.groupTitle} sub={idol.groupSub} align="center" /></Reveal>
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{maddGroup.pillars.map((p) => <Link key={p.name} href={p.href} className="group relative rounded-xl overflow-hidden border border-line aspect-[4/3] hover:border-accent/60"><Image src={p.image} alt="" fill sizes="25vw" className="object-cover opacity-50 group-hover:opacity-80 transition-opacity" /><div className="absolute inset-0 bg-gradient-to-t from-ink to-transparent" /><div className="absolute inset-x-0 bottom-0 p-4"><div className="display text-accent text-xl">{p.verb}</div><div className="display text-2xl">{p.name}</div></div></Link>)}</div>
+          <div className="mt-10"><PillarsRamp /></div>
         </div>
       </section>
       {[feats[0], null, feats[1]].map((s, i) => s ? (
