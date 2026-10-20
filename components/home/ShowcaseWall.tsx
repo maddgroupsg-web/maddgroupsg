@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { mediaLogos } from "@/content/site";
 
 // Two rows of class + performance photos. The wall starts tilted back in 3D and straightens as it scrolls into view;
 // the rows also drift in opposite directions.
@@ -32,20 +31,9 @@ export default function ShowcaseWall() {
   const rotate = useTransform(scrollYProgress, [0, 1], [-9, 0]);
 
   return (
-    <section ref={ref} className="relative pt-2 pb-6 lg:pt-4 lg:pb-10 overflow-hidden">
+    <section ref={ref} className="relative pt-4 pb-6 lg:pt-6 lg:pb-10 overflow-hidden">
       <div className="-mx-[8vw]">
         <motion.div style={reduce ? undefined : { rotate, transformOrigin: "50% 50%" }} className="space-y-4 will-change-transform py-[4vw]">
-          {/* media logos ride on the same tilted plane */}
-          <h2 className="sr-only">As featured in leading media platforms</h2>
-          <div className="marquee relative overflow-hidden pb-6 [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
-            <div className="marquee-track items-center gap-16 px-8">
-              {[...mediaLogos, ...mediaLogos].map((l, i) => (
-                <div key={i} className="flex h-16 w-[150px] sm:w-[190px] shrink-0 items-center justify-center">
-                  <Image src={l.src} alt={i < mediaLogos.length ? l.name : ""} width={l.w} height={l.h} className="max-h-11 max-w-full w-auto object-contain" />
-                </div>
-              ))}
-            </div>
-          </div>
           <LoopRow items={ROW_A} dir={-1} still={!!reduce} />
           <LoopRow items={ROW_B} dir={1} still={!!reduce} />
         </motion.div>
