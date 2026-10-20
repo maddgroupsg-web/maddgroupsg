@@ -89,7 +89,7 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: 
   const filter = useTransform(progress, [a, b], ["saturate(0.15) brightness(0.45)", "saturate(1) brightness(1)"]);
   const inner = (
     <div className={`relative ${aspect ?? "aspect-[4/5] sm:aspect-[4/3]"} lg:aspect-auto lg:h-full`}>
-      <motion.div style={still ? undefined : { filter }} className="absolute inset-0">
+      <motion.div style={still ? { filter: "none" } : { filter }} className="absolute inset-0">
         <Image src={s.image} alt={s.alt} fill sizes={`(max-width: 1024px) 80vw, ${Math.round(100 / n)}vw`} className="object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
@@ -107,7 +107,7 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: 
     </div>
   );
   return (
-    <motion.article style={still ? undefined : { opacity, scale, boxShadow: shadow }} className={`relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 overflow-hidden ${flush ? "" : "rounded-xl glass"}`}>
+    <motion.article style={still ? { opacity: 1, scale: 1, boxShadow: "none" } : { opacity, scale, boxShadow: shadow }} className={`relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 overflow-hidden ${flush ? "" : "rounded-xl glass"}`}>
       {s.href ? <Link href={s.href} className="block lg:h-full">{inner}</Link> : inner}
     </motion.article>
   );
