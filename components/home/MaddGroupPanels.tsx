@@ -3,21 +3,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { maddGroup } from "@/content/home";
 import { Reveal } from "@/components/ui";
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 // The MADD Group — centred heading + four flush photo panels. Normal scrolling (no pin);
 // the panels fade in left → right as the row enters view. On phones the row scrolls sideways.
 export default function MaddGroupPanels() {
   const reduce = useReducedMotion();
   const row = useRef<HTMLDivElement>(null);
-  // scrubbed to the scrollbar: panels light up one by one as the row travels from the bottom of the
-  // viewport to its upper third. Scrolling back dims them again. No pin.
   const section = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
+  const n = maddGroup.pillars.length;
+  // Pinned on desktop. One scroll gesture = one panel, no matter how big or small the gesture.
+  // While panels remain, wheel/touch/keys are swallowed; once all are lit (or back at the first when
+  // scrolling up) the page scrolls normally again.
+  const [lit, setLit] = useState(1);
+  const litRef = useRef(1);
+  useEffect(() => {
+    if (reduce) return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    let lock = 0, touchY = 0;
+    // capture zone: the section is roughly on screen (so a gesture snaps it into place and steps a panel)
+    const zone = () => { const el = section.current; if (!el || !mq.matches) return false; const r = el.getBoundingClientRect(); const vh = window.innerHeight; return r.top < vh * 0.6 && r.top > -vh * 0.6; };
+    const step = (dir: 1 | -1) => {
+      if (!zone()) return false;
+      const now = performance.now(); if (now - lock < 700) return true; // swallow extra ticks of the same gesture
+      const next = litRef.current + dir;
+      if (next < 1 || next > n) return false; // nothing left to light this way → page scrolls normally
+      litRef.current = next; setLit(next); lock = now;
+      section.current?.scrollIntoView({ behavior: "smooth", block: "start" }); // hold the section in view
+      return true;
+    };
+    const onWheel = (e: WheelEvent) => { if (Math.abs(e.deltaY) < 2) return; if (step(e.deltaY > 0 ? 1 : -1)) e.preventDefault(); };
+    const onKey = (e: KeyboardEvent) => { const d = ["ArrowDown", "PageDown", " "].includes(e.key) ? 1 : ["ArrowUp", "PageUp"].includes(e.key) ? -1 : 0; if (d && step(d as 1 | -1)) e.preventDefault(); };
+    const onTS = (e: TouchEvent) => { touchY = e.touches[0].clientY; };
+    const onTM = (e: TouchEvent) => { const dy = touchY - e.touches[0].clientY; if (Math.abs(dy) < 12) return; if (step(dy > 0 ? 1 : -1)) e.preventDefault(); touchY = e.touches[0].clientY; };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("touchstart", onTS, { passive: true });
+    window.addEventListener("touchmove", onTM, { passive: false });
+    return () => { window.removeEventListener("wheel", onWheel); window.removeEventListener("keydown", onKey); window.removeEventListener("touchstart", onTS); window.removeEventListener("touchmove", onTM); };
+  }, [n, reduce]);
   return (
-    <section id="madd-group" ref={section} className={reduce ? "relative" : "relative lg:h-[260vh]"}>
-      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:pt-28 lg:pb-6 lg:flex lg:flex-col lg:justify-center"}`}>
+    <section id="madd-group" ref={section} className="relative">
+      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:h-[100svh] lg:pt-28 lg:pb-6 lg:flex lg:flex-col lg:justify-center"}`}>
       <div className="absolute inset-0 spotlight opacity-70" />
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
@@ -29,7 +57,7 @@ export default function MaddGroupPanels() {
         <div ref={row} className="mt-10 lg:mt-8 -mx-4 px-4 lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible snap-x snap-mandatory hide-scrollbar">
           <div className="flex lg:grid lg:grid-cols-4 lg:rounded-2xl lg:overflow-hidden min-w-max lg:min-w-0">
             {maddGroup.pillars.map((p, i) => (
-              <Panel key={p.name} p={p} i={i} n={maddGroup.pillars.length} progress={scrollYProgress} reduce={!!reduce} />
+              <Panel key={p.name} p={p} i={i} on={reduce ? true : i < lit} />
             ))}
           </div>
         </div>
@@ -40,15 +68,11 @@ export default function MaddGroupPanels() {
 }
 
 type Pillar = (typeof maddGroup.pillars)[number];
-function Panel({ p, i, n, progress, reduce }: { p: Pillar; i: number; n: number; progress: MotionValue<number>; reduce: boolean }) {
-  const a = 0.08 + (i / n) * 0.72, b = a + 0.18;
-  const filter = useTransform(progress, [a, b], ["saturate(0.15) brightness(0.45)", "saturate(1) brightness(1)"]);
-  const opacity = useTransform(progress, [a, b], [0.35, 1]);
-  const still = reduce || i === 0; // first panel always lit
+function Panel({ p, i, on }: { p: Pillar; i: number; on: boolean }) {
   return (
-    <motion.div className="snap-start shrink-0 w-[78vw] sm:w-[48vw] lg:w-auto" style={still ? undefined : { opacity }}>
+    <motion.div className="snap-start shrink-0 w-[78vw] sm:w-[48vw] lg:w-auto" animate={{ opacity: on ? 1 : 0.35 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
       <Link href={p.href} className="group relative block aspect-[3/4] lg:aspect-auto lg:h-[min(58vh,600px)] overflow-hidden">
-        <motion.div className="absolute inset-0" style={still ? undefined : { filter }}>
+        <motion.div className="absolute inset-0" animate={{ filter: on ? "saturate(1) brightness(1)" : "saturate(0.15) brightness(0.45)" }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
           <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="(max-width: 1024px) 78vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
