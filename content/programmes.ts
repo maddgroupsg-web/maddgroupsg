@@ -343,3 +343,11 @@ export const classesHub = {
     "We inculcate in our students essential life skills such as teamwork, perseverance and social empathy through the mediums of music and dance.",
   ],
 };
+
+// Programmes page — BY AGE wavy accordion (programme names as listed on each age page)
+export const byAge = [
+  { title: "PRESCHOOL", ages: "3 – 5.5 years old", href: "/preschool-classes", image: "/images/classes/age-3-5/age-3-5-05.jpg", alt: "MADDspace preschool students on stage", programmes: ["Sing & Dance", "Hip Hop & K-Pop Combo", "Parent Accompanied Hip Hop", "Private Lessons"] },
+  { title: "JUNIOR KIDS", ages: "6 – 9 years old", href: "/junior-kids", image: "/images/classes/age-6-9/age-6-9-06.jpg", alt: "MADDspace junior kids performing", programmes: ["Show Choir", "Developing Artiste Programme", "K-Pop", "Hip Hop", "Ballet / Jazz", "Popstars Pop Vocals"] },
+  { title: "PRE-TEENS & TEENS", ages: "10 – 18 years old", href: "/preteens-teens-classes", image: "/images/classes/age-10-18/age-10-18-09.jpg", alt: "MADDspace teens performing on stage", programmes: ["MADDartistes", "Sing & Dance Show Choir", "Hip Hop", "K-Pop", "Contemporary", "Jazz", "Popstars Pop Vocals"] },
+  { title: "YOUTH / ADULTS", ages: "18 – 35 years old", href: "/youth-adults", image: "/images/classes/age-18-35/age-18-35-04.jpg", alt: "MADDspace youth and adult dancers", programmes: ["Adults Show Choir", "Open Dance Classes", "Private Vocals / Dance", "'Sing & Play' Keyboard"] },
+];
