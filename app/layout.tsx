@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter, Josefin_Sans } from "next/font/google";
 import "./globals.css";
+import ProgrammesTransition from "@/components/ProgrammesTransition";
 
 const bebas = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-bebas", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bebas.variable} ${inter.variable} ${josefin.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-ink text-white">{children}</body>
+      <body className="min-h-full flex flex-col bg-ink text-white">{children}<ProgrammesTransition /></body>
     </html>
   );
 }

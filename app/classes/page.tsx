@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
-import { classesHub, byAge } from "@/content/programmes";
-import { nav } from "@/content/site";
+import { classesHub, byAge, byType } from "@/content/programmes";
+import HoverPreviewList from "@/components/HoverPreviewList";
 import { Reveal, SectionHeading } from "@/components/ui";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
@@ -12,7 +12,6 @@ import FinalCta from "@/components/home/FinalCta";
 export const metadata: Metadata = { title: seo["/classes"].title, description: seo["/classes"].description, alternates: { canonical: "/classes" } };
 
 export default function ClassesPage() {
-  const byType = nav.find((n) => n.label === "PROGRAMMES")!.children!.filter((c) => c.group === "BY TYPE");
   return (
     <Shell>
       <section className="relative pt-28 lg:pt-36 pb-10 curtain">
@@ -32,10 +31,8 @@ export default function ClassesPage() {
             <Link href="/holiday-camps" className="glass rounded-lg px-5 py-3 text-xs tracking-[0.15em] font-semibold hover:border-cyan/60 hover:text-cyan transition-colors">HOLIDAY CAMPS →</Link>
             <Link href="/dsaacademy" className="glass rounded-lg px-5 py-3 text-xs tracking-[0.15em] font-semibold hover:border-cyan/60 hover:text-cyan transition-colors">DSA PREPARATION →</Link>
           </div>
-          <h2 className="display text-3xl mt-12 mb-4">BY TYPE</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {byType.map((c) => <Link key={c.href} href={c.href} className="glass rounded-lg px-5 py-4 text-sm tracking-[0.15em] font-semibold hover:border-cyan/60 hover:text-cyan transition-colors">{c.label} →</Link>)}
-          </div>
+          <h2 className="display text-3xl mt-14 mb-6">BY TYPE</h2>
+          <HoverPreviewList rows={byType} />
         </div>
       </section>
       <section className="py-20 bg-ink-2 border-y border-line">
