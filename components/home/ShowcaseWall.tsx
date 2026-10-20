@@ -26,16 +26,16 @@ const ROW_B = [
 export default function ShowcaseWall() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
-  const rotateX = useTransform(scrollYProgress, [0, 1], [38, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.86, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
-  const xA = useTransform(scrollYProgress, [0, 1], ["-6%", "0%"]);
-  const xB = useTransform(scrollYProgress, [0, 1], ["6%", "0%"]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center 40%"] });
+  const rotateX = useTransform(scrollYProgress, [0, 1], [62, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.78, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [140, 0]);
+  const xA = useTransform(scrollYProgress, [0, 1], ["-22%", "0%"]);
+  const xB = useTransform(scrollYProgress, [0, 1], ["22%", "0%"]);
 
   return (
     <section ref={ref} className="relative pt-6 pb-10 lg:pt-8 lg:pb-16 overflow-hidden">
-      <div style={{ perspective: "1400px" }}>
+      <div style={{ perspective: "1100px" }}>
         <motion.div style={reduce ? undefined : { rotateX, scale, y, transformOrigin: "50% 0%" }} className="space-y-4 will-change-transform">
           <motion.div style={reduce ? undefined : { x: xA }} className="flex gap-4 pl-4 lg:pl-10">
             {ROW_A.map((t) => <Tile key={t.src} {...t} />)}
