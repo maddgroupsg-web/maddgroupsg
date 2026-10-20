@@ -51,14 +51,14 @@ export default function Progression({ config: c }: { config: ProgressionConfig }
             <div className="absolute -inset-x-8 -bottom-6 h-24 bg-[radial-gradient(60%_100%_at_50%_100%,rgba(34,211,211,0.16),transparent)] pointer-events-none" />
             <div className="overflow-hidden lg:flex-1 lg:min-h-0">
               <motion.div className={`flex lg:grid lg:h-full ${c.flush ? "gap-0 lg:rounded-2xl lg:overflow-hidden" : "gap-3 sm:gap-4"}`} style={{ ...(reduce || desktop ? {} : { x: panX }), gridTemplateColumns: desktop ? `repeat(${n}, minmax(0, 1fr))` : undefined }}>
-                {c.stages.map((s, i) => <StageCard key={s.title} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} aspect={c.aspect} flush={!!c.flush} />)}
+                {c.stages.map((s, i) => <StageCard key={s.title} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} aspect={c.aspect} flush={!!c.flush} litFirst={!desktop} />)}
               </motion.div>
             </div>
             <div className="relative mt-4 h-8 shrink-0">
               <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10" />
               <motion.div className="absolute left-0 top-1/2 h-px origin-left bg-cyan shadow-[0_0_12px_#22d3d3]" style={{ scaleX: reduce ? 1 : line, width: "100%" }} />
               <div className="absolute inset-0 grid" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
-                {c.stages.map((s, i) => <Marker key={s.n} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} />)}
+                {c.stages.map((s, i) => <Marker key={s.n} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} litFirst={!desktop} />)}
               </div>
             </div>
           </div>
@@ -77,8 +77,10 @@ export default function Progression({ config: c }: { config: ProgressionConfig }
 
 function thresholds(i: number, n: number) { const a = 0.12 + (i / n) * 0.7; return [a, a + 0.16] as [number, number]; }
 
-function StageCard({ s, i, n, progress, reduce, aspect, flush }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; aspect?: string; flush?: boolean }) {
-  const [a, b] = thresholds(i, n);
+function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; aspect?: string; flush?: boolean; litFirst?: boolean }) {
+  const [a0, b0] = thresholds(i, n);
+  const lit = litFirst && i === 0;
+  const [a, b] = lit ? [-1, -0.5] : [a0, b0]; // already past the window → fully lit
   const opacity = useTransform(progress, [a, b], [0.3, 1]);
   const scale = useTransform(progress, [a, b], [flush ? 1 : 0.96, 1]);
   const glow = useTransform(progress, [a, b], [0, 1]);
@@ -110,8 +112,9 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush }: { s: Stage; i: 
   );
 }
 
-function Marker({ s, i, n, progress, reduce }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean }) {
-  const [a, b] = thresholds(i, n);
+function Marker({ s, i, n, progress, reduce, litFirst }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; litFirst?: boolean }) {
+  const [a0, b0] = thresholds(i, n);
+  const [a, b] = litFirst && i === 0 ? [-1, -0.5] : [a0, b0];
   const on = useTransform(progress, [a, b], [0, 1]);
   const bg = useTransform(on, (v) => (v > 0.5 ? "#22d3d3" : "rgba(255,255,255,0.25)"));
   const glow = useTransform(on, (v) => `0 0 ${10 * v}px #22d3d3`);
