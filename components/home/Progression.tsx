@@ -104,7 +104,7 @@ function StageCard({ s, i, n, progress, reduce, aspect, mixed }: { s: Stage; i: 
       <div className={`absolute inset-0 ${top ? "bg-gradient-to-b" : "bg-gradient-to-t"} from-ink via-ink/25 to-transparent`} />
       {/* big outlined number, placed opposite the text */}
       <div className={`absolute ${top ? "bottom-3 right-4" : "top-3 left-4"} display leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(34,211,211,.9)] ${mixed ? "text-[clamp(3rem,9vh,6.5rem)]" : "text-cyan text-3xl [-webkit-text-stroke:0]"}`}>{s.n}</div>
-      <div className={`absolute inset-x-0 p-5 lg:p-6 ${top ? "top-0" : "bottom-0"}`}>
+      <div className={`absolute inset-x-0 p-5 lg:p-6 ${top ? "top-0 lg:pt-7" : "bottom-0"}`}>
         {s.kicker && <div className="display text-cyan text-xl sm:text-2xl">{s.kicker}</div>}
         <h3 className="display text-3xl sm:text-4xl lg:text-[clamp(1.5rem,3.4vh,2.4rem)] leading-none">{s.title}</h3>
         {s.copy && <p className="mt-2 text-[12px] sm:text-sm text-white/80 leading-snug max-w-[34ch] [@media(max-height:760px)]:hidden">{s.copy}</p>}
