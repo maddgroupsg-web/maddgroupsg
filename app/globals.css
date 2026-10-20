@@ -81,7 +81,10 @@ body {
 [data-theme="lime"] { --accent: var(--color-lime); --accent-rgb: 198 255 0; }
 [data-theme="gold"] { --accent: var(--color-gold); --accent-rgb: 226 184 95; }
 
-/* review scroller */
-.review-scroller::-webkit-scrollbar { height: 4px; }
-.review-scroller::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); border-radius: 4px; }
-.review-scroller::-webkit-scrollbar-thumb { background: rgba(34,211,211,0.6); border-radius: 4px; }
+/* vertical review columns */
+@keyframes review-up { from { transform: translateY(0); } to { transform: translateY(-33.333%); } }
+@keyframes review-down { from { transform: translateY(-33.333%); } to { transform: translateY(0); } }
+.review-track-up { animation: review-up 40s linear infinite; }
+.review-track-down { animation: review-down 40s linear infinite; }
+.review-col:hover .review-track-up, .review-col:hover .review-track-down { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .review-track-up, .review-track-down { animation: none; } }
