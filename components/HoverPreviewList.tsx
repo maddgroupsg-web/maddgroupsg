@@ -72,10 +72,13 @@ export default function HoverPreviewList({ rows }: { rows: PreviewRow[] }) {
 
       {/* cursor-following preview */}
       {canHover && (
-        <div ref={preview} className={cn("pointer-events-none fixed left-0 top-0 z-40 w-[260px] aspect-[4/5] overflow-hidden rounded-xl border border-white/15 shadow-[0_30px_80px_-20px_rgba(0,0,0,.9)] transition-opacity duration-200", row ? "opacity-100" : "opacity-0")} style={{ transform: "translate3d(-9999px,-9999px,0)" }}>
-          {row && row.images.map((src, k) => (
-            <Image key={src} src={src} alt="" fill sizes="260px" className={cn("object-cover transition-opacity duration-500", k === frame % row.images.length ? "opacity-100" : "opacity-0")} />
-          ))}
+        <div ref={preview} className={cn("pointer-events-none fixed left-0 top-0 z-40 w-[260px] aspect-[4/5] overflow-hidden rounded-xl bg-ink-3 border border-white/15 shadow-[0_30px_80px_-20px_rgba(0,0,0,.9)] transition-opacity duration-200", row ? "opacity-100" : "opacity-0")} style={{ transform: "translate3d(-9999px,-9999px,0)" }}>
+          {row && (() => { const n = row.images.length, cur = frame % n, prev = (frame - 1 + n) % n; return (
+            <>
+              <Image key={`p${prev}`} src={row.images[prev]} alt="" fill sizes="260px" className="object-cover" />
+              <Image key={`c${frame}`} src={row.images[cur]} alt="" fill sizes="260px" className="object-cover animate-[previewIn_.45s_ease-out]" />
+            </>
+          ); })()}
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-3 flex items-center justify-between">
             <span className="text-[10px] tracking-[0.25em] text-white/80">VIEW CLASSES</span>
             <span className="flex gap-1">{row?.images.map((_, k) => <span key={k} className={cn("h-1 w-3 rounded-full", k === frame % (row?.images.length || 1) ? "bg-cyan" : "bg-white/30")} />)}</span>

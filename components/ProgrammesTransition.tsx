@@ -72,7 +72,7 @@ export default function ProgrammesTransition() {
       for (let i = 0; i < N; i++) {
         const c = cards.current[i]; if (!c) continue;
         const k = (((i + t) % N) + N) % N;            // 0..N, wraps
-        const ang = k * STEP_DEG;                       // deg
+        const ang = (k - N / 2) * STEP_DEG;             // deg; front of the helix (0°) sits at the vertical centre
         const rad = (ang * Math.PI) / 180;
         const x = Math.sin(rad) * ORBIT * fs;
         const z = (Math.cos(rad) - 1) * ORBIT * fs;

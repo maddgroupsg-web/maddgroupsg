@@ -88,3 +88,5 @@ body {
 .review-track-down { animation: review-down 40s linear infinite; }
 .review-col:hover .review-track-up, .review-col:hover .review-track-down { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .review-track-up, .review-track-down { animation: none; } }
+
+@keyframes previewIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
