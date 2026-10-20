@@ -57,9 +57,9 @@ export default function ShowcaseWall() {
 // Always-moving row. dir -1 = right→left, 1 = left→right. Scrolling (either way) adds a burst of speed
 // in the row's own direction, which eases back to the cruise speed.
 const CRUISE = 38;   // px per second
-const KICK = 7;      // px/s of extra speed per px scrolled
-const MAX_BOOST = 700; // px/s cap so fast flicks stay readable
-const DRAG = 3.2;    // how fast the burst decays (per second)
+const KICK = 2.2;    // px/s of extra speed per px scrolled
+const MAX_BOOST = 220; // px/s cap so fast flicks stay readable
+const DRAG = 1.8;    // how fast the burst decays (per second) — slower decay = smoother glide back
 function LoopRow({ items, dir, still }: { items: Tile[]; dir: 1 | -1; still: boolean }) {
   const track = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -97,8 +97,6 @@ function TileCard({ src, label, href, hidden }: Tile & { hidden?: boolean }) {
   return (
     <Link href={href} aria-hidden={hidden || undefined} tabIndex={hidden ? -1 : undefined} className="group relative shrink-0 w-[62vw] sm:w-[38vw] lg:w-[23vw] aspect-[16/11] overflow-hidden rounded-[4px] border border-white/10 bg-ink-3">
       <Image src={src} alt={label} fill sizes="(max-width: 640px) 62vw, (max-width: 1024px) 38vw, 23vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
-      <div className="absolute left-4 bottom-3 text-[11px] tracking-[0.2em] uppercase text-white/90">{label}</div>
     </Link>
   );
 }
