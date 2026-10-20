@@ -5,6 +5,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { classesHub, byAge, byType } from "@/content/programmes";
 import HoverPreviewList from "@/components/HoverPreviewList";
+import PhilosophyAccordion from "@/components/PhilosophyAccordion";
 import { Reveal, SectionHeading } from "@/components/ui";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
@@ -35,10 +36,12 @@ export default function ClassesPage() {
           <HoverPreviewList rows={byType} />
         </div>
       </section>
-      <section className="py-20 bg-ink-2 border-y border-line">
-        <div className="container-x">
-          <Reveal><SectionHeading title={classesHub.philosophyTitle} /></Reveal>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">{classesHub.philosophy.map((p, i) => <Reveal key={p} delay={i * 0.05} className="glass rounded-xl p-6 text-lg leading-relaxed">{p}</Reveal>)}</div>
+      <section className="py-20 lg:py-28 bg-ink-2 border-y border-line">
+        <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+          <Reveal className="lg:sticky lg:top-28">
+            <SectionHeading eyebrow="HOW WE TEACH" title={classesHub.philosophyTitle} sub="Open each card to see what guides every MADDspace lesson." />
+          </Reveal>
+          <Reveal delay={0.1}><PhilosophyAccordion /></Reveal>
         </div>
       </section>
       <Testimonials />
