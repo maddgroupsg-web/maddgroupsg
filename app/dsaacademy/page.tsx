@@ -20,7 +20,7 @@ const icons = [GraduationCap, Trophy, Award, BarChart3];
 export default function Page() {
   return (
     <Shell>
-      <PageHero eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image={g[2]} tall>
+      <PageHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image={g[2]} tall>
         <Button href={DSA_ACADEMY_URL}>VISIT THE ACADEMY</Button>
         <Button href="#enquire" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
       </PageHero>

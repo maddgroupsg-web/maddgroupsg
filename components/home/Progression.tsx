@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 import { Button } from "@/components/ui";
 
-export type Stage = { n: string; title: string; kicker?: string; items?: string[]; copy?: string; image: string; alt: string; href?: string };
+export type Stage = { n: string; title: string; kicker?: string; items?: string[]; copy?: string; image: string; alt: string; href?: string; logo?: string };
 export type ProgressionConfig = {
   id: string;
   eyebrow: string;
@@ -94,8 +94,9 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: 
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
       {flush && i > 0 && <div className="absolute inset-y-0 left-0 w-px bg-white/10" />}
+      {s.logo && <div className="absolute top-4 right-4 lg:top-5 lg:right-5 h-11 w-11 sm:h-12 sm:w-12 lg:h-14 lg:w-14 flex items-start justify-end"><Image src={s.logo} alt="" width={160} height={160} className="max-h-full w-auto object-contain object-right-top drop-shadow-[0_2px_10px_rgba(0,0,0,.6)]" /></div>}
       {/* header: verb as the title, name underneath */}
-      <div className="absolute inset-x-0 top-0 p-5 lg:p-6">
+      <div className="absolute inset-x-0 top-0 p-5 pr-20 lg:p-6 lg:pr-24">
         <h3 className="display text-4xl sm:text-5xl lg:text-[clamp(2rem,4.6vh,3.4rem)] leading-none text-white">{s.kicker ?? s.title}</h3>
         {s.kicker && <div className="mt-1.5 text-[11px] sm:text-xs tracking-[0.25em] uppercase text-cyan">{s.title}</div>}
       </div>

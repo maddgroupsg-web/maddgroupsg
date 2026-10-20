@@ -86,10 +86,10 @@ export const maddGroup = {
   tagline: "FOUR PILLARS. ONE ECOSYSTEM.",
   sub: "Built around the development of young performers and creatives.",
   pillars: [
-    { name: "MADDSPACE", verb: "LEARN", copy: "Performing arts education, technical development, certification, performances and competitions.", href: "/classes", image: "/images/classes/age-6-9/age-6-9-06.jpg" },
-    { name: "THE DSA ACADEMY", verb: "ACHIEVE", copy: "Specialised performing arts DSA preparation, audition development and portfolio preparation.", href: "/dsaacademy", image: "/images/classes/dsa/dsa-02.jpg" },
-    { name: "IDOLLAB", verb: "CREATE", copy: "Recording, music production, filming and content creation.", href: "/idol-training-singapore#idollab", image: "/images/about/about-hero.jpg" },
-    { name: "MADD ENTERTAINMENT", verb: "LAUNCH", copy: "Advanced artiste development, talent management, original music, auditions and professional opportunities.", href: "/idol-training-singapore", image: "/images/classes/age-10-18/age-10-18-02.jpg" },
+    { name: "MADDSPACE", verb: "LEARN", copy: "Performing arts education, technical development, certification, performances and competitions.", href: "/classes", image: "/images/classes/age-6-9/age-6-9-06.jpg", logo: "/images/brand/maddspace-logo.png" },
+    { name: "THE DSA ACADEMY", verb: "ACHIEVE", copy: "Specialised performing arts DSA preparation, audition development and portfolio preparation.", href: "/dsaacademy", image: "/images/classes/dsa/dsa-02.jpg", logo: "/images/brand/dsa-academy.png" },
+    { name: "IDOLLAB", verb: "CREATE", copy: "Recording, music production, filming and content creation.", href: "/idol-training-singapore#idollab", image: "/images/about/about-hero.jpg", logo: "/images/brand/idollab.png" },
+    { name: "MADD ENTERTAINMENT", verb: "LAUNCH", copy: "Advanced artiste development, talent management, original music, auditions and professional opportunities.", href: "/idol-training-singapore", image: "/images/classes/age-10-18/age-10-18-02.jpg", logo: "/images/brand/madd-entertainment.png" },
   ],
   orbit: {
     headline: ["ONE STARTING POINT.", "MANY POSSIBILITIES."],
@@ -123,7 +123,7 @@ export const pillarsProgression = {
   eyebrow: "THE MADD GROUP",
   headline: ["MORE THAN A PERFORMING ARTS SCHOOL.", "Four pillars. One ecosystem."],
   intro: maddGroup.copy,
-  stages: maddGroup.pillars.map((p, i) => ({ n: `0${i + 1}`, kicker: p.verb, title: p.name, copy: p.copy, image: p.image, alt: `${p.name} — ${p.verb}`, href: p.href })),
+  stages: maddGroup.pillars.map((p, i) => ({ n: `0${i + 1}`, kicker: p.verb, title: p.name, copy: p.copy, image: p.image, alt: `${p.name} — ${p.verb}`, href: p.href, logo: p.logo })),
   footer: ["ONE STARTING POINT. MANY POSSIBILITIES.", "Students may interact with one or several pillars depending on their goals."] as [string, string],
   cta: { label: "EXPLORE PROGRAMMES", href: "/classes" },
   aspect: "aspect-[4/5] sm:aspect-[3/4]",

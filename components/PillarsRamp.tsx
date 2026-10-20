@@ -23,8 +23,9 @@ export default function PillarsRamp() {
                 <Image src={pl.image} alt={`${pl.name} — ${pl.verb}`} fill sizes="25vw" className="object-cover opacity-55 transition-all duration-700 group-hover:opacity-90 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-ink/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                {pl.logo && <div className="absolute right-4 h-10 w-10 lg:h-12 lg:w-12 flex items-start justify-end" style={{ top: `calc(${next}% + 1rem)` }}><Image src={pl.logo} alt="" width={120} height={120} className="max-h-full w-auto object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,.6)]" /></div>}
                 <div className="absolute inset-x-0 bottom-0 p-5 lg:p-7">
-                  <div className="display text-accent text-xl lg:text-2xl">{String(i + 1).padStart(2, "0")} · {pl.verb}</div>
+                  <div className="display text-accent text-xl lg:text-2xl">{pl.verb}</div>
                   <div className="display text-3xl lg:text-4xl leading-none mt-1">{pl.name}</div>
                   <p className="mt-2 hidden lg:block text-xs text-white/75 max-w-[26ch] leading-snug">{pl.copy}</p>
                   <span className="mt-3 inline-block text-[11px] tracking-[0.2em] text-accent font-semibold opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all">EXPLORE →</span>
@@ -41,7 +42,8 @@ export default function PillarsRamp() {
           <Link key={pl.name} href={pl.href} className="relative -mt-2 first:mt-0" style={{ height: 160 + i * 34, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 88%)" }}>
             <Image src={pl.image} alt={`${pl.name} — ${pl.verb}`} fill sizes="100vw" className="object-cover opacity-55" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-            <div className="absolute left-4 bottom-11"><div className="display text-accent text-lg">{String(i + 1).padStart(2, "0")} · {pl.verb}</div><div className="display text-3xl leading-none">{pl.name}</div></div>
+            {pl.logo && <div className="absolute right-4 top-4 h-9 w-9"><Image src={pl.logo} alt="" width={100} height={100} className="max-h-full w-auto object-contain" /></div>}
+            <div className="absolute left-4 bottom-11"><div className="display text-accent text-lg">{pl.verb}</div><div className="display text-3xl leading-none">{pl.name}</div></div>
           </Link>
         ))}
       </div>

@@ -20,7 +20,7 @@ export default function Page() {
   const feats = [stories[1], stories[0]];
   return (
     <Shell>
-      <PageHero eyebrow="MADD ENTERTAINMENT · LAUNCH" title={idol.h1} sub={<>{idol.h2[0]}<br />{idol.h2[1]}</>} image="/images/classes/age-10-18/age-10-18-02.jpg" tall>
+      <PageHero logo="/images/brand/madd-entertainment.png" eyebrow="MADD ENTERTAINMENT · LAUNCH" title={idol.h1} sub={<>{idol.h2[0]}<br />{idol.h2[1]}</>} image="/images/classes/age-10-18/age-10-18-02.jpg" tall>
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button>
         <Button href="#who" variant="outline">WHO IS THIS FOR?</Button>
       </PageHero>
@@ -47,7 +47,7 @@ export default function Page() {
         <section key="idollab" id="idollab" className="py-16 lg:py-24 bg-ink-2 border-y border-line scroll-mt-20">
           <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center lg:[&>*:first-child]:order-2">
             <Reveal><VideoEmbed url={idol.idollab.video} poster={idol.idollab.image} title={idol.idollab.title} /></Reveal>
-            <Reveal delay={0.1}><div className="eyebrow">{idol.idollab.place} · CREATE</div><h2 className="display mt-2 text-4xl sm:text-5xl">{idol.idollab.title}</h2><p className="mt-4 text-mute">{idol.idollab.copy}</p><div className="mt-5"><Button href={idol.idollab.video} variant="ghost">Watch Video</Button></div></Reveal>
+            <Reveal delay={0.1}><div className="flex items-center justify-between gap-4"><div className="eyebrow">{idol.idollab.place} · CREATE</div><Image src="/images/brand/idollab.png" alt="IDOLLAB by MADDspace" width={160} height={168} className="h-14 w-auto" /></div><h2 className="display mt-2 text-4xl sm:text-5xl">{idol.idollab.title}</h2><p className="mt-4 text-mute">{idol.idollab.copy}</p><div className="mt-5"><Button href={idol.idollab.video} variant="ghost">Watch Video</Button></div></Reveal>
           </div>
         </section>
       ))}
