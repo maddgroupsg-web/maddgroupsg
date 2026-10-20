@@ -39,6 +39,13 @@ export default function PageTransition() {
       c.setAttribute("aria-hidden", "true"); c.setAttribute("inert", "");
       c.style.cssText = `position:fixed;inset:0;z-index:60;overflow:hidden;pointer-events:none;background:#050607;will-change:transform;`;
       const inner = root.cloneNode(true) as HTMLElement;
+      // fixed elements (nav, floating buttons) lose their anchor inside the copy — pin each where it was on screen
+      const liveAll = root.querySelectorAll<HTMLElement>("*"), copyAll = inner.querySelectorAll<HTMLElement>("*");
+      liveAll.forEach((el, i) => {
+        if (getComputedStyle(el).position !== "fixed") return;
+        const r = el.getBoundingClientRect(); const k = copyAll[i]; if (!k) return;
+        k.style.cssText += `;position:absolute;top:${r.top + window.scrollY}px;left:${r.left}px;right:auto;bottom:auto;width:${r.width}px;height:${r.height}px;margin:0;transform:none;`;
+      });
       inner.removeAttribute("id");
       inner.querySelectorAll("[id]").forEach((n) => n.removeAttribute("id"));
       inner.querySelectorAll("video, iframe").forEach((n) => n.remove());
