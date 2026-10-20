@@ -36,24 +36,24 @@ export default function Progression({ config: c }: { config: ProgressionConfig }
           <div className="absolute inset-0 spotlight" />
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(70%_50%_at_50%_100%,rgba(34,211,211,0.12),transparent)]" />
         </div>
-        <div className="container-x relative h-full flex flex-col justify-center py-24 lg:py-20">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+        <div className="container-x relative h-full flex flex-col justify-center pt-24 pb-6 lg:pt-28 lg:pb-8">
+          <div className="shrink-0 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <div className="max-w-3xl">
               <div className="eyebrow">{c.eyebrow}</div>
-              <h2 className="display mt-2 text-4xl sm:text-6xl lg:text-7xl">{headline.map((h, i) => <span key={i} className={i > 0 ? "block text-cyan text-[0.6em] normal-case font-sans tracking-normal font-medium mt-1" : "block"}>{h}</span>)}</h2>
-              {c.intro && <p className="mt-3 text-sm sm:text-base text-mute max-w-2xl hidden sm:block">{c.intro[0]}</p>}
+              <h2 className="display mt-2 text-4xl sm:text-5xl lg:text-[clamp(2.4rem,6.5vh,4.5rem)] leading-[0.92]">{headline.map((h, i) => <span key={i} className={i > 0 ? "block text-cyan text-[0.6em] normal-case font-sans tracking-normal font-medium mt-1" : "block"}>{h}</span>)}</h2>
+              {c.intro && <p className="mt-3 text-sm text-mute max-w-2xl hidden lg:block [@media(max-height:820px)]:hidden">{c.intro[0]}</p>}
             </div>
             <p className="hidden lg:block text-xs tracking-[0.2em] text-white/50 whitespace-nowrap">SCROLL TO FOLLOW →</p>
           </div>
 
-          <div className="relative mt-6 lg:mt-10">
+          <div className="relative mt-6 lg:mt-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
             <div className="absolute -inset-x-8 -bottom-6 h-24 bg-[radial-gradient(60%_100%_at_50%_100%,rgba(34,211,211,0.16),transparent)] pointer-events-none" />
-            <div className="overflow-hidden">
-              <motion.div className="flex gap-3 sm:gap-4 lg:grid" style={{ ...(reduce || desktop ? {} : { x: panX }), gridTemplateColumns: desktop ? `repeat(${n}, minmax(0, 1fr))` : undefined }}>
+            <div className="overflow-hidden lg:flex-1 lg:min-h-0">
+              <motion.div className="flex gap-3 sm:gap-4 lg:grid lg:h-full" style={{ ...(reduce || desktop ? {} : { x: panX }), gridTemplateColumns: desktop ? `repeat(${n}, minmax(0, 1fr))` : undefined }}>
                 {c.stages.map((s, i) => <StageCard key={s.title} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} aspect={c.aspect} />)}
               </motion.div>
             </div>
-            <div className="relative mt-6 h-10">
+            <div className="relative mt-4 h-8 shrink-0">
               <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10" />
               <motion.div className="absolute left-0 top-1/2 h-px origin-left bg-cyan shadow-[0_0_12px_#22d3d3]" style={{ scaleX: reduce ? 1 : line, width: "100%" }} />
               <div className="absolute inset-0 grid" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
@@ -62,8 +62,8 @@ export default function Progression({ config: c }: { config: ProgressionConfig }
             </div>
           </div>
 
-          <div className="mt-6 lg:mt-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <p className="display text-2xl sm:text-3xl">
+          <div className="mt-4 lg:mt-5 shrink-0 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+            <p className="display text-xl sm:text-2xl lg:text-[clamp(1.1rem,2.6vh,1.9rem)]">
               <span className="text-white">{c.footer[0]}</span> <span className="text-cyan normal-case font-sans text-base sm:text-lg tracking-normal">{c.footer[1]}</span>
             </p>
             <Button href={c.cta.href} variant="outline">{c.cta.label}</Button>
@@ -84,7 +84,7 @@ function StageCard({ s, i, n, progress, reduce, aspect }: { s: Stage; i: number;
   const shadow = useTransform(glow, (g) => `0 0 ${30 * g}px -6px rgba(34,211,211,${0.6 * g}), inset 0 0 0 1px rgba(34,211,211,${0.2 + 0.6 * g})`);
   const filter = useTransform(progress, [a, b], ["saturate(0.2) brightness(0.55)", "saturate(1) brightness(1)"]);
   const inner = (
-    <div className={`relative ${aspect ?? "aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/3]"}`}>
+    <div className={`relative lg:h-full lg:!aspect-auto ${aspect ?? "aspect-[4/5] sm:aspect-[4/3]"}`}>
       <motion.div style={reduce ? undefined : { filter }} className="absolute inset-0">
         <Image src={s.image} alt={s.alt} fill sizes={`(max-width: 1024px) 80vw, ${Math.round(100 / n)}vw`} className="object-cover" />
       </motion.div>
@@ -92,15 +92,15 @@ function StageCard({ s, i, n, progress, reduce, aspect }: { s: Stage; i: number;
       <div className="absolute top-4 left-4 display text-cyan text-3xl drop-shadow">{s.n}</div>
       <div className="absolute inset-x-0 bottom-0 p-5">
         {s.kicker && <div className="display text-cyan text-xl sm:text-2xl">{s.kicker}</div>}
-        <h3 className="display text-3xl sm:text-4xl leading-none">{s.title}</h3>
-        {s.copy && <p className="mt-2 text-[12px] sm:text-sm text-white/80 leading-snug">{s.copy}</p>}
+        <h3 className="display text-3xl sm:text-4xl lg:text-[clamp(1.5rem,3.4vh,2.4rem)] leading-none">{s.title}</h3>
+        {s.copy && <p className="mt-2 text-[12px] sm:text-sm text-white/80 leading-snug [@media(max-height:760px)]:hidden">{s.copy}</p>}
         {s.items && <ul className="mt-2 flex flex-wrap gap-x-2 gap-y-1 text-[11px] sm:text-xs tracking-[0.12em] uppercase text-white/80">{s.items.map((it, k) => <li key={it}>{it}{k < s.items!.length - 1 && <span className="ml-2 text-cyan">•</span>}</li>)}</ul>}
         {s.href && <span className="mt-3 inline-block text-[11px] tracking-[0.2em] text-cyan font-semibold">EXPLORE →</span>}
       </div>
     </div>
   );
   return (
-    <motion.article style={reduce ? undefined : { opacity, scale, boxShadow: shadow }} className="relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto rounded-xl overflow-hidden glass">
+    <motion.article style={reduce ? undefined : { opacity, scale, boxShadow: shadow }} className="relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 rounded-xl overflow-hidden glass">
       {s.href ? <Link href={s.href} className="block">{inner}</Link> : inner}
     </motion.article>
   );

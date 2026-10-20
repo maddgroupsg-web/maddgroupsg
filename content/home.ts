@@ -126,5 +126,5 @@ export const pillarsProgression = {
   stages: maddGroup.pillars.map((p, i) => ({ n: `0${i + 1}`, kicker: p.verb, title: p.name, copy: p.copy, image: p.image, alt: `${p.name} — ${p.verb}`, href: p.href })),
   footer: ["ONE STARTING POINT. MANY POSSIBILITIES.", "Students may interact with one or several pillars depending on their goals."] as [string, string],
   cta: { label: "EXPLORE PROGRAMMES", href: "/classes" },
-  aspect: "aspect-[4/5] sm:aspect-[3/4] lg:aspect-[3/4]",
+  aspect: "aspect-[4/5] sm:aspect-[3/4]",
 };
