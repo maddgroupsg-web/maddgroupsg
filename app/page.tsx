@@ -16,7 +16,6 @@ export default function Home() {
     <Shell>
       <Preloader />
       <Hero />
-      <LogoMarquee compact title="As featured on leading media platforms" sub="" />
       <ShowcaseWall />
       <Progression config={pillarsProgression} />
       <ClassesTiles />
