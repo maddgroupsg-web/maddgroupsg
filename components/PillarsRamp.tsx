@@ -3,7 +3,7 @@ import Link from "next/link";
 import { maddGroup } from "@/content/home";
 
 // One continuous, slanted "ramp": the four pillars rise from small (Learn) to big (Launch), no card gaps.
-const H = [52, 68, 84, 100]; // % height of each step, left → right
+const H = [66, 77, 88, 99]; // % height of each step, left → right (gentle, continuous slope)
 
 export default function PillarsRamp() {
   const p = maddGroup.pillars;
@@ -12,12 +12,12 @@ export default function PillarsRamp() {
       {/* desktop / tablet ramp */}
       <div className="relative hidden md:block h-[460px] lg:h-[560px]">
         {/* neon diagonal along the top edge */}
-        <svg className="absolute inset-0 h-full w-full pointer-events-none z-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polyline points={`0,${100 - H[0]} ${H.map((h, i) => `${((i + 1) / H.length) * 100},${100 - (H[i + 1] ?? 100)}`).join(" ")}`} fill="none" stroke="#22d3d3" strokeWidth="0.35" vectorEffect="non-scaling-stroke" style={{ filter: "drop-shadow(0 0 6px rgba(34,211,211,.9))" }} />
+        <svg className="absolute inset-0 h-full w-full pointer-events-none z-20 overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polyline points={`0,${100 - H[0]} 100,${100 - H[H.length - 1] - (H[1] - H[0])}`} fill="none" stroke="#22d3d3" strokeWidth="0.35" vectorEffect="non-scaling-stroke" style={{ filter: "drop-shadow(0 0 6px rgba(34,211,211,.9))" }} />
         </svg>
         <div className="absolute inset-0 flex">
           {p.map((pl, i) => {
-            const top = 100 - H[i], next = 100 - (H[i + 1] ?? 100);
+            const step = H[1] - H[0]; const top = 100 - H[i], next = 100 - (H[i] + step);
             return (
               <Link key={pl.name} href={pl.href} className="group relative flex-1 -ml-px first:ml-0" style={{ clipPath: `polygon(0 ${top}%, 100% ${next}%, 100% 100%, 0 100%)` }}>
                 <Image src={pl.image} alt={`${pl.name} — ${pl.verb}`} fill sizes="25vw" className="object-cover opacity-55 transition-all duration-700 group-hover:opacity-90 group-hover:scale-105" />
