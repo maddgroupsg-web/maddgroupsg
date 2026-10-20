@@ -80,7 +80,8 @@ function thresholds(i: number, n: number) { const a = 0.12 + (i / n) * 0.7; retu
 function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; aspect?: string; flush?: boolean; litFirst?: boolean }) {
   const [a0, b0] = thresholds(i, n);
   const lit = litFirst && i === 0;
-  const [a, b] = lit ? [-1, -0.5] : [a0, b0]; // already past the window → fully lit
+  const [a, b] = [a0, b0];
+  const still = reduce || !!lit; // lit-first card renders fully lit with no scroll binding
   const opacity = useTransform(progress, [a, b], [0.3, 1]);
   const scale = useTransform(progress, [a, b], [flush ? 1 : 0.96, 1]);
   const glow = useTransform(progress, [a, b], [0, 1]);
@@ -88,7 +89,7 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: 
   const filter = useTransform(progress, [a, b], ["saturate(0.15) brightness(0.45)", "saturate(1) brightness(1)"]);
   const inner = (
     <div className={`relative ${aspect ?? "aspect-[4/5] sm:aspect-[4/3]"} lg:aspect-auto lg:h-full`}>
-      <motion.div style={reduce ? undefined : { filter }} className="absolute inset-0">
+      <motion.div style={still ? undefined : { filter }} className="absolute inset-0">
         <Image src={s.image} alt={s.alt} fill sizes={`(max-width: 1024px) 80vw, ${Math.round(100 / n)}vw`} className="object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
@@ -106,7 +107,7 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: 
     </div>
   );
   return (
-    <motion.article style={reduce ? undefined : { opacity, scale, boxShadow: shadow }} className={`relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 overflow-hidden ${flush ? "" : "rounded-xl glass"}`}>
+    <motion.article style={still ? undefined : { opacity, scale, boxShadow: shadow }} className={`relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 overflow-hidden ${flush ? "" : "rounded-xl glass"}`}>
       {s.href ? <Link href={s.href} className="block lg:h-full">{inner}</Link> : inner}
     </motion.article>
   );
@@ -114,13 +115,14 @@ function StageCard({ s, i, n, progress, reduce, aspect, flush, litFirst }: { s: 
 
 function Marker({ s, i, n, progress, reduce, litFirst }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; litFirst?: boolean }) {
   const [a0, b0] = thresholds(i, n);
-  const [a, b] = litFirst && i === 0 ? [-1, -0.5] : [a0, b0];
+  const [a, b] = [a0, b0];
+  const stillOn = reduce || (litFirst && i === 0);
   const on = useTransform(progress, [a, b], [0, 1]);
   const bg = useTransform(on, (v) => (v > 0.5 ? "#22d3d3" : "rgba(255,255,255,0.25)"));
   const glow = useTransform(on, (v) => `0 0 ${10 * v}px #22d3d3`);
   return (
     <div className="relative flex items-center justify-center" aria-label={s.title}>
-      <motion.span style={reduce ? { background: "#22d3d3", boxShadow: "0 0 10px #22d3d3" } : { background: bg, boxShadow: glow }} className="h-3 w-3 rounded-full" />
+      <motion.span style={stillOn ? { background: "#22d3d3", boxShadow: "0 0 10px #22d3d3" } : { background: bg, boxShadow: glow }} className="h-3 w-3 rounded-full" />
     </div>
   );
 }
