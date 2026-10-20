@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { mediaLogos } from "@/content/site";
 
@@ -30,8 +30,6 @@ export default function ShowcaseWall() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
   // flat diagonal slant (2D) that levels out — no 3D, no vertical drift, so normal scrolling never feels held
   const rotate = useTransform(scrollYProgress, [0, 1], [-9, 0]);
-  const xA = useTransform(scrollYProgress, [0, 1], ["-22%", "0%"]);
-  const xB = useTransform(scrollYProgress, [0, 1], ["22%", "0%"]);
 
   return (
     <section ref={ref} className="relative pt-2 pb-6 lg:pt-4 lg:pb-10 overflow-hidden">
@@ -48,21 +46,55 @@ export default function ShowcaseWall() {
               ))}
             </div>
           </div>
-          <motion.div style={reduce ? undefined : { x: xA }} className="flex gap-4 pl-4 lg:pl-10">
-            {ROW_A.map((t) => <Tile key={t.src} {...t} />)}
-          </motion.div>
-          <motion.div style={reduce ? undefined : { x: xB }} className="flex gap-4 pl-24 lg:pl-40">
-            {ROW_B.map((t) => <Tile key={t.src} {...t} />)}
-          </motion.div>
+          <LoopRow items={ROW_A} dir={-1} still={!!reduce} />
+          <LoopRow items={ROW_B} dir={1} still={!!reduce} />
         </motion.div>
       </div>
     </section>
   );
 }
 
-function Tile({ src, label, href }: { src: string; label: string; href: string }) {
+// Always-moving row. dir -1 = right→left, 1 = left→right. Scrolling (either way) adds a burst of speed
+// in the row's own direction, which eases back to the cruise speed.
+const CRUISE = 38;   // px per second
+const KICK = 0.9;    // px of extra travel per px scrolled
+const DRAG = 3.2;    // how fast the burst decays (per second)
+function LoopRow({ items, dir, still }: { items: Tile[]; dir: 1 | -1; still: boolean }) {
+  const track = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (still) return;
+    let x = 0, boost = 0, last = performance.now(), lastY = window.scrollY, raf = 0;
+    const onScroll = () => { const y = window.scrollY; boost += Math.abs(y - lastY) * KICK * 60; lastY = y; };
+    const loop = (t: number) => {
+      const dt = Math.min(0.05, (t - last) / 1000); last = t;
+      boost *= Math.exp(-DRAG * dt);
+      const el = track.current;
+      if (el) {
+        const half = el.scrollWidth / 2;
+        x -= dir * (CRUISE + boost) * dt; // translate is -x, so dir -1 moves content left
+        if (half > 0) { x = ((x % half) + half) % half; }
+        el.style.transform = `translate3d(${-x}px,0,0)`;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    raf = requestAnimationFrame(loop);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", onScroll); };
+  }, [dir, still]);
   return (
-    <Link href={href} className="group relative shrink-0 w-[62vw] sm:w-[38vw] lg:w-[23vw] aspect-[16/11] overflow-hidden rounded-[4px] border border-white/10 bg-ink-3">
+    <div className="overflow-hidden">
+      <div ref={track} className="flex gap-4 w-max will-change-transform">
+        {[...items, ...items].map((t, i) => <TileCard key={i} {...t} hidden={i >= items.length} />)}
+      </div>
+    </div>
+  );
+}
+
+type Tile = { src: string; label: string; href: string };
+
+function TileCard({ src, label, href, hidden }: Tile & { hidden?: boolean }) {
+  return (
+    <Link href={href} aria-hidden={hidden || undefined} tabIndex={hidden ? -1 : undefined} className="group relative shrink-0 w-[62vw] sm:w-[38vw] lg:w-[23vw] aspect-[16/11] overflow-hidden rounded-[4px] border border-white/10 bg-ink-3">
       <Image src={src} alt={label} fill sizes="(max-width: 640px) 62vw, (max-width: 1024px) 38vw, 23vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
       <div className="absolute left-4 bottom-3 text-[11px] tracking-[0.2em] uppercase text-white/90">{label}</div>
