@@ -19,13 +19,10 @@ export default function Hero() {
       </div>
       <div className="container-x relative z-10 pt-28 pb-20 lg:pt-36 lg:pb-24">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="max-w-3xl">
-          <div className="eyebrow">{hero.eyebrow}</div>
-          <h1 className="sr-only">{hero.h1}</h1>
-          <p className="mt-2 text-[11px] sm:text-xs tracking-[0.25em] text-white/60 uppercase">{hero.h1}</p>
-          <p className="display mt-4 text-[3.2rem] leading-[0.9] sm:text-6xl lg:text-[4.8rem] xl:text-[5.6rem]" aria-hidden>
-            <span className="block">{hero.headline[0]}</span>
-            <span className="block text-cyan">{hero.headline[1]}</span>
-          </p>
+          <h1 className="display text-[2.9rem] leading-[0.92] sm:text-6xl lg:text-[4.6rem] xl:text-[5.4rem]">
+            <span className="block">{hero.eyebrow}</span>
+            <span className="block text-cyan">{hero.h1}</span>
+          </h1>
           <p className="mt-6 max-w-xl text-base sm:text-lg text-white/80 leading-relaxed">{hero.copy}</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
             <Button href={BOOK_TRIAL_URL}>{hero.primary.label}</Button>
