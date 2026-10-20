@@ -57,14 +57,15 @@ export default function ShowcaseWall() {
 // Always-moving row. dir -1 = right→left, 1 = left→right. Scrolling (either way) adds a burst of speed
 // in the row's own direction, which eases back to the cruise speed.
 const CRUISE = 38;   // px per second
-const KICK = 0.9;    // px of extra travel per px scrolled
+const KICK = 7;      // px/s of extra speed per px scrolled
+const MAX_BOOST = 700; // px/s cap so fast flicks stay readable
 const DRAG = 3.2;    // how fast the burst decays (per second)
 function LoopRow({ items, dir, still }: { items: Tile[]; dir: 1 | -1; still: boolean }) {
   const track = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (still) return;
     let x = 0, boost = 0, last = performance.now(), lastY = window.scrollY, raf = 0;
-    const onScroll = () => { const y = window.scrollY; boost += Math.abs(y - lastY) * KICK * 60; lastY = y; };
+    const onScroll = () => { const y = window.scrollY; boost = Math.min(MAX_BOOST, boost + Math.min(120, Math.abs(y - lastY)) * KICK); lastY = y; };
     const loop = (t: number) => {
       const dt = Math.min(0.05, (t - last) / 1000); last = t;
       boost *= Math.exp(-DRAG * dt);
