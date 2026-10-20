@@ -1,17 +1,17 @@
 "use client";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight, Play, User, CalendarDays, Ticket, Mic, Music2, Users } from "lucide-react";
+import { ArrowLeft, ArrowRight, Play, User, CalendarDays, Ticket, Mic, Music2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { instructors, type Instructor } from "@/content/instructors";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { cn, youtubeId } from "@/lib/utils";
 
-const filters = [{ key: "all", label: "ALL", icon: Users }, { key: "vocal", label: "VOCAL", icon: Mic }, { key: "dance", label: "DANCE", icon: Music2 }] as const;
+const filters = [{ key: "vocal", label: "VOCAL", icon: Mic }, { key: "dance", label: "DANCE", icon: Music2 }] as const;
 
-export default function InstructorCarousel({ initial = "all" }: { initial?: "all" | "vocal" | "dance" }) {
+export default function InstructorCarousel({ initial = "vocal" }: { initial?: "vocal" | "dance" }) {
   const [filter, setFilter] = useState<(typeof filters)[number]["key"]>(initial);
-  const list = instructors.filter((i) => filter === "all" || i.discipline === filter);
+  const list = instructors.filter((i) => i.discipline === filter);
   const [ref, api] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false });
   const [sel, setSel] = useState(0);
   const [open, setOpen] = useState(false);
