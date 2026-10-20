@@ -15,8 +15,7 @@ export type ProgressionConfig = {
   footer: [string, string];
   cta: { label: string; href: string };
   aspect?: string;
-  columns?: string; // desktop grid-template-columns, e.g. "1.3fr .9fr 1.1fr .95fr"
-  mixed?: boolean;  // staggered heights + alternating text position
+  flush?: boolean;  // no card frames: panels butt together edge to edge
 };
 
 // Pinned section: as the visitor scrolls, the stages light up from LEFT to RIGHT and the neon line draws across.
@@ -51,14 +50,14 @@ export default function Progression({ config: c }: { config: ProgressionConfig }
           <div className="relative mt-6 lg:mt-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
             <div className="absolute -inset-x-8 -bottom-6 h-24 bg-[radial-gradient(60%_100%_at_50%_100%,rgba(34,211,211,0.16),transparent)] pointer-events-none" />
             <div className="overflow-hidden lg:flex-1 lg:min-h-0">
-              <motion.div className="flex gap-3 sm:gap-4 lg:grid lg:h-full" style={{ ...(reduce || desktop ? {} : { x: panX }), gridTemplateColumns: desktop ? (c.columns ?? `repeat(${n}, minmax(0, 1fr))`) : undefined }}>
-                {c.stages.map((s, i) => <StageCard key={s.title} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} aspect={c.aspect} mixed={!!c.mixed && desktop} />)}
+              <motion.div className={`flex lg:grid lg:h-full ${c.flush ? "gap-0 lg:rounded-2xl lg:overflow-hidden" : "gap-3 sm:gap-4"}`} style={{ ...(reduce || desktop ? {} : { x: panX }), gridTemplateColumns: desktop ? `repeat(${n}, minmax(0, 1fr))` : undefined }}>
+                {c.stages.map((s, i) => <StageCard key={s.title} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} aspect={c.aspect} flush={!!c.flush} />)}
               </motion.div>
             </div>
             <div className="relative mt-4 h-8 shrink-0">
               <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10" />
               <motion.div className="absolute left-0 top-1/2 h-px origin-left bg-cyan shadow-[0_0_12px_#22d3d3]" style={{ scaleX: reduce ? 1 : line, width: "100%" }} />
-              <div className="absolute inset-0 grid gap-3 sm:gap-4" style={{ gridTemplateColumns: desktop && c.columns ? c.columns : `repeat(${n}, minmax(0, 1fr))` }}>
+              <div className="absolute inset-0 grid" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
                 {c.stages.map((s, i) => <Marker key={s.n} s={s} i={i} n={n} progress={scrollYProgress} reduce={!!reduce} />)}
               </div>
             </div>
@@ -78,45 +77,34 @@ export default function Progression({ config: c }: { config: ProgressionConfig }
 
 function thresholds(i: number, n: number) { const a = 0.12 + (i / n) * 0.7; return [a, a + 0.16] as [number, number]; }
 
-// mixed layout: varied heights, alternating top/bottom anchoring and text placement
-const MIX = [
-  { h: "100%", self: "end", text: "bottom" },
-  { h: "74%", self: "start", text: "top" },
-  { h: "88%", self: "end", text: "bottom" },
-  { h: "68%", self: "start", text: "top" },
-] as const;
-
-function StageCard({ s, i, n, progress, reduce, aspect, mixed }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; aspect?: string; mixed?: boolean }) {
+function StageCard({ s, i, n, progress, reduce, aspect, flush }: { s: Stage; i: number; n: number; progress: MotionValue<number>; reduce: boolean; aspect?: string; flush?: boolean }) {
   const [a, b] = thresholds(i, n);
-  const opacity = useTransform(progress, [a, b], [0.22, 1]);
-  const scale = useTransform(progress, [a, b], [0.96, 1]);
-  const lift = useTransform(progress, [a, b], [i % 2 ? -28 : 28, 0]);
+  const opacity = useTransform(progress, [a, b], [0.3, 1]);
+  const scale = useTransform(progress, [a, b], [flush ? 1 : 0.96, 1]);
   const glow = useTransform(progress, [a, b], [0, 1]);
-  const shadow = useTransform(glow, (g) => `0 0 ${30 * g}px -6px rgba(34,211,211,${0.6 * g}), inset 0 0 0 1px rgba(34,211,211,${0.2 + 0.6 * g})`);
-  const filter = useTransform(progress, [a, b], ["saturate(0.2) brightness(0.55)", "saturate(1) brightness(1)"]);
-  const m = mixed ? MIX[i % MIX.length] : null;
-  const top = m?.text === "top";
+  const shadow = useTransform(glow, (g) => flush ? "none" : `0 0 ${30 * g}px -6px rgba(34,211,211,${0.6 * g}), inset 0 0 0 1px rgba(34,211,211,${0.2 + 0.6 * g})`);
+  const filter = useTransform(progress, [a, b], ["saturate(0.15) brightness(0.45)", "saturate(1) brightness(1)"]);
   const inner = (
     <div className={`relative ${aspect ?? "aspect-[4/5] sm:aspect-[4/3]"} lg:aspect-auto lg:h-full`}>
       <motion.div style={reduce ? undefined : { filter }} className="absolute inset-0">
         <Image src={s.image} alt={s.alt} fill sizes={`(max-width: 1024px) 80vw, ${Math.round(100 / n)}vw`} className="object-cover" />
       </motion.div>
-      <div className={`absolute inset-0 ${top ? "bg-gradient-to-b" : "bg-gradient-to-t"} from-ink via-ink/25 to-transparent`} />
-      {/* big outlined number, placed opposite the text */}
-      <div className={`absolute ${top ? "bottom-3 right-4" : "top-3 left-4"} display leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(34,211,211,.9)] ${mixed ? "text-[clamp(3rem,9vh,6.5rem)]" : "text-cyan text-3xl [-webkit-text-stroke:0]"}`}>{s.n}</div>
-      <div className={`absolute inset-x-0 p-5 lg:p-6 ${top ? "top-0 lg:pt-7" : "bottom-0"}`}>
-        {s.kicker && <div className="display text-cyan text-xl sm:text-2xl">{s.kicker}</div>}
-        <h3 className="display text-3xl sm:text-4xl lg:text-[clamp(1.5rem,3.4vh,2.4rem)] leading-none">{s.title}</h3>
-        {s.copy && <p className="mt-2 text-[12px] sm:text-sm text-white/80 leading-snug max-w-[34ch] [@media(max-height:760px)]:hidden">{s.copy}</p>}
-        {s.items && <ul className="mt-2 flex flex-wrap gap-x-2 gap-y-1 text-[11px] sm:text-xs tracking-[0.12em] uppercase text-white/80">{s.items.map((it, k) => <li key={it}>{it}{k < s.items!.length - 1 && <span className="ml-2 text-cyan">•</span>}</li>)}</ul>}
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+      {flush && i > 0 && <div className="absolute inset-y-0 left-0 w-px bg-white/10" />}
+      {/* white header */}
+      <div className="absolute inset-x-0 top-0 p-5 lg:p-6">
+        <div className="text-[11px] tracking-[0.25em] text-white/70">{s.n}{s.kicker && <span className="text-cyan"> · {s.kicker}</span>}</div>
+        <h3 className="display text-3xl sm:text-4xl lg:text-[clamp(1.6rem,3.6vh,2.6rem)] leading-none mt-1 text-white">{s.title}</h3>
+      </div>
+      <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6">
+        {s.copy && <p className="text-[12px] sm:text-sm text-white/85 leading-snug max-w-[34ch] [@media(max-height:760px)]:hidden">{s.copy}</p>}
+        {s.items && <ul className="flex flex-wrap gap-x-2 gap-y-1 text-[11px] sm:text-xs tracking-[0.12em] uppercase text-white/80">{s.items.map((it, k) => <li key={it}>{it}{k < s.items!.length - 1 && <span className="ml-2 text-cyan">•</span>}</li>)}</ul>}
         {s.href && <span className="mt-3 inline-block text-[11px] tracking-[0.2em] text-cyan font-semibold">EXPLORE →</span>}
       </div>
     </div>
   );
   return (
-    <motion.article
-      style={{ ...(reduce ? {} : { opacity, scale, boxShadow: shadow, ...(mixed ? { y: lift } : {}) }), ...(m ? { height: m.h, alignSelf: m.self } : {}) }}
-      className="relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 rounded-xl overflow-hidden glass">
+    <motion.article style={reduce ? undefined : { opacity, scale, boxShadow: shadow }} className={`relative shrink-0 basis-[82%] sm:basis-[60%] lg:basis-auto lg:h-full lg:min-h-0 overflow-hidden ${flush ? "" : "rounded-xl glass"}`}>
       {s.href ? <Link href={s.href} className="block lg:h-full">{inner}</Link> : inner}
     </motion.article>
   );
