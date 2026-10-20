@@ -89,7 +89,7 @@ function LoopRow({ items, dir, still }: { items: Tile[]; dir: 1 | -1; still: boo
     return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", onScroll); };
   }, [dir, still]);
   return (
-    <div className="overflow-hidden" onPointerEnter={(e) => { if (e.pointerType === "mouse") hover.current = true; }} onPointerLeave={() => { hover.current = false; }}>
+    <div className="overflow-hidden" onMouseEnter={() => { hover.current = true; }} onMouseLeave={() => { hover.current = false; }}>
       <div ref={track} className="flex gap-4 w-max will-change-transform">
         {[...items, ...items].map((t, i) => <TileCard key={i} {...t} hidden={i >= items.length} />)}
       </div>
@@ -103,6 +103,13 @@ function TileCard({ src, label, href, hidden }: Tile & { hidden?: boolean }) {
   return (
     <Link href={href} aria-hidden={hidden || undefined} tabIndex={hidden ? -1 : undefined} className="group relative shrink-0 w-[62vw] sm:w-[38vw] lg:w-[23vw] aspect-[16/11] overflow-hidden rounded-[4px] border border-white/10 bg-ink-3">
       <Image src={src} alt={label} fill sizes="(max-width: 640px) 62vw, (max-width: 1024px) 38vw, 23vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+      {/* hover: dim + centred call to action */}
+      <div className="absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/55" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+        <span className="text-[10px] tracking-[0.35em] text-cyan">JOIN</span>
+        <span className="display mt-1 text-2xl sm:text-3xl lg:text-4xl leading-none px-4">{label}</span>
+        <span className="mt-3 inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan text-cyan">→</span>
+      </div>
     </Link>
   );
 }
