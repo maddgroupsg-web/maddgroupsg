@@ -5,6 +5,7 @@ import ClassesTiles from "@/components/home/ClassesTiles";
 import Journeys from "@/components/home/Journeys";
 import Testimonials from "@/components/home/Testimonials";
 import LogoMarquee from "@/components/LogoMarquee";
+import ShowcaseWall from "@/components/home/ShowcaseWall";
 import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import Preloader from "@/components/Preloader";
@@ -15,11 +16,12 @@ export default function Home() {
     <Shell>
       <Preloader />
       <Hero />
+      <LogoMarquee compact title="AS FEATURED IN LEADING MEDIA PLATFORMS" sub="" />
+      <ShowcaseWall />
       <Progression config={pillarsProgression} />
       <ClassesTiles />
       <Journeys />
       <Testimonials />
-      <LogoMarquee />
       <Locations formTitle="Sign Up" />
       <FinalCta />
     </Shell>
