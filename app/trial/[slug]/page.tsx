@@ -10,7 +10,7 @@ import { LearnGrid, PathSteps, TrialBox } from "@/components/Blocks";
 import VideoEmbed from "@/components/VideoEmbed";
 import FAQ from "@/components/FAQ";
 import LogoMarquee from "@/components/LogoMarquee";
-import { MessageCircle } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Social";
 
 export function generateStaticParams() { return landings.map((l) => ({ slug: l.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -73,7 +73,7 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
 
       <TrialBox title={l.trial.headline} lead={l.trial.copy} included={l.trial.included} meta={l.trial.price} guarantee={l.trial.guarantee} cta={l.trial.cta} url={l.trial.url} />
 
-      <section id="faq" className="py-16 scroll-mt-20"><div className="container-x grid gap-8 lg:grid-cols-[1fr_2fr]"><Reveal><h2 className="display text-5xl">FREQUENTLY<br />ASKED<br />QUESTIONS</h2><a href={`https://wa.me/${contact.whatsappIntl}`} className="btn btn-outline mt-6"><MessageCircle size={16} /> WHATSAPP US</a></Reveal><Reveal delay={0.1}><FAQ items={l.faq} /></Reveal></div></section>
+      <section id="faq" className="py-16 scroll-mt-20"><div className="container-x grid gap-8 lg:grid-cols-[1fr_2fr]"><Reveal><h2 className="display text-5xl">FREQUENTLY<br />ASKED<br />QUESTIONS</h2><a href={`https://wa.me/${contact.whatsappIntl}`} className="btn btn-outline mt-6"><WhatsAppIcon size={16} /> WHATSAPP US</a></Reveal><Reveal delay={0.1}><FAQ items={l.faq} /></Reveal></div></section>
       <LogoMarquee compact title="FEATURED ON" sub="" />
 
       {/* Final */}

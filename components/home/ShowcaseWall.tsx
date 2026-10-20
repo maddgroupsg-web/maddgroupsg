@@ -64,17 +64,21 @@ const MAX_BOOST = 220; // px/s cap so fast flicks stay readable
 const DRAG = 1.8;    // how fast the burst decays (per second) — slower decay = smoother glide back
 function LoopRow({ items, dir, still }: { items: Tile[]; dir: 1 | -1; still: boolean }) {
   const track = useRef<HTMLDivElement>(null);
+  const hover = useRef(false);
   useEffect(() => {
     if (still) return;
-    let x = 0, boost = 0, last = performance.now(), lastY = window.scrollY, raf = 0;
+    let x = 0, boost = 0, speed = CRUISE, last = performance.now(), lastY = window.scrollY, raf = 0;
     const onScroll = () => { const y = window.scrollY; boost = Math.min(MAX_BOOST, boost + Math.min(120, Math.abs(y - lastY)) * KICK); lastY = y; };
     const loop = (t: number) => {
       const dt = Math.min(0.05, (t - last) / 1000); last = t;
       boost *= Math.exp(-DRAG * dt);
+      // pause while the pointer is over the row so tiles stand still to click; ease back when it leaves
+      const target = hover.current ? 0 : CRUISE + boost;
+      speed += (target - speed) * Math.min(1, dt * 8);
       const el = track.current;
       if (el) {
         const half = el.scrollWidth / 2;
-        x -= dir * (CRUISE + boost) * dt; // translate is -x, so dir -1 moves content left
+        x -= dir * speed * dt; // translate is -x, so dir -1 moves content left
         if (half > 0) { x = ((x % half) + half) % half; }
         el.style.transform = `translate3d(${-x}px,0,0)`;
       }
@@ -85,7 +89,7 @@ function LoopRow({ items, dir, still }: { items: Tile[]; dir: 1 | -1; still: boo
     return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", onScroll); };
   }, [dir, still]);
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden" onPointerEnter={(e) => { if (e.pointerType === "mouse") hover.current = true; }} onPointerLeave={() => { hover.current = false; }}>
       <div ref={track} className="flex gap-4 w-max will-change-transform">
         {[...items, ...items].map((t, i) => <TileCard key={i} {...t} hidden={i >= items.length} />)}
       </div>

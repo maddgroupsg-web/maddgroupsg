@@ -1,4 +1,5 @@
-import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Social";
 import { locations, contact } from "@/content/site";
 import { Reveal, SectionHeading } from "@/components/ui";
 import EnquiryForm from "@/components/EnquiryForm";
@@ -25,7 +26,7 @@ export default function Locations({ formTitle = "Sign Up", formCopy, preset }: {
           </div>
           <ul className="mt-8 space-y-2 text-sm text-white/80">
             <li className="flex items-center gap-2"><Phone size={15} className="text-cyan" /><a href={`tel:${contact.phoneIntl}`}>{contact.phone}</a></li>
-            <li className="flex items-center gap-2"><MessageCircle size={15} className="text-cyan" /><a href={`https://wa.me/${contact.whatsappIntl}`}>{contact.whatsapp} (WhatsApp)</a></li>
+            <li className="flex items-center gap-2"><WhatsAppIcon size={15} className="text-cyan" /><a href={`https://wa.me/${contact.whatsappIntl}`}>{contact.whatsapp} (WhatsApp)</a></li>
             <li className="flex items-center gap-2"><Mail size={15} className="text-cyan" /><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
           </ul>
         </Reveal>

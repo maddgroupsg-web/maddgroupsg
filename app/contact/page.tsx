@@ -4,7 +4,8 @@ import { seo } from "@/content/seo";
 import { Reveal, SectionHeading } from "@/components/ui";
 import { contact, locations } from "@/content/site";
 import EnquiryForm from "@/components/EnquiryForm";
-import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Social";
 
 export const metadata: Metadata = { title: seo["/contact"].title, description: seo["/contact"].description, alternates: { canonical: "/contact" } };
 
@@ -23,7 +24,7 @@ export default function ContactPage() {
             <h2 className="display text-3xl mt-10">CALL/WHATSAPP US</h2>
             <ul className="mt-4 space-y-3 text-lg">
               <li className="flex items-center gap-3"><Phone className="text-cyan" size={18} /><a href={`tel:${contact.phoneIntl}`}>+65 {contact.phone}</a></li>
-              <li className="flex items-center gap-3"><MessageCircle className="text-cyan" size={18} /><a href={`https://wa.me/${contact.whatsappIntl}`}>+65 {contact.whatsapp} (Whatsapp)</a></li>
+              <li className="flex items-center gap-3"><WhatsAppIcon className="text-cyan" size={18} /><a href={`https://wa.me/${contact.whatsappIntl}`}>+65 {contact.whatsapp} (Whatsapp)</a></li>
               <li className="flex items-center gap-3"><Mail className="text-cyan" size={18} /><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
             </ul>
           </Reveal>

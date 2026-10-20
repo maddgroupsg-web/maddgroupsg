@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle } from "lucide-react";
-import { InstagramIcon, FacebookIcon, YoutubeIcon } from "@/components/Social";
+import { InstagramIcon, FacebookIcon, YoutubeIcon, WhatsAppIcon } from "@/components/Social";
 import { contact, locations, footerBrowse, BOOK_TRIAL_URL } from "@/content/site";
 
 export default function Footer() {
@@ -47,8 +46,8 @@ export default function Footer() {
           <span>GR.ID Central · The Chevrons West</span>
         </div>
       </div>
-      <a href={`https://wa.me/${contact.whatsappIntl}`} target="_blank" rel="noopener" aria-label="WhatsApp MADDspace" className="fixed bottom-5 right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/40 hover:scale-105 transition-transform">
-        <MessageCircle size={26} />
+      <a href={`https://wa.me/${contact.whatsappIntl}`} target="_blank" rel="noopener" aria-label="WhatsApp MADDspace" className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/40 hover:scale-105 transition-transform">
+        <WhatsAppIcon size={30} />
       </a>
     </footer>
   );

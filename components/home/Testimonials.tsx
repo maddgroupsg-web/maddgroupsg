@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { X, MessageCircle, ExternalLink, BadgeCheck, CheckCircle2 } from "lucide-react";
+import { X, ExternalLink, BadgeCheck, CheckCircle2 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Social";
 import { reviews, googleProfile, type Review } from "@/content/reviews";
 import { contact } from "@/content/site";
 import { GoogleG, Stars } from "@/components/GoogleLogo";
@@ -114,7 +115,7 @@ function ReviewModal({ onClose }: { onClose: () => void }) {
             <p className="text-sm text-white/85">We&apos;re sorry it wasn&apos;t a 5-star experience. Tell us what happened and our team will reach out personally.</p>
             <textarea value={msg} onChange={(e) => setMsg(e.target.value)} rows={3} placeholder="What could we have done better?" className="mt-3 w-full rounded-md border border-line bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-accent" />
             <div className="mt-3 flex flex-col sm:flex-row gap-2">
-              <a href={waLink(`Hi MADDspace, I'd like to share some feedback (${picked}/5):\n${msg}`)} target="_blank" rel="noopener" className="btn btn-primary flex-1"><MessageCircle size={16} /> SEND TO MADDSPACE</a>
+              <a href={waLink(`Hi MADDspace, I'd like to share some feedback (${picked}/5):\n${msg}`)} target="_blank" rel="noopener" className="btn btn-primary flex-1"><WhatsAppIcon size={16} /> SEND TO MADDSPACE</a>
               <a href={`mailto:${contact.email}?subject=${encodeURIComponent("Feedback for MADDspace")}&body=${encodeURIComponent(`Rating: ${picked}/5\n\n${msg}`)}`} className="btn btn-outline flex-1">EMAIL</a>
             </div>
           </div>

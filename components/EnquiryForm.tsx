@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { MessageCircle, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Social";
 import { enquiryFields, contact, BOOK_TRIAL_URL } from "@/content/site";
 import { waLink } from "@/lib/utils";
 
@@ -30,7 +31,7 @@ export default function EnquiryForm({ title = "Sign Up", copy = "Fill up the for
         <Field label="Send us a message!" className="sm:col-span-2"><textarea rows={3} value={f.message} onChange={set("message")} className={inp} /></Field>
       </div>
       <div className="mt-6 flex flex-col sm:flex-row gap-3">
-        <button type="submit" className="btn btn-primary"><MessageCircle size={16} /> SUBMIT VIA WHATSAPP</button>
+        <button type="submit" className="btn btn-primary"><WhatsAppIcon size={16} /> SUBMIT VIA WHATSAPP</button>
         <a className="btn btn-outline" href={`mailto:${contact.email}?subject=${encodeURIComponent("Trial enquiry — " + (f.child || "MADDspace"))}&body=${encodeURIComponent(body)}`}><Mail size={16} /> SEND BY EMAIL</a>
         <a className="btn btn-ghost" href={BOOK_TRIAL_URL} target="_blank" rel="noopener">Or book a trial slot directly</a>
       </div>

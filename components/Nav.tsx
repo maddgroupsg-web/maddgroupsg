@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, Phone, MessageCircle } from "lucide-react";
+import { ChevronDown, Menu, X, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Social";
 import { nav, BOOK_TRIAL_URL, contact } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,7 @@ export default function Nav() {
       <div className="hidden lg:flex container-x h-9 items-center justify-between text-[11px] tracking-widest text-white/60">
         <a href={`mailto:${contact.email}`} className="hover:text-white">{contact.email}</a>
         <div className="flex items-center gap-5">
-          <a href={`https://wa.me/${contact.whatsappIntl}`} className="flex items-center gap-1.5 hover:text-white"><MessageCircle size={12} /> {contact.whatsapp}</a>
+          <a href={`https://wa.me/${contact.whatsappIntl}`} className="flex items-center gap-1.5 hover:text-white"><WhatsAppIcon size={13} /> {contact.whatsapp}</a>
           <a href={`tel:${contact.phoneIntl}`} className="flex items-center gap-1.5 hover:text-white"><Phone size={12} /> {contact.phone}</a>
         </div>
       </div>
@@ -84,7 +85,7 @@ export default function Nav() {
             ))}
             <div className="mt-6 flex flex-col gap-3">
               <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-primary">BOOK A TRIAL CLASS</a>
-              <a href={`https://wa.me/${contact.whatsappIntl}`} className="btn btn-outline"><MessageCircle size={16} /> WHATSAPP {contact.whatsapp}</a>
+              <a href={`https://wa.me/${contact.whatsappIntl}`} className="btn btn-outline"><WhatsAppIcon size={16} /> WHATSAPP {contact.whatsapp}</a>
             </div>
           </div>
         </div>
