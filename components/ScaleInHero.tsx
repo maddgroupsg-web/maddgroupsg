@@ -61,9 +61,9 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
           {youtube && !reduce && (
             // muted, looping, no controls — the poster above shows until the player paints
             <iframe
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-              style={{ width: "max(100%, 177.78vh)", height: "max(100%, 56.25vw)", aspectRatio: "16 / 9" }}
-              src={`https://www.youtube-nocookie.com/embed/${youtube}?autoplay=1&mute=1&loop=1&playlist=${youtube}&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
+              className="absolute left-1/2 top-1/2 pointer-events-none"
+              style={{ width: "max(100%, 177.78vh)", height: "max(100%, 56.25vw)", aspectRatio: "16 / 9", transform: "translate(-50%, -50%) scale(1.28)" }}
+              src={`https://www.youtube-nocookie.com/embed/${youtube}?autoplay=1&mute=1&loop=1&playlist=${youtube}&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&start=12`}
               title={alt} allow="autoplay; encrypted-media" aria-hidden tabIndex={-1} />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />

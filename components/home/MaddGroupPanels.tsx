@@ -17,7 +17,7 @@ export default function MaddGroupPanels() {
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
   return (
     <section id="madd-group" ref={section} className={reduce ? "relative" : "relative lg:h-[260vh]"}>
-      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:flex lg:flex-col lg:justify-center"}`}>
+      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:pt-28 lg:pb-6 lg:flex lg:flex-col lg:justify-center"}`}>
       <div className="absolute inset-0 spotlight opacity-70" />
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
@@ -47,7 +47,7 @@ function Panel({ p, i, n, progress, reduce }: { p: Pillar; i: number; n: number;
   const still = reduce || i === 0; // first panel always lit
   return (
     <motion.div className="snap-start shrink-0 w-[78vw] sm:w-[48vw] lg:w-auto" style={still ? undefined : { opacity }}>
-      <Link href={p.href} className="group relative block aspect-[3/4] lg:aspect-auto lg:h-[min(62vh,620px)] overflow-hidden">
+      <Link href={p.href} className="group relative block aspect-[3/4] lg:aspect-auto lg:h-[min(58vh,600px)] overflow-hidden">
         <motion.div className="absolute inset-0" style={still ? undefined : { filter }}>
           <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="(max-width: 1024px) 78vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </motion.div>
