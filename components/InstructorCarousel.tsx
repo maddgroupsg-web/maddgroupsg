@@ -13,8 +13,10 @@ const filters = [{ key: "vocal", label: "VOCAL", icon: Mic }, { key: "dance", la
 export default function InstructorCarousel() {
   const params = useSearchParams();
   const wanted = params.get("d") === "dance" ? "dance" : "vocal";
-  const [filter, setFilter] = useState<(typeof filters)[number]["key"]>(wanted);
-  useEffect(() => { setFilter(wanted); }, [wanted]);
+  // the URL (?d=vocal|dance) picks the discipline; the in-page toggle can override it until the URL changes again
+  const [pick, setPick] = useState<{ when: string; val: (typeof filters)[number]["key"] } | null>(null);
+  const filter = pick && pick.when === wanted ? pick.val : wanted;
+  const setFilter = (val: (typeof filters)[number]["key"]) => setPick({ when: wanted, val });
   const list = instructors.filter((i) => i.discipline === filter);
   const [ref, api] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false });
   const [sel, setSel] = useState(0);
