@@ -6,7 +6,7 @@ export type Vid = {
   slug: string;
   title: string;
   event: "MADDjestic 2025" | "MADD to Shine 2026" | "MADDlodies 2025" | "B-Dazzled 2025" | "APIAF Genting 2025" | "Dance Videos 2026";
-  style: "K-Pop" | "Hip Hop" | "Sing & Dance" | "Vocals" | "Dance Video";
+  style: "K-Pop" | "Hip Hop" | "Sing & Dance" | "Vocals";
   crew?: string;
   src: string;      // full video (mp4)
   poster: string;
@@ -37,10 +37,10 @@ export const videos: Vid[] = [
   { slug: "bdazzled-2025-solo-628", title: "Solo 628", event: "B-Dazzled 2025", style: "Hip Hop", src: "/videos/full/bdazzled-2025-solo-628.mp4", loop: "/videos/loops/bdazzled-2025-solo-628.mp4", poster: "/images/video-posters/bdazzled-2025-solo-628.jpg", href: "/hiphop" },
   { slug: "bdazzled-2025-solo-641", title: "Solo 641", event: "B-Dazzled 2025", style: "Hip Hop", src: "/videos/full/bdazzled-2025-solo-641.mp4", loop: "/videos/loops/bdazzled-2025-solo-641.mp4", poster: "/images/video-posters/bdazzled-2025-solo-641.jpg", href: "/hiphop" },
   { slug: "apiaf-2025-maddnificent", title: "MADDnificent at Genting", event: "APIAF Genting 2025", style: "Hip Hop", crew: "MADDnificent", src: "/videos/full/apiaf-2025-maddnificent.mp4", loop: "/videos/loops/apiaf-2025-maddnificent.mp4", poster: "/images/video-posters/apiaf-2025-maddnificent.jpg", featured: true, href: "/achievements#genting" },
-  { slug: "rec-2026-kstars-hot-sauce", title: "K-Stars — Hot Sauce", event: "Dance Videos 2026", style: "Dance Video", crew: "K-Stars", src: "/videos/full/rec-2026-kstars-hot-sauce.mp4", loop: "/videos/loops/rec-2026-kstars-hot-sauce.mp4", poster: "/images/video-posters/rec-2026-kstars-hot-sauce.jpg", href: "/idol-training-singapore#idollab" },
-  { slug: "rec-2026-kstars-racecar", title: "K-Stars — Racecar", event: "Dance Videos 2026", style: "Dance Video", crew: "K-Stars", src: "/videos/full/rec-2026-kstars-racecar.mp4", loop: "/videos/loops/rec-2026-kstars-racecar.mp4", poster: "/images/video-posters/rec-2026-kstars-racecar.jpg", featured: true, href: "/idol-training-singapore#idollab" },
-  { slug: "rec-2026-m1xxie-its-me", title: "M1XXIE — It's Me", event: "Dance Videos 2026", style: "Dance Video", crew: "M1XXIE", src: "/videos/full/rec-2026-m1xxie-its-me.mp4", loop: "/videos/loops/rec-2026-m1xxie-its-me.mp4", poster: "/images/video-posters/rec-2026-m1xxie-its-me.jpg", href: "/idol-training-singapore#idollab" },
-  { slug: "rec-2026-m1xxie-like-jennie", title: "M1XXIE — Like Jennie", event: "Dance Videos 2026", style: "Dance Video", crew: "M1XXIE", src: "/videos/full/rec-2026-m1xxie-like-jennie.mp4", loop: "/videos/loops/rec-2026-m1xxie-like-jennie.mp4", poster: "/images/video-posters/rec-2026-m1xxie-like-jennie.jpg", featured: true, href: "/idol-training-singapore#idollab" },
+  { slug: "rec-2026-kstars-hot-sauce", title: "K-Stars — Hot Sauce", event: "Dance Videos 2026", style: "K-Pop", crew: "K-Stars", src: "/videos/full/rec-2026-kstars-hot-sauce.mp4", loop: "/videos/loops/rec-2026-kstars-hot-sauce.mp4", poster: "/images/video-posters/rec-2026-kstars-hot-sauce.jpg", href: "/idol-training-singapore#idollab" },
+  { slug: "rec-2026-kstars-racecar", title: "K-Stars — Racecar", event: "Dance Videos 2026", style: "K-Pop", crew: "K-Stars", src: "/videos/full/rec-2026-kstars-racecar.mp4", loop: "/videos/loops/rec-2026-kstars-racecar.mp4", poster: "/images/video-posters/rec-2026-kstars-racecar.jpg", featured: true, href: "/idol-training-singapore#idollab" },
+  { slug: "rec-2026-m1xxie-its-me", title: "M1XXIE — It's Me", event: "Dance Videos 2026", style: "K-Pop", crew: "M1XXIE", src: "/videos/full/rec-2026-m1xxie-its-me.mp4", loop: "/videos/loops/rec-2026-m1xxie-its-me.mp4", poster: "/images/video-posters/rec-2026-m1xxie-its-me.jpg", href: "/idol-training-singapore#idollab" },
+  { slug: "rec-2026-m1xxie-like-jennie", title: "M1XXIE — Like Jennie", event: "Dance Videos 2026", style: "K-Pop", crew: "M1XXIE", src: "/videos/full/rec-2026-m1xxie-like-jennie.mp4", loop: "/videos/loops/rec-2026-m1xxie-like-jennie.mp4", poster: "/images/video-posters/rec-2026-m1xxie-like-jennie.jpg", featured: true, href: "/idol-training-singapore#idollab" },
 ];
 
 export const featuredVideos = videos.filter((v) => v.featured);

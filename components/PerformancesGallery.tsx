@@ -5,7 +5,7 @@ import { VideoCard } from "@/components/home/VideoCarousel";
 import VideoPlayerModal from "@/components/VideoPlayerModal";
 import { cn } from "@/lib/utils";
 
-const styles = ["All", "K-Pop", "Hip Hop", "Sing & Dance", "Vocals", "Dance Video"] as const;
+const styles = ["All", "K-Pop", "Hip Hop", "Sing & Dance", "Vocals"] as const;
 
 export default function PerformancesGallery() {
   const [event, setEvent] = useState<string>("All");
