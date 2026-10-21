@@ -41,3 +41,12 @@ The enquiry form composes the message and opens WhatsApp (8829 0800) or email. P
 - Portraits for Daphinia and Isabelle (About page).
 - Hero video footage (hero currently uses a photo; `components/home/Hero.tsx` is ready for a `<video>`).
 - MADD Entertainment / IDOLLAB URLs if they should link out instead of to the Idol page.
+
+## Performance videos
+- Source: MADDspace Drive → "Videos - Performances" and "Videos - Public Recording" (22 files, ~6 GB originals).
+- Encoded with ffmpeg to: `public/videos/loops/*.mp4` (10 s muted 720p loops, ~3 MB each, used for hero backgrounds and hover previews),
+  `public/videos/full/*.mp4` (720p with audio, 17–69 MB each, played in the modal), `public/images/video-posters/*.jpg`.
+- **`public/videos/full/` is git-ignored** (~900 MB). For deploy, either upload that folder to Vercel Blob / an S3 bucket and set the
+  `src` paths in `content/videos.ts` to those URLs, or copy the folder into `public/` on the build machine. Loops and posters are in git.
+- File names carry no student names. Metadata (title, event, crew, page link, which are featured, which loop each hero uses) lives in `content/videos.ts`.
+- Re-encode: `scratchpad/videos/one.sh <slug> <loop-start-seconds>`; loop start points were chosen by a brightness+motion scan (`scan.json`).
