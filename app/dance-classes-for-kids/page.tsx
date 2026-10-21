@@ -7,7 +7,6 @@ import { Checks } from "@/components/Blocks";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import Testimonials from "@/components/home/Testimonials";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
@@ -26,8 +25,7 @@ export default function Page() {
       <LogoMarquee title="WE HAVE BEEN FEATURED ON" sub="" />
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line"><div className="container-x"><Reveal><SectionHeading title={kidsDance.levelsTitle} sub={<><strong className="text-white">{kidsDance.levelsSub}</strong><br />{kidsDance.levelsIntro}</>} /></Reveal><div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{kidsDance.levels.map((l, i) => <Reveal key={l.name} delay={i * 0.09} className="glass rounded-xl p-5"><div className="text-accent">⭐ <span className="display text-2xl align-middle">{l.name}</span></div><p className="mt-2 text-sm text-mute">{l.copy}</p></Reveal>)}</div></div></section>
       <Testimonials heading="Don't hear from us, hear from our students and parents..." />
-      <section className="py-16"><div className="container-x"><Reveal className="glass glow-border rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center"><div className="eyebrow">{kidsDance.guaranteeLead}</div><h2 className="display text-5xl mt-2">{kidsDance.guaranteeTitle}</h2>{kidsDance.guarantee.map((p) => <p key={p} className="mt-3 text-mute">{p}</p>)}<div className="mt-6"><Button href="#enquire">SIGN UP FOR A $28 TRIAL PASS NOW</Button></div></Reveal></div></section>
-      <Locations formTitle="SIGN UP FOR A $28 TRIAL PASS NOW" formCopy="Fill up the form below and our team will get back to you shortly!" />
+      <section className="py-16"><div className="container-x"><Reveal className="glass glow-border rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center"><div className="eyebrow">{kidsDance.guaranteeLead}</div><h2 className="display text-5xl mt-2">{kidsDance.guaranteeTitle}</h2>{kidsDance.guarantee.map((p) => <p key={p} className="mt-3 text-mute">{p}</p>)}<div className="mt-6"><Button href="/contact">SIGN UP FOR A $28 TRIAL PASS NOW</Button></div></Reveal></div></section>
       <FinalCta image={g[2]} />
     </Shell>
   );

@@ -3,7 +3,7 @@ import { finalCta } from "@/content/home";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { Button, Reveal } from "@/components/ui";
 
-export default function FinalCta({ image = "/images/classes/age-10-18/age-10-18-08.jpg", headline = finalCta.headline, primary = { label: finalCta.primary, href: "#enquire" }, secondary = { label: finalCta.secondary, href: BOOK_TRIAL_URL } }: { image?: string; headline?: string[]; primary?: { label: string; href: string }; secondary?: { label: string; href: string } }) {
+export default function FinalCta({ image = "/images/classes/age-10-18/age-10-18-08.jpg", headline = finalCta.headline, primary = { label: finalCta.primary, href: "/contact" }, secondary = { label: finalCta.secondary, href: BOOK_TRIAL_URL } }: { image?: string; headline?: string[]; primary?: { label: string; href: string }; secondary?: { label: string; href: string } }) {
   return (
     <section className="relative overflow-hidden curtain">
       <div className="absolute inset-0"><Image src={image} alt="" fill sizes="100vw" className="object-cover opacity-50" /><div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/60 to-ink" /></div>

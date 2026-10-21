@@ -3,7 +3,6 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { privateClasses } from "@/content/typepages";
 import PageHero from "@/components/PageHero";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import Carousel from "@/components/Carousel";
 import { Button, Reveal } from "@/components/ui";
@@ -17,7 +16,7 @@ export default function Page() {
     <Shell>
       <PageHero eyebrow={privateClasses.ages} title={privateClasses.h1} sub={privateClasses.title} image={g[1]}>
         <Button href={PRIVATE_BOOKING_URL}>BOOK YOUR TRIAL</Button>
-        <Button href="#enquire" variant="outline">CONTACT US</Button>
+        <Button href="/contact" variant="outline">CONTACT US</Button>
       </PageHero>
       <section className="py-16 lg:py-24">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -25,7 +24,6 @@ export default function Page() {
           <Reveal delay={0.1}><Carousel images={g} alt="MADDspace private lesson students" /></Reveal>
         </div>
       </section>
-      <Locations formTitle="INTERESTED?" formCopy="Fill in the form below and send the details to us. We will get back to you as soon as possible" preset="Private Lessons" />
       <FinalCta image={g[4]} />
     </Shell>
   );

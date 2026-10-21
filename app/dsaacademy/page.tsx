@@ -6,7 +6,6 @@ import { everyChild } from "@/content/achievements";
 import ScaleInHero from "@/components/ScaleInHero";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { DSA_ACADEMY_URL } from "@/content/site";
@@ -22,7 +21,7 @@ export default function Page() {
     <Shell>
       <ScaleInHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image="/images/misc/dsa-video-poster.jpg" youtube="i4XdpoKIwMQ" alt="KINETIC — MADDspace contemporary dance crew performing Head Above Water">
         <Button href={DSA_ACADEMY_URL}>VISIT THE ACADEMY</Button>
-        <Button href="#enquire" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
+        <Button href="/contact" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
       </ScaleInHero>
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
         <div className="container-x">
@@ -48,8 +47,7 @@ export default function Page() {
       </section>
       <LogoMarquee />
       <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}</Reveal></div></section>
-      <Locations formTitle="Book a Free DSA Consultation" formCopy="Tell us about your child and the schools they are considering. Our team will reach out to you shortly." preset="DSA Preparation" />
-      <FinalCta image={g[0]} primary={{ label: "BOOK A FREE DSA CONSULTATION", href: "#enquire" }} />
+      <FinalCta image={g[0]} primary={{ label: "BOOK A FREE DSA CONSULTATION", href: "/contact" }} />
     </Shell>
   );
 }

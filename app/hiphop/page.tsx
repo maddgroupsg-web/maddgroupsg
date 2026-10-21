@@ -7,7 +7,6 @@ import PageHero from "@/components/PageHero";
 import { Checks, WhyGrid, LearnGrid, PathSteps, CrewBlocks, TrialBox } from "@/components/Blocks";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import Carousel from "@/components/Carousel";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
@@ -39,7 +38,6 @@ export default function Page() {
       </section>
       <Testimonials />
       <TrialBox title="SIGN UP FOR A TRIAL" lead="Our trial lesson allows your child to experience a real class before committing." included={["60-minute 1-to-1 or Group Class", "Personalised assessment of your child's level", "Guidance on the most suitable learning pathway", "Opportunity to meet our instructors"]} meta={hiphop.trialMeta} guarantee="Money-Back Guarantee — If the experience is not the right fit, we'll refund your trial — no questions asked." cta="SIGN UP FOR A TRIAL LESSON" url={BOOK_TRIAL_URL} />
-      <Locations formTitle="Sign Up For A Trial Class" formCopy="Fill up the form below, and our team will reach out to you shortly!" preset="Hip Hop" />
       <FinalCta image={g[7]} />
     </Shell>
   );

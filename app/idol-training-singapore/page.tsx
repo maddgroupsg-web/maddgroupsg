@@ -8,7 +8,6 @@ import PillarsRamp from "@/components/PillarsRamp";
 import PageHero from "@/components/PageHero";
 import LogoMarquee from "@/components/LogoMarquee";
 import VideoEmbed from "@/components/VideoEmbed";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";

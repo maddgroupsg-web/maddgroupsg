@@ -54,7 +54,7 @@ export const pathways = {
     { title: "STAGE & COMPETITION", tag: "Train. Perform. Compete.", copy: "For students looking for performance teams, showcases, competitions and more stage experience.", href: "/achievements", image: "/images/classes/age-10-18/age-10-18-07.jpg" },
     { title: "DSA", tag: "Prepare with purpose.", copy: "Specialised preparation for students considering performing arts through Direct School Admission.", href: "/dsaacademy", image: "/images/classes/dsa/dsa-03.jpg" },
     { title: "ARTISTE DEVELOPMENT", tag: "Go beyond performance. Become an artiste.", copy: "Advanced development for young performers interested in original music, content, auditions and professional opportunities.", href: "/idol-training-singapore", image: "/images/classes/age-10-18/age-10-18-01.jpg" },
-    { title: "NOT SURE YET?", tag: "We'll help you find the right starting point.", copy: "Tell us a little about your child and our team will recommend where to begin.", href: "#enquire", image: "/images/classes/age-6-9/age-6-9-08.jpg" },
+    { title: "NOT SURE YET?", tag: "We'll help you find the right starting point.", copy: "Tell us a little about your child and our team will recommend where to begin.", href: "/contact", image: "/images/classes/age-6-9/age-6-9-08.jpg" },
   ],
 };
 

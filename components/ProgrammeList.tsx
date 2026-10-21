@@ -21,7 +21,7 @@ export default function ProgrammeList({ items, galleryImages }: { items: Program
                 {it.closing?.map((p) => <p key={p}>{p}</p>)}
               </div>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Button href="#enquire" variant="primary" className="!py-2.5 text-[11px]">INTERESTED</Button>
+                <Button href="/contact" variant="primary" className="!py-2.5 text-[11px]">INTERESTED</Button>
                 <Button href="/allclasses-schedule" variant="outline" className="!py-2.5 text-[11px]"><CalendarDays size={14} /> SCHEDULE</Button>
                 {it.video && <Button href={it.video} variant="outline" className="!py-2.5 text-[11px]"><Play size={14} /> WATCH VIDEO</Button>}
                 {it.moreInfo && <Button href={it.moreInfo} variant="ghost" className="text-[11px]">MORE INFO</Button>}

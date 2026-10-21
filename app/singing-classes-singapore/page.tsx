@@ -7,7 +7,6 @@ import PageHero from "@/components/PageHero";
 import { Checks, WhyGrid, TrialBox } from "@/components/Blocks";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import Carousel from "@/components/Carousel";
 import { Button, Reveal, SectionHeading } from "@/components/ui";

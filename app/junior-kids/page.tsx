@@ -5,7 +5,6 @@ import { agePages, galleryFor } from "@/content/programmes";
 import PageHero from "@/components/PageHero";
 import ProgrammeList from "@/components/ProgrammeList";
 import Carousel from "@/components/Carousel";
-import Locations from "@/components/home/Locations";
 import FinalCta from "@/components/home/FinalCta";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
@@ -33,7 +32,6 @@ export default function Page() {
           <div className="mt-8"><ProgrammeList items={page.items} galleryImages={images} /></div>
         </div>
       </section>
-      <Locations formTitle={page.formTitle} formCopy={page.formCopy} />
       <FinalCta image={images[images.length - 1]} />
     </Shell>
   );
