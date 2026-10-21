@@ -49,7 +49,6 @@ export default function Page() {
       </section>
       <Testimonials heading={singing.joinTitle} eyebrow="THINK NO LONGER!" />
       <TrialBox title={singing.trialBox.title} lead={singing.trialBox.lead} included={singing.trialBox.included} meta={singing.trialMeta} guarantee={singing.trialBox.guarantee} cta="SIGN UP FOR A TRIAL LESSON" url={BOOK_TRIAL_URL} />
-      <Locations formTitle="Get in touch!" formCopy="Fill up the form below, and our team will reach out to you shortly!" preset="Singing / Vocals" />
       <FinalCta image={gallery[2]} />
     </Shell>
   );

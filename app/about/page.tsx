@@ -39,7 +39,7 @@ export default function AboutPage() {
               <li className="flex items-center gap-2"><Mic size={16} className="text-cyan" />{leader.pills[1]}</li>
               <li className="flex items-center gap-2"><Users size={16} className="text-cyan" />{leader.pills[2]}</li>
             </ul>
-            <div className="mt-6"><Button href="/instructors" variant="outline">MEET THE INSTRUCTORS</Button></div>
+            <div className="mt-6"><Button href="/instructors?d=vocal" variant="outline">MEET THE INSTRUCTORS</Button></div>
           </Reveal>
         </div>
         <div className="container-x relative mt-14" id="anchor1"><h2 className="display text-4xl mb-2">MADDspace Team</h2><TeamCarousel /></div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
         <div className="container-x grid gap-10 lg:grid-cols-2">
           <Reveal><h2 className="display text-5xl">{about.missionTitle}</h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{about.mission.map((p) => <p key={p}>{p}</p>)}</div></Reveal>
           <Reveal delay={0.1}><h2 className="display text-5xl">{about.visionTitle}</h2><p className="mt-5 text-mute leading-relaxed">{about.vision}</p>
-            <div className="mt-8 flex gap-3 flex-wrap"><Button href="/instructors#vocal" variant="outline">VOCAL INSTRUCTORS</Button><Button href="/instructors#dance" variant="outline">DANCE INSTRUCTORS</Button></div></Reveal>
+            <div className="mt-8 flex gap-3 flex-wrap"><Button href="/instructors?d=vocal" variant="outline">VOCAL INSTRUCTORS</Button><Button href="/instructors?d=dance" variant="outline">DANCE INSTRUCTORS</Button></div></Reveal>
         </div>
       </section>
       <LogoMarquee title="FEATURED ON" />

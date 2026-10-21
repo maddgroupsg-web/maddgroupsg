@@ -3,14 +3,18 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight, Play, User, CalendarDays, Ticket, Mic, Music2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { instructors, type Instructor } from "@/content/instructors";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { cn, youtubeId } from "@/lib/utils";
 
 const filters = [{ key: "vocal", label: "VOCAL", icon: Mic }, { key: "dance", label: "DANCE", icon: Music2 }] as const;
 
-export default function InstructorCarousel({ initial = "vocal" }: { initial?: "vocal" | "dance" }) {
-  const [filter, setFilter] = useState<(typeof filters)[number]["key"]>(initial);
+export default function InstructorCarousel() {
+  const params = useSearchParams();
+  const wanted = params.get("d") === "dance" ? "dance" : "vocal";
+  const [filter, setFilter] = useState<(typeof filters)[number]["key"]>(wanted);
+  useEffect(() => { setFilter(wanted); }, [wanted]);
   const list = instructors.filter((i) => i.discipline === filter);
   const [ref, api] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false });
   const [sel, setSel] = useState(0);
