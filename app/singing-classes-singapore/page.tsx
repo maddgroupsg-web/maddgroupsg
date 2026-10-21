@@ -4,6 +4,7 @@ import { seo } from "@/content/seo";
 import { singing } from "@/content/typepages";
 import { studentJourneys } from "@/content/achievements";
 import PageHero from "@/components/PageHero";
+import { heroLoops, byId } from "@/content/videos";
 import { Checks, WhyGrid, TrialBox } from "@/components/Blocks";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
@@ -19,7 +20,7 @@ export default function Page() {
   const j = studentJourneys[0];
   return (
     <Shell>
-      <PageHero eyebrow="VOCAL LESSONS FOR KIDS & TEENS" title={singing.h1} sub={<>{singing.sub}<br /><span className="text-white/70">{singing.intro}</span></>} image={gallery[0]} tall>
+      <PageHero eyebrow="VOCAL LESSONS FOR KIDS & TEENS" title={singing.h1} sub={<>{singing.sub}<br /><span className="text-white/70">{singing.intro}</span></>} image={byId(heroLoops.singing).poster} video={byId(heroLoops.singing).loop} tall>
         <Button href={PRIVATE_VOCAL_TRIAL_URL}>BOOK A TRIAL LESSON</Button>
         <Button href="#learn" variant="outline">EXPLORE THE PROGRAMME</Button>
       </PageHero>

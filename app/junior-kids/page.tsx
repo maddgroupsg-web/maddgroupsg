@@ -3,6 +3,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { agePages, galleryFor } from "@/content/programmes";
 import PageHero from "@/components/PageHero";
+import { heroLoops, byId } from "@/content/videos";
 import ProgrammeList from "@/components/ProgrammeList";
 import Carousel from "@/components/Carousel";
 import FinalCta from "@/components/home/FinalCta";
@@ -16,7 +17,7 @@ export default function Page() {
   const images = galleryFor(page);
   return (
     <Shell>
-      <PageHero eyebrow={"CLASSES FOR " + page.ages} title={page.h1} sub={"(" + page.ages + ")"} image={images[0]}>
+      <PageHero eyebrow={"CLASSES FOR " + page.ages} title={page.h1} sub={"(" + page.ages + ")"} image={byId(heroLoops.junior).poster} video={byId(heroLoops.junior).loop}>
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button>
         <Button href="#programmes" variant="outline">SEE PROGRAMMES</Button>
       </PageHero>

@@ -12,7 +12,7 @@ const sub = (cb: () => void) => { window.addEventListener("resize", cb); return 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
-export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt, logo, youtube, children }: { eyebrow: string; title: string; sub?: string; image: string; alt: string; logo?: string; youtube?: string; children?: ReactNode }) {
+export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt, logo, youtube, video, children }: { eyebrow: string; title: string; sub?: string; image: string; alt: string; logo?: string; youtube?: string; video?: string; children?: ReactNode }) {
   const section = useRef<HTMLElement>(null);
   const box = useRef<HTMLDivElement>(null);
   const head = useRef<HTMLDivElement>(null);
@@ -58,7 +58,8 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
         {/* the scaling image */}
         <div ref={box} className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-ink-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,.9)] will-change-[width,height,top]" style={{ width: 380, height: 214, top: "60svh", borderRadius: 16 }}>
           <Image src={image} alt={alt} fill priority sizes="100vw" className="object-cover" />
-          {youtube && !reduce && (
+          {video && !reduce && <video src={video} poster={image} autoPlay muted loop playsInline preload="auto" aria-hidden className="absolute inset-0 h-full w-full object-cover" />}
+          {youtube && !video && !reduce && (
             // muted, looping, no controls — the poster above shows until the player paints
             <iframe
               className="absolute left-1/2 top-1/2 pointer-events-none"

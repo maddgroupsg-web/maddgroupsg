@@ -4,6 +4,7 @@ import { seo } from "@/content/seo";
 import { dsa } from "@/content/typepages";
 import { everyChild } from "@/content/achievements";
 import ScaleInHero from "@/components/ScaleInHero";
+import { heroLoops, byId } from "@/content/videos";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import FinalCta from "@/components/home/FinalCta";
@@ -19,7 +20,7 @@ const icons = [GraduationCap, Trophy, Award, BarChart3];
 export default function Page() {
   return (
     <Shell>
-      <ScaleInHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image="/images/misc/dsa-video-poster.jpg" youtube="i4XdpoKIwMQ" alt="KINETIC — MADDspace contemporary dance crew performing Head Above Water">
+      <ScaleInHero logo="/images/brand/dsa-academy.png" eyebrow="THE DSA ACADEMY · ACHIEVE" title={dsa.h1} sub={dsa.h2} image={byId(heroLoops.dsa).poster} video={byId(heroLoops.dsa).loop} alt="M1XXIE performing at MADD to Shine 2026">
         <Button href={DSA_ACADEMY_URL}>VISIT THE ACADEMY</Button>
         <Button href="/contact" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
       </ScaleInHero>

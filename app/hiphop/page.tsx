@@ -4,6 +4,7 @@ import { seo } from "@/content/seo";
 import { hiphop } from "@/content/typepages";
 import { studentJourneys } from "@/content/achievements";
 import PageHero from "@/components/PageHero";
+import { heroLoops, byId } from "@/content/videos";
 import { Checks, WhyGrid, LearnGrid, PathSteps, CrewBlocks, TrialBox } from "@/components/Blocks";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
@@ -19,7 +20,7 @@ export default function Page() {
   const j = studentJourneys[1];
   return (
     <Shell>
-      <PageHero eyebrow="HIP HOP DANCE CLASSES AT MADDSPACE" title={hiphop.h1} sub={<>{hiphop.sub}<br /><span className="text-white/70">{hiphop.intro}</span></>} image={g[0]} tall>
+      <PageHero eyebrow="HIP HOP DANCE CLASSES AT MADDSPACE" title={hiphop.h1} sub={<>{hiphop.sub}<br /><span className="text-white/70">{hiphop.intro}</span></>} image={byId(heroLoops.hiphop).poster} video={byId(heroLoops.hiphop).loop} tall>
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL LESSON</Button>
         <Button href="#learn" variant="outline">EXPLORE THE PROGRAMME</Button>
       </PageHero>

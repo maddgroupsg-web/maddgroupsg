@@ -53,7 +53,7 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
       <section className="py-16 lg:py-24">
         <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:items-center">
           <Reveal><div className="eyebrow">{l.video.eyebrow}</div><h2 className="display mt-3 text-5xl sm:text-6xl"><span className="block">{l.video.headline[0]}</span><span className="block text-accent">{l.video.headline[1]}</span></h2><div className="mt-5 space-y-3 text-mute">{l.video.copy.map((p) => <p key={p}>{p}</p>)}</div></Reveal>
-          <Reveal delay={0.1}>{l.video.youtube ? <VideoEmbed url={l.video.youtube} poster={l.video.poster} title={l.video.caption} caption={l.video.caption} /> : <div className="relative aspect-video rounded-xl overflow-hidden glow-border"><Image src={l.video.poster} alt="" fill sizes="60vw" className="object-cover" /></div>}</Reveal>
+          <Reveal delay={0.1}>{(l.video.video || l.video.youtube) ? <VideoEmbed url={l.video.video ?? l.video.youtube!} poster={l.video.poster} title={l.video.caption} caption={l.video.caption} /> : <div className="relative aspect-video rounded-xl overflow-hidden glow-border"><Image src={l.video.poster} alt="" fill sizes="60vw" className="object-cover" /></div>}</Reveal>
         </div>
       </section>
 

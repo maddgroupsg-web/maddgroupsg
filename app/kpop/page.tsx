@@ -3,6 +3,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { kpop } from "@/content/typepages";
 import PageHero from "@/components/PageHero";
+import { heroLoops, byId } from "@/content/videos";
 import { WhyGrid, LearnGrid, PathSteps, CrewBlocks, TrialBox } from "@/components/Blocks";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
@@ -17,7 +18,7 @@ const g = ["/images/classes/age-10-18/age-10-18-07.jpg", "/images/classes/age-10
 export default function Page() {
   return (
     <Shell>
-      <PageHero eyebrow={kpop.h2} title={kpop.h1} sub={<>{kpop.sub}<br /><span className="text-accent font-semibold">{kpop.trialLine}</span> <span className="text-white/70">{kpop.trialMeta}</span></>} image={g[0]} tall>
+      <PageHero eyebrow={kpop.h2} title={kpop.h1} sub={<>{kpop.sub}<br /><span className="text-accent font-semibold">{kpop.trialLine}</span> <span className="text-white/70">{kpop.trialMeta}</span></>} image={byId(heroLoops.kpop).poster} video={byId(heroLoops.kpop).loop} tall>
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL LESSON</Button>
         <Button href="#learn" variant="outline">EXPLORE THE PROGRAMME</Button>
       </PageHero>

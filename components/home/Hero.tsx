@@ -1,8 +1,9 @@
 "use client";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { hero } from "@/content/home";
+import { heroLoops, byId } from "@/content/videos";
+import HeroVideo from "@/components/HeroVideo";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { Button } from "@/components/ui";
 
@@ -11,7 +12,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden curtain flex items-end lg:items-center">
       <div className="absolute inset-0">
-        <Image src={hero.image} alt="MADDspace students performing on stage" fill priority sizes="100vw" className="object-cover object-[65%_center] lg:object-[70%_center]" />
+        <HeroVideo loop={byId(heroLoops.home).loop!} poster={byId(heroLoops.home).poster} alt="MADDspace students performing on stage" position="object-[65%_center] lg:object-[60%_center]" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/60" />
         <div className="absolute inset-0 spotlight opacity-80" />

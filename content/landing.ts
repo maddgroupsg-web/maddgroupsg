@@ -7,7 +7,7 @@ export type Landing = {
   description: string;
   nav: { label: string; href: string }[];
   hero: { eyebrow?: string; lines: { text: string; accent?: boolean }[]; sub: string; chips: string[]; cta: string; secondary: string; image: string };
-  video: { eyebrow: string; headline: string[]; copy: string[]; youtube?: string; caption: string; poster: string };
+  video: { eyebrow: string; headline: string[]; copy: string[]; youtube?: string; video?: string; caption: string; poster: string };
   learn: { headline: string; items: { title: string; copy: string; image: string }[] };
   journey: { headline: string; steps: { n: string; title: string; copy: string; image: string }[] };
   mentors: { eyebrow: string; headline: string; copy: string; instructorSlugs: string[] };
@@ -42,9 +42,9 @@ export const landings: Landing[] = [
       eyebrow: "REAL PERFORMANCE OPPORTUNITIES",
       headline: ["SEE CONFIDENCE", "TAKE THE MIC"],
       copy: ["At MADDspace, we go beyond just singing—we develop performers through structured training, real stage opportunities, and internationally recognised certifications.", "From internal showcases to international stages, students gain real experience that builds confidence and stage presence."],
-      youtube: "https://youtu.be/zUCS2IWB6R8",
-      caption: "Rising Voice 2024 — MADDspace students on a televised singing platform in Shanghai",
-      poster: "/images/achievements/rising-voice.jpg",
+      video: "/videos/full/maddlodies-2025-15-group.mp4",
+      caption: "MADDlodies 2025 — MADDspace vocal recital",
+      poster: "/images/video-posters/maddlodies-2025-15-group.jpg",
     },
     learn: {
       headline: "WHAT YOUR CHILD WILL LEARN",
@@ -97,9 +97,9 @@ export const landings: Landing[] = [
       eyebrow: "WE DON'T JUST TEACH DANCE, WE TRAIN PERFORMERS",
       headline: ["WATCH", "THE ENERGY"],
       copy: ["Does your child dream of performing on stage, dancing like their favourite K-Pop idols, or even auditioning for global entertainment companies?", "From in-house showcases to international festivals and competitions, students gain real stage experience and the opportunity to share the spotlight alongside global artistes."],
-      youtube: "https://www.youtube.com/watch?v=jdTyw7BxWak&t=29s",
-      caption: "K-Stars Dance Crew — where passionate dancers evolve into confident performers",
-      poster: "/images/classes/age-10-18/age-10-18-07.jpg",
+      video: "/videos/full/rec-2026-kstars-racecar.mp4",
+      caption: "K-Stars — Racecar, filmed at Marina Bay",
+      poster: "/images/video-posters/rec-2026-kstars-racecar.jpg",
     },
     learn: {
       headline: "WHAT YOUR CHILD WILL LEARN",
@@ -144,9 +144,9 @@ export const landings: Landing[] = [
       eyebrow: "TRAIN TOWARDS OUR AWARD WINNING CREWS",
       headline: ["SEE THEM MOVE", "WITH PURPOSE"],
       copy: ["Whether your child is dancing for fun, building strong foundations, or working towards competitions and DSA opportunities — MADDspace is for you.", "Our students have graced both local and international stages in countries like China, Thailand, Malaysia, Korea and more."],
-      youtube: "https://www.youtube.com/watch?v=jdTyw7BxWak&t=29s",
-      caption: "MANIAX JR — one of MADDspace's premier youth Hip Hop dance crews",
-      poster: "/images/achievements/k15.jpg",
+      video: "/videos/full/mj-2025-maddnificent.mp4",
+      caption: "MADDnificent — MADDjestic 2025",
+      poster: "/images/video-posters/mj-2025-maddnificent.jpg",
     },
     learn: {
       headline: "WHAT YOUR CHILD WILL LEARN",
@@ -191,9 +191,9 @@ export const landings: Landing[] = [
       eyebrow: "SINGAPORE CHILDREN'S SHOW CHOIR",
       headline: ["WATCH THE", "STAGE COME ALIVE"],
       copy: ["Similar to what you see in shows like \"The Greatest Showman\", \"Glee\", \"Frozen\" and \"Encanto\".", "With a Show Choir syllabus specially brought down from Los Angeles, USA, MADDspace is the only school in Singapore who is equipped to offer you an authentic Show Choir 'Sing & Dance' experience."],
-      youtube: "https://www.youtube.com/watch?v=JRmP6kS3w6c",
-      caption: "Inside the Singapore Children's Show Choir",
-      poster: "/images/classes/age-6-9/age-6-9-06.jpg",
+      video: "/videos/full/maddlodies-2025-03-group.mp4",
+      caption: "MADDlodies 2025 — 当你",
+      poster: "/images/video-posters/maddlodies-2025-03-group.jpg",
     },
     learn: {
       headline: "WHAT YOUR CHILD WILL LEARN",

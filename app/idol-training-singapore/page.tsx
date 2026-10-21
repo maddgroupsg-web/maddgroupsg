@@ -6,6 +6,7 @@ import { idol } from "@/content/typepages";
 import { stories, everyChild } from "@/content/achievements";
 import PillarsRamp from "@/components/PillarsRamp";
 import PageHero from "@/components/PageHero";
+import { heroLoops, byId } from "@/content/videos";
 import LogoMarquee from "@/components/LogoMarquee";
 import VideoEmbed from "@/components/VideoEmbed";
 import FinalCta from "@/components/home/FinalCta";
@@ -18,7 +19,7 @@ export default function Page() {
   const feats = [stories[1], stories[0]];
   return (
     <Shell>
-      <PageHero logo="/images/brand/madd-entertainment.png" eyebrow="MADD ENTERTAINMENT · LAUNCH" title={idol.h1} sub={<>{idol.h2[0]}<br />{idol.h2[1]}</>} image="/images/classes/age-10-18/age-10-18-02.jpg" tall>
+      <PageHero logo="/images/brand/madd-entertainment.png" eyebrow="MADD ENTERTAINMENT · LAUNCH" title={idol.h1} sub={<>{idol.h2[0]}<br />{idol.h2[1]}</>} image={byId(heroLoops.idol).poster} video={byId(heroLoops.idol).loop} tall>
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button>
         <Button href="#who" variant="outline">WHO IS THIS FOR?</Button>
       </PageHero>

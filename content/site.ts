@@ -59,7 +59,7 @@ export const nav: NavItem[] = [
       { group: "BY TYPE", label: "DANCE CLASSES FOR KIDS", href: "/dance-classes-for-kids" },
     ],
   },
-  { label: "ACHIEVEMENTS", href: "/achievements" },
+  { label: "ACHIEVEMENTS", href: "/achievements", children: [{ label: "ACHIEVEMENTS", href: "/achievements" }, { label: "PERFORMANCE VIDEOS", href: "/performances" }] },
   {
     label: "SCHEDULE",
     href: "/allclasses-schedule",
@@ -97,6 +97,7 @@ export const footerBrowse = [
   { label: "YOUTH/ADULTS", href: "/youth-adults" },
   { label: "OPEN CLASS", href: "/open-classes" },
   { label: "GROUP CLASSES", href: "/allclasses-schedule" },
+  { label: "PERFORMANCES", href: "/performances" },
   { label: "STUDIOS", href: "/studios" },
   { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },
