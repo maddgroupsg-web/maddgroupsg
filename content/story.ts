@@ -8,5 +8,5 @@ export const story: Stop[] = [
   { year: "Two studios", title: "GR.ID Central & The Chevrons West", line: "Beside SOTA in the city, and in Jurong East — open for classes, trials and studio hire.", image: "/images/about/about-hero.jpg" },
   { year: "2021–2025", title: "Recognised", line: "Best Performing Arts Studio (APAC Insider) four years running. Top 100 Asia-Pacific 2025. KMCP official partner.", image: "/images/crew/kstars-10.jpg" },
   { year: "2024", title: "Bigger stages", line: "On stage with IU at the Indoor Stadium. Rising Voice in Shanghai. Genting. Disneyland.", image: "/images/achievements/iu-concert.jpg" },
-  { year: "2026", title: "The MADD Group", line: "MADD Entertainment and IDOLLAB launch. A 6,000 sq ft home at GR.ID. The first original releases.", image: "/images/classes/age-10-18/age-10-18-02.jpg" },
+  { year: "2026", title: "MADD Entertainment & IDOLLAB launch", line: "A 6,000 sq ft home at GR.ID, and the first original releases.", image: "/images/classes/age-10-18/age-10-18-02.jpg" },
 ];

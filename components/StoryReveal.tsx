@@ -34,7 +34,7 @@ function Spine() {
   return (
     <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 hidden md:flex w-10 flex-col items-center justify-between py-6" aria-hidden>
       {bars.map((b) => (
-        <span key={b} className="wave-bar block h-px w-full rounded bg-cyan/50" style={{ animationDelay: `${(b % 12) * 0.12}s`, transform: `scaleX(${0.2 + 0.8 * Math.abs(Math.sin(b * 0.7))})` }} />
+        <span key={b} className="wave-bar block h-px w-full rounded bg-cyan/50" style={{ animationDelay: `${(b % 12) * 0.12}s`, transform: `scaleX(${(0.2 + 0.8 * Math.abs(Math.sin(b * 0.7))).toFixed(3)})` }} />
       ))}
     </div>
   );
