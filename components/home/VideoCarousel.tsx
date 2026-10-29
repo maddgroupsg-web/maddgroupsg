@@ -34,12 +34,14 @@ export default function VideoCarousel() {
     return () => cancelAnimationFrame(raf);
   }, [open]);
   return (
-    <section className="relative py-20 lg:py-28 bg-ink-2 border-y border-line overflow-hidden">
+    <section className="relative pt-14 pb-20 lg:pt-16 lg:pb-28 bg-ink-2 border-y border-line overflow-hidden">
       <div className="container-x">
         <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-          <SectionHeading eyebrow="WATCH" title={<><span className="block">ON STAGE.</span><span className="block text-cyan">IN THE STUDIO.</span></>} sub="Recitals, competitions and recording sessions. Click any performance to watch it in full." />
+          <div>
+            <SectionHeading title={<><span className="block">ON STAGE.</span><span className="block text-cyan">IN THE STUDIO.</span></>} sub="Recitals, competitions and recording sessions. Click any performance to watch it in full." />
+            <Link href="/performances" className="btn btn-outline mt-6">ALL PERFORMANCES</Link>
+          </div>
           <div className="flex items-center gap-3">
-            <Link href="/performances" className="hidden lg:inline text-[11px] tracking-[0.25em] text-cyan font-semibold">ALL PERFORMANCES →</Link>
             <button onClick={() => scroll(-1)} aria-label="Previous" className="h-11 w-11 rounded-full border border-cyan/60 text-cyan hover:bg-cyan/10 flex items-center justify-center"><ArrowLeft size={18} /></button>
             <button onClick={() => scroll(1)} aria-label="Next" className="h-11 w-11 rounded-full border border-cyan/60 text-cyan hover:bg-cyan/10 flex items-center justify-center"><ArrowRight size={18} /></button>
           </div>
@@ -49,7 +51,6 @@ export default function VideoCarousel() {
         onMouseEnter={() => { paused.current = true; }} onMouseLeave={() => { paused.current = false; }} onTouchStart={() => { paused.current = true; }} onTouchEnd={() => { setTimeout(() => { paused.current = false; }, 2500); }}>
         {[...featuredVideos, ...featuredVideos].map((v, i) => <VideoCard key={`${v.slug}-${i}`} v={v} onOpen={() => setOpen(v)} hidden={i >= featuredVideos.length} />)}
       </div>
-      <div className="container-x mt-4 lg:hidden"><Link href="/performances" className="text-[11px] tracking-[0.25em] text-cyan font-semibold">ALL PERFORMANCES →</Link></div>
       <VideoPlayerModal video={open} onClose={() => setOpen(null)} />
     </section>
   );
