@@ -12,22 +12,23 @@ export default function VideoCarousel() {
   const [open, setOpen] = useState<Vid | null>(null);
   const scroller = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
-  const scroll = (dir: number) => { const el = scroller.current; if (!el) return; const card = el.querySelector<HTMLElement>("[data-card]"); el.scrollBy({ left: dir * ((card?.offsetWidth ?? 420) + 16), behavior: "smooth" }); };
+  const pos = useRef(0);       // the auto-scroll loop's position; the arrows move this so the two never fight
+  const scroll = (dir: number) => { const el = scroller.current; if (!el) return; const card = el.querySelector<HTMLElement>("[data-card]"); const half = el.scrollWidth / 2; pos.current = (pos.current + dir * ((card?.offsetWidth ?? 420) + 16) + half) % half; el.scrollTo({ left: pos.current, behavior: "smooth" }); paused.current = true; setTimeout(() => { paused.current = false; }, 900); };
 
   // continuous auto-scroll; content is doubled so it wraps seamlessly. Pauses on hover/touch and while the player is open.
   useEffect(() => {
     const el = scroller.current; if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0, last = performance.now(), x = el.scrollLeft;
+    let raf = 0, last = performance.now(); pos.current = el.scrollLeft;
     const SPEED = 40; // px per second
     const tick = (t: number) => {
       const dt = Math.min(0.05, (t - last) / 1000); last = t;
       const half = el.scrollWidth / 2;
       if (!paused.current && !open) {
-        x += SPEED * dt;
-        if (x >= half) x -= half;
-        el.scrollLeft = x;
-      } else { x = el.scrollLeft; if (x >= half) { x -= half; el.scrollLeft = x; } }
+        pos.current += SPEED * dt;
+        if (pos.current >= half) pos.current -= half;
+        el.scrollLeft = pos.current;
+      } else { pos.current = el.scrollLeft; if (pos.current >= half) { pos.current -= half; el.scrollLeft = pos.current; } }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
