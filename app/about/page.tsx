@@ -5,6 +5,7 @@ import { seo } from "@/content/seo";
 import { about, leader } from "@/content/team";
 import { Reveal, SectionHeading, Button } from "@/components/ui";
 import TeamCarousel from "@/components/TeamCarousel";
+import StoryReveal from "@/components/StoryReveal";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import FinalCta from "@/components/home/FinalCta";
@@ -45,6 +46,7 @@ export default function AboutPage() {
         <div className="container-x relative mt-14" id="anchor1"><h2 className="display text-4xl mb-2">MADDspace Team</h2><TeamCarousel /></div>
       </section>
 
+      <StoryReveal />
       <section className="py-20 lg:py-24 border-t border-line bg-ink-2">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal><SectionHeading eyebrow="ABOUT MADDSPACE" title={about.philosophyTitle} /><p className="mt-6 text-mute leading-relaxed">{about.philosophy}</p></Reveal>
