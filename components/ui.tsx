@@ -3,7 +3,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, createElement, isValidElement, useEffect, useRef, useState, type CSSProperties, type ReactElement, type ReactNode } from "react";
 
 export function Button({ href, children, variant = "primary", className, external, ...rest }: { href: string; children: ReactNode; variant?: "primary" | "outline" | "ghost"; className?: string; external?: boolean }) {
   const cls = cn("btn", variant === "primary" && "btn-primary", variant === "outline" && "btn-outline", variant === "ghost" && "btn-ghost", className);
@@ -27,17 +27,59 @@ export function Reveal({ children, className, delay, y = 24, once = true, stagge
     if (i > 0) setAuto(i * STEP);
   }, [delay, stagger]);
   return (
-    <motion.div ref={ref} data-reveal className={className} initial={reduce ? false : { opacity: 0, y, x: -14 }} whileInView={{ opacity: 1, y: 0, x: 0 }} viewport={{ once, margin: "-10% 0px" }} transition={{ duration: 0.7, delay: delay ?? auto, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.div ref={ref} data-reveal className={className} initial={reduce ? false : { opacity: 0, y, x: -14, filter: "blur(6px)" }} whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }} viewport={{ once, margin: "-10% 0px" }} transition={{ duration: 0.7, delay: delay ?? auto, ease: [0.22, 1, 0.36, 1] }}>
       {children}
     </motion.div>
   );
+}
+
+// Word-by-word fade-in for headings. Walks the children, splits every text node into words and gives each a
+// stagger delay. The reveal itself is CSS (see .w-word in globals.css) and is triggered by <WordsObserver /> in the
+// root layout, which adds .is-in when the heading scrolls into view — so it works on any heading, server-rendered or not.
+export function Words({ children, delay = 0.05, step = 0.055, className }: { children: ReactNode; delay?: number; step?: number; className?: string }) {
+  let i = 0;
+  const walk = (node: ReactNode): ReactNode => {
+    if (typeof node === "string" || typeof node === "number") {
+      return String(node).split(/(\s+)/).map((part, k) => {
+        if (!part) return null;
+        if (/^\s+$/.test(part)) return <Fragment key={k}> </Fragment>;
+        const d = (delay + i++ * step).toFixed(3);
+        return <span key={k} className="w-word" style={{ "--d": `${d}s` } as CSSProperties}>{part}</span>;
+      });
+    }
+    if (Array.isArray(node)) return node.map((n, k) => <Fragment key={k}>{walk(n)}</Fragment>);
+    if (isValidElement(node)) {
+      const el = node as ReactElement<{ children?: ReactNode }>;
+      if (el.props.children === undefined || el.props.children === null) return el;
+      const { children: inner, ...rest } = el.props;
+      return createElement(el.type, { ...rest, key: el.key ?? undefined }, walk(inner));
+    }
+    return node;
+  };
+  return <span data-words className={className}>{walk(children)}</span>;
+}
+
+// Mounted once in the root layout: reveals every [data-words] heading when it enters the viewport.
+export function WordsObserver() {
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    }, { rootMargin: "-8% 0px" });
+    const scan = () => document.querySelectorAll<HTMLElement>("[data-words]:not([data-wo])").forEach((el) => { el.dataset.wo = "1"; io.observe(el); });
+    scan();
+    let raf = 0;
+    const mo = new MutationObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(scan); });
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => { mo.disconnect(); io.disconnect(); cancelAnimationFrame(raf); };
+  }, []);
+  return null;
 }
 
 export function SectionHeading({ eyebrow, title, sub, align = "left", className, as: Tag = "h2" }: { eyebrow?: string; title: ReactNode; sub?: ReactNode; align?: "left" | "center"; className?: string; as?: "h1" | "h2" | "h3" }) {
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <div className="eyebrow mb-3">{eyebrow}</div>}
-      <Tag className="display text-[2.6rem] sm:text-6xl lg:text-7xl">{title}</Tag>
+      <Tag className="display text-[2.6rem] sm:text-6xl lg:text-7xl"><Words>{title}</Words></Tag>
       {sub && <p className="mt-4 text-mute text-base sm:text-lg leading-relaxed">{sub}</p>}
     </div>
   );

@@ -29,6 +29,9 @@ export default function Preloader() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // let the hero know the panels have split so its headline can start
+  useEffect(() => { if (open) window.dispatchEvent(new Event("madd:intro-open")); }, [open]);
+
   const finish = () => { setShow(false); document.documentElement.style.overflow = ""; try { sessionStorage.setItem("madd-intro", "1"); } catch {} };
   const skip = () => { setOpen(true); setTimeout(finish, 900); };
 

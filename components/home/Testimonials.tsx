@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "@/components/Social";
 import { reviews, googleProfile, type Review } from "@/content/reviews";
 import { contact } from "@/content/site";
 import { GoogleG, Stars } from "@/components/GoogleLogo";
-import { Reveal } from "@/components/ui";
+import { Reveal, Words } from "@/components/ui";
 import { waLink } from "@/lib/utils";
 
 // Ron & Rich style: info column on the left, two vertical auto-scrolling columns of review cards on the right.
@@ -23,7 +23,7 @@ export default function Testimonials({ heading = "WHAT OUR PARENTS SAY.", eyebro
             <span className="eyebrow">{eyebrow}</span>
             <span className="h-1.5 w-1.5 rotate-45 bg-accent" /><span className="h-px w-10 bg-accent/70" />
           </div>
-          <h2 className="display mt-4 text-5xl sm:text-6xl lg:text-7xl">{heading}</h2>
+          <h2 className="display mt-4 text-5xl sm:text-6xl lg:text-7xl"><Words>{heading}</Words></h2>
           <p className="mt-4 text-mute text-base sm:text-lg leading-relaxed">Verified Google reviews from the parents of the children we train, in their own words.</p>
           <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="mt-8 flex items-center gap-4 w-fit group" aria-label="MADDspace on Google">
             <GoogleG size={44} />

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { maddGroup } from "@/content/home";
-import { Reveal } from "@/components/ui";
+import { Reveal, Words } from "@/components/ui";
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
@@ -21,7 +21,7 @@ export default function MaddGroupPanels() {
       <div className="absolute inset-0 spotlight opacity-70" />
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
-          <h2 className="display normal-case text-5xl sm:text-6xl lg:text-[clamp(2.6rem,7vh,4.5rem)]">The MADD Group</h2>
+          <h2 className="display normal-case text-5xl sm:text-6xl lg:text-[clamp(2.6rem,7vh,4.5rem)]"><Words>The MADD Group</Words></h2>
           <p className="mt-3 text-lg sm:text-xl text-white/60">More than a performing arts school.</p>
           <p className="mt-4 text-mute [@media(max-height:760px)]:hidden">{maddGroup.copy[0]}</p>
         </Reveal>

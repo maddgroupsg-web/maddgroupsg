@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { Words } from "@/components/ui";
 
 // After osmo's "Scaling element on scroll with Flip": a small 16:9 image sits under the heading; as the
 // visitor scrolls it grows, scrubbed to the scrollbar, until it fills the whole viewport. The heading
@@ -50,7 +51,7 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
         {/* heading — fades as the image grows */}
         <div ref={head} className="absolute inset-x-0 top-[22svh] sm:top-[20svh] z-10 px-4 text-center will-change-transform">
           <div className="eyebrow">{eyebrow}</div>
-          <h1 className="display mx-auto mt-3 max-w-5xl text-[2.6rem] leading-[0.92] sm:text-6xl lg:text-7xl">{title}</h1>
+          <h1 className="display mx-auto mt-3 max-w-5xl text-[2.6rem] leading-[0.92] sm:text-6xl lg:text-7xl"><Words>{title}</Words></h1>
           {subtitle && <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base text-white/80">{subtitle}</p>}
           <div className="mt-6 text-[10px] tracking-[0.3em] text-white/40">SCROLL</div>
         </div>
@@ -72,7 +73,7 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
           <div ref={cta} className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14 opacity-0 will-change-transform">
             <div className="container-x !px-0">
               <div className="eyebrow">{eyebrow}</div>
-              <div className="display mt-2 text-4xl sm:text-5xl lg:text-6xl max-w-3xl">{title}</div>
+              <div className="display mt-2 text-4xl sm:text-5xl lg:text-6xl max-w-3xl"><Words>{title}</Words></div>
               {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
             </div>
           </div>

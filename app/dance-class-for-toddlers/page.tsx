@@ -9,7 +9,7 @@ import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
-import { Button, Reveal, SectionHeading } from "@/components/ui";
+import { Button, Reveal, SectionHeading, Words } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
 import { galleryFor } from "@/content/programmes";
 import { Speech, Activity, Smile } from "lucide-react";
@@ -29,7 +29,7 @@ export default function Page() {
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line"><div className="container-x"><Reveal><SectionHeading title={toddlers.instructorsTitle} sub={toddlers.instructorsCopy} /></Reveal><div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">{dance.map((p) => <figure key={p.slug} className="rounded-lg overflow-hidden border border-line bg-ink-3"><div className="relative aspect-square"><Image src={p.image} alt={p.name} fill sizes="20vw" className="object-cover object-top" /></div><figcaption className="p-3"><div className="font-semibold text-sm uppercase">{p.name}</div><div className="text-[11px] text-accent uppercase tracking-wider">{p.role}</div></figcaption></figure>)}</div><div className="mt-6"><Button href="/instructors?d=dance" variant="ghost">MEET ALL INSTRUCTORS</Button></div></div></section>
       <section className="py-16 lg:py-24"><div className="container-x"><Reveal><SectionHeading title={toddlers.classesTitle} /></Reveal><div className="mt-10 grid gap-6 lg:grid-cols-2">{toddlers.classes.map((c, i) => <Reveal key={c.title} delay={i * 0.09} className="glass rounded-xl overflow-hidden"><div className="relative aspect-[16/9]"><Image src={g[i === 0 ? 5 : 7]} alt="" fill sizes="50vw" className="object-cover" /></div><div className="p-6"><span className="rounded bg-accent/15 border border-accent/50 px-2 py-0.5 text-[10px] font-bold tracking-widest text-accent">{c.badge.toUpperCase()}</span><h3 className="display text-4xl mt-2">{c.title}</h3><div className="mt-3 space-y-3 text-sm text-mute leading-relaxed">{c.copy.map((p) => <p key={p}>{p}</p>)}</div><div className="mt-5"><Button href="/contact" className="!py-2.5 text-[11px]">Sign Up or Enquire now!</Button></div></div></Reveal>)}</div></div></section>
       <Testimonials heading="WHY OUR PRESCHOOL & TODDLER DANCE CLASSES HAVE over 100 positive reviews on Facebook & Google" eyebrow="WHAT PEOPLE SAY" />
-      <section className="py-16 bg-ink-2 border-y border-line"><div className="container-x"><Reveal className="glass glow-border rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center"><h2 className="display text-5xl">{toddlers.guaranteeTitle}</h2><p className="mt-4 text-mute">{toddlers.guarantee}</p><div className="mt-6"><Button href={BOOK_TRIAL_URL}>REGISTER FOR OUR DANCE CLASSES TODAY!</Button></div></Reveal></div></section>
+      <section className="py-16 bg-ink-2 border-y border-line"><div className="container-x"><Reveal className="glass glow-border rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center"><h2 className="display text-5xl"><Words>{toddlers.guaranteeTitle}</Words></h2><p className="mt-4 text-mute">{toddlers.guarantee}</p><div className="mt-6"><Button href={BOOK_TRIAL_URL}>REGISTER FOR OUR DANCE CLASSES TODAY!</Button></div></Reveal></div></section>
       <FinalCta image={g[6]} />
     </Shell>
   );

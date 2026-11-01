@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { Reveal } from "@/components/ui";
+import { Reveal, Words } from "@/components/ui";
 import Image from "next/image";
 import VideoEmbed from "@/components/VideoEmbed";
 import { Button } from "@/components/ui";
@@ -12,7 +12,7 @@ export function WhyGrid({ title, items, images }: { title: string; items: { titl
   return (
     <section className="py-16 lg:py-24 border-y border-line bg-ink-2">
       <div className="container-x">
-        <Reveal><h2 className="display text-4xl sm:text-6xl max-w-3xl">{title}</h2></Reveal>
+        <Reveal><h2 className="display text-4xl sm:text-6xl max-w-3xl"><Words>{title}</Words></h2></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {items.map((w, i) => (
             <Reveal key={w.title} delay={i * 0.09} className="group rounded-xl overflow-hidden border border-line bg-ink-3 hover:border-accent/60 transition-colors">
@@ -30,7 +30,7 @@ export function LearnGrid({ title, intro, items, images }: { title: string; intr
   return (
     <section id="learn" className="py-16 lg:py-24 scroll-mt-20">
       <div className="container-x">
-        <Reveal><h2 className="display text-4xl sm:text-6xl">{title}</h2>{intro && <p className="mt-4 max-w-3xl text-mute">{intro}</p>}</Reveal>
+        <Reveal><h2 className="display text-4xl sm:text-6xl"><Words>{title}</Words></h2>{intro && <p className="mt-4 max-w-3xl text-mute">{intro}</p>}</Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((l, i) => (
             <Reveal key={l.title} delay={i * 0.09} className="glass rounded-xl overflow-hidden">
@@ -48,7 +48,7 @@ export function PathSteps({ title, intro, steps, images }: { title: string; intr
   return (
     <section id="pathway" className="py-16 lg:py-24 bg-ink-2 border-y border-line scroll-mt-20">
       <div className="container-x">
-        <Reveal><h2 className="display text-4xl sm:text-6xl">{title}</h2>{intro && <p className="mt-3 text-mute">{intro}</p>}</Reveal>
+        <Reveal><h2 className="display text-4xl sm:text-6xl"><Words>{title}</Words></h2>{intro && <p className="mt-3 text-mute">{intro}</p>}</Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.09} className="relative rounded-xl overflow-hidden border border-line min-h-[320px] group">
@@ -72,7 +72,7 @@ export function CrewBlocks({ title, crews }: { title: string; crews: { name: str
   return (
     <section className="py-16 lg:py-24">
       <div className="container-x">
-        <Reveal><h2 className="display text-4xl sm:text-6xl">{title}</h2></Reveal>
+        <Reveal><h2 className="display text-4xl sm:text-6xl"><Words>{title}</Words></h2></Reveal>
         <div className="mt-10 space-y-10">
           {crews.map((c, i) => (
             <div key={c.name} className={`grid gap-8 lg:grid-cols-2 lg:items-center ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
@@ -98,7 +98,7 @@ export function TrialBox({ title, lead, included, meta, guarantee, cta, url }: {
         <Reveal className="glass glow-border rounded-2xl p-8 sm:p-12 grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
             <div className="eyebrow">CHOOSING THE RIGHT SCHOOL MATTERS</div>
-            <h2 className="display text-4xl sm:text-6xl mt-2">{title}</h2>
+            <h2 className="display text-4xl sm:text-6xl mt-2"><Words>{title}</Words></h2>
             <p className="mt-3 text-mute">{lead}</p>
             <p className="mt-4 font-semibold text-white">What&apos;s included:</p>
             <Checks items={included} className="mt-2" />

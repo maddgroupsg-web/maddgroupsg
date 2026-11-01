@@ -4,7 +4,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { achievementsPage, stories, studentJourneys, everyChild } from "@/content/achievements";
 import { awards, BOOK_TRIAL_URL } from "@/content/site";
-import { Reveal, SectionHeading, Button } from "@/components/ui";
+import { Reveal, SectionHeading, Button, Words } from "@/components/ui";
 import LogoMarquee from "@/components/LogoMarquee";
 import VideoEmbed from "@/components/VideoEmbed";
 import FinalCta from "@/components/home/FinalCta";
@@ -21,7 +21,7 @@ export default function AchievementsPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
         <div className="container-x relative pb-16 pt-40">
           <Reveal>
-            <h1 className="display text-5xl sm:text-7xl lg:text-8xl">{achievementsPage.h1}<span className="block text-cyan text-[0.6em]">{achievementsPage.h1b}</span></h1>
+            <h1 className="display text-5xl sm:text-7xl lg:text-8xl"><Words>{achievementsPage.h1}<span className="block text-cyan text-[0.6em]">{achievementsPage.h1b}</span></Words></h1>
             <h2 className="mt-4 max-w-2xl text-lg text-white/85">{achievementsPage.sub}</h2>
             <div className="mt-7 flex flex-wrap gap-3"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button><Button href="/classes" variant="outline">EXPLORE OUR PROGRAMMES</Button></div>
           </Reveal>
@@ -45,7 +45,7 @@ export default function AchievementsPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="eyebrow">{s.place}</div>
-              <h2 className="display mt-2 text-4xl sm:text-5xl">{s.title}</h2>
+              <h2 className="display mt-2 text-4xl sm:text-5xl"><Words>{s.title}</Words></h2>
               <p className="mt-4 text-mute leading-relaxed">{s.copy}</p>
               {s.bullets && <ul className="mt-4 space-y-2 text-sm text-white/85">{s.bullets.map((b) => <li key={b} className="flex gap-2"><span className="text-cyan">•</span>{b}</li>)}</ul>}
               {s.link && <div className="mt-6"><Button href={s.link.href} variant="ghost">{s.link.label}</Button></div>}
@@ -77,7 +77,7 @@ export default function AchievementsPage() {
       </section>
 
       <LogoMarquee />
-      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
+      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl"><Words>{everyChild.headline}</Words></h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
       <FinalCta />
     </Shell>
   );

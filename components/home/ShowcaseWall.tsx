@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { mediaLogos } from "@/content/site";
+import { Words } from "@/components/ui";
 
 // Two rows of class + performance photos. The wall starts tilted back in 3D and straightens as it scrolls into view;
 // the rows also drift in opposite directions.
@@ -34,7 +35,7 @@ export default function ShowcaseWall() {
   return (
     <section ref={ref} className="relative pt-14 pb-6 lg:pt-16 lg:pb-10 overflow-hidden">
       <div className="container-x">
-        <h2 className="display text-3xl sm:text-4xl lg:text-5xl text-center">AS FEATURED ON LEADING MEDIA PLATFORMS</h2>
+        <h2 className="display text-3xl sm:text-4xl lg:text-5xl text-center"><Words>AS FEATURED ON LEADING MEDIA PLATFORMS</Words></h2>
       </div>
       <div className="-mx-[8vw] mt-2">
         <motion.div style={reduce ? undefined : { rotate, transformOrigin: "50% 50%" }} className="space-y-4 will-change-transform py-[4vw]">
