@@ -65,7 +65,10 @@ export function WordsObserver() {
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
     }, { rootMargin: "-8% 0px" });
-    const scan = () => document.querySelectorAll<HTMLElement>("[data-words]:not([data-wo])").forEach((el) => { el.dataset.wo = "1"; io.observe(el); });
+    // Track seen headings per observer instance (not via a DOM attribute) so a re-run of this effect — React Strict
+    // Mode in dev mounts it twice — observes everything again instead of skipping headings the first run tagged.
+    const seen = new WeakSet<Element>();
+    const scan = () => document.querySelectorAll<HTMLElement>("[data-words]").forEach((el) => { if (seen.has(el)) return; seen.add(el); io.observe(el); });
     scan();
     let raf = 0;
     const mo = new MutationObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(scan); });

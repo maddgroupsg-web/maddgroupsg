@@ -3,7 +3,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { agePages, galleryFor } from "@/content/programmes";
 import PageHero from "@/components/PageHero";
-import ProgrammeList from "@/components/ProgrammeList";
+import ProgrammeRow from "@/components/ProgrammeRow";
 import Carousel from "@/components/Carousel";
 import FinalCta from "@/components/home/FinalCta";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
@@ -29,7 +29,7 @@ export default function Page() {
       <section id="programmes" className="py-16 lg:py-20 scroll-mt-20">
         <div className="container-x">
           <Reveal><SectionHeading eyebrow="PROGRAMMES" title="WHAT WE OFFER" /></Reveal>
-          <div className="mt-8"><ProgrammeList items={page.items} galleryImages={images} /></div>
+          <div className="mt-8"><ProgrammeRow items={page.items} images={[images[4], images[7], images[0], images[9]]} /></div>
         </div>
       </section>
       <FinalCta image={images[images.length - 1]} />
