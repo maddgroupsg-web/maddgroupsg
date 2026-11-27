@@ -8,7 +8,7 @@ import { byId } from "@/content/videos";
 import { toSentence } from "@/lib/utils";
 
 // About page hero: The MADD Group's four pillars as a full-screen slideshow. Each pillar plays a performance clip,
-// with its name and line bottom-left, a counter and progress line under it, and the other pillars as 16:9
+// with its name and line bottom-left, a counter under it, and the other pillars as 16:9
 // thumbnails bottom-right. It moves on by itself; the page below scrolls as normal.
 const HOLD = 6500; // ms per pillar
 const clips: Record<string, string> = {
