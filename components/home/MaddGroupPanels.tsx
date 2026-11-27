@@ -21,7 +21,7 @@ export default function MaddGroupPanels() {
       <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:pt-[124px] lg:pb-6 lg:flex lg:flex-col lg:justify-start"}`}>
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
-          <h2 className="display">The MADD Group</h2>
+          <h2 className="display">Not your regular performing arts school</h2>
           <p className="mt-3 text-lg sm:text-xl font-medium text-white/80">One group. <span className="text-[#e2b85f]">Four brands.</span> Endless possibilities.</p>
           <p className="mt-4 text-mute [@media(max-height:760px)]:hidden">{maddGroup.copy[0]}</p>
         </Reveal>
