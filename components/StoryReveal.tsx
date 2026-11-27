@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui";
 // other, sitting over a thin outlined frame. The four MADD Group pillars now open the About page as its hero.
 export default function StoryReveal() {
   return (
-    <section className="relative py-20 lg:py-28 overflow-x-clip border-t border-line" aria-label="How MADDspace came about">
+    <section className="relative py-20 lg:py-24 overflow-x-clip border-t border-line" aria-label="How MADDspace came about">
       <div className="container-x">
         <Reveal>
           <h2 className="display grid gap-1 lg:grid-cols-2 lg:gap-10">
@@ -15,11 +15,11 @@ export default function StoryReveal() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 lg:mt-24 space-y-20 lg:space-y-32">
+        <div className="mt-12 lg:mt-16 space-y-14 lg:space-y-20">
           {story.map((s, i) => {
             const flip = i % 2 === 1;
             return (
-              <div key={s.title} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-24">
+              <div key={s.title} className="mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-2 lg:gap-16">
                 <Reveal className={flip ? "lg:order-2" : ""} x={flip ? 90 : -90} y={0} duration={0.9} stagger={false}>
                   <div className="flex items-center gap-3 text-[12px] font-semibold tracking-[0.14em] uppercase text-white/55">
                     <span className="h-px w-8 bg-white/30" />{s.year}
@@ -34,7 +34,7 @@ export default function StoryReveal() {
                   <div className={`relative ${flip ? "mr-6 sm:mr-10" : "ml-6 sm:ml-10"} mt-8`}>
                     {/* thin frame the photo sits over */}
                     <div className={`absolute -top-8 bottom-10 border border-white/15 ${flip ? "left-10 -right-6 sm:-right-10" : "-left-6 sm:-left-10 right-10"}`} aria-hidden />
-                    <div className="relative aspect-[4/3] overflow-hidden bg-ink-3">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-ink-3">
                       <Image src={s.image} alt={s.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
                     </div>
                   </div>

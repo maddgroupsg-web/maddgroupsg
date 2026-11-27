@@ -18,8 +18,9 @@ export default function AboutPage() {
   return (
     <Shell>
       <AboutHero />
+      <StoryReveal />
       {/* Leadership — "Building confidence. Creating opportunity." */}
-      <section className="relative pt-20 lg:pt-28 pb-10 overflow-hidden">
+      <section className="relative py-20 lg:py-28 border-t border-line overflow-hidden">
         <div className="container-x relative grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           <Reveal>
             <div className="eyebrow">THE PEOPLE BEHIND THE STAGE</div>
@@ -41,13 +42,12 @@ export default function AboutPage() {
               <li className="flex items-center gap-2"><Mic size={16} className="text-cyan" />{leader.pills[1]}</li>
               <li className="flex items-center gap-2"><Users size={16} className="text-cyan" />{leader.pills[2]}</li>
             </ul>
-            <div className="mt-6"><Button href="/instructors?d=vocal" variant="outline">MEET THE INSTRUCTORS</Button></div>
+            <div className="mt-6"><Button href="/instructors" variant="outline">MEET THE INSTRUCTORS</Button></div>
           </Reveal>
         </div>
-        <div className="container-x relative mt-14" id="anchor1"><h2 className="display text-4xl mb-2">MADDspace Team</h2><TeamCarousel /></div>
+        <div className="container-x relative mt-14" id="anchor1"><div className="mb-2 flex flex-wrap items-end justify-between gap-4"><h2 className="display">MADDspace team</h2><Button href="/instructors">See our instructors</Button></div><TeamCarousel /></div>
       </section>
 
-      <StoryReveal />
       <section className="py-20 lg:py-24 border-t border-line bg-ink-2">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal><SectionHeading eyebrow="ABOUT MADDSPACE" title={about.philosophyTitle} /><p className="mt-6 text-mute leading-relaxed">{about.philosophy}</p></Reveal>
@@ -74,7 +74,7 @@ export default function AboutPage() {
         <div className="container-x grid gap-10 lg:grid-cols-2">
           <Reveal><h2 className="display text-5xl">{about.missionTitle}</h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{about.mission.map((p) => <p key={p}>{p}</p>)}</div></Reveal>
           <Reveal delay={0.1}><h2 className="display text-5xl">{about.visionTitle}</h2><p className="mt-5 text-mute leading-relaxed">{about.vision}</p>
-            <div className="mt-8 flex gap-3 flex-wrap"><Button href="/instructors?d=vocal" variant="outline">VOCAL INSTRUCTORS</Button><Button href="/instructors?d=dance" variant="outline">DANCE INSTRUCTORS</Button></div></Reveal>
+            <div className="mt-8"><Button href="/instructors" variant="outline">Meet our instructors</Button></div></Reveal>
         </div>
       </section>
       <LogoMarquee title="FEATURED ON" />
