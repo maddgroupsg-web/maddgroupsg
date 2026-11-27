@@ -16,13 +16,12 @@ export default function InstructorsPage() {
   return (
     <Shell>
       <section className="relative pt-28 lg:pt-36 pb-16 overflow-hidden">
-        <div className="container-x relative">
-          <Reveal>
-            <div className="eyebrow">MEET THE MENTORS</div>
-            <h1 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl">TRAIN WITH PEOPLE<br />WHO KNOW THE STAGE.</h1>
+        <div className="relative">
+          <div className="container-x"><Reveal className="text-center">
+            <h1 className="display display-hero">Train with people<br />who know the stage.</h1>
             <p className="mt-4 text-mute">Experienced instructors. Individual guidance. Real performance insight.</p>
-          </Reveal>
-          <div className="mt-6"><Suspense fallback={null}><InstructorCarousel /></Suspense></div>
+          </Reveal></div>
+          <div className="mt-10"><Suspense fallback={null}><InstructorCarousel /></Suspense></div>
         </div>
       </section>
       <section id="vocal-grid" className="py-16 border-t border-line scroll-mt-24">
