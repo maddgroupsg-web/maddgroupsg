@@ -3,7 +3,7 @@ import Image from "next/image";
 import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { idol } from "@/content/typepages";
-import { stories, everyChild } from "@/content/achievements";
+import { stories } from "@/content/achievements";
 import PillarsRamp from "@/components/PillarsRamp";
 import PageHero from "@/components/PageHero";
 import { heroLoops, byId } from "@/content/videos";
@@ -23,6 +23,7 @@ export default function Page() {
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button>
         <Button href="#who" variant="outline">WHO IS THIS FOR?</Button>
       </PageHero>
+      <LogoMarquee />
       <section id="who" className="py-16 lg:py-24 scroll-mt-20">
         <div className="container-x">
           <Reveal><SectionHeading title={idol.whoTitle} /><div className="mt-5 max-w-3xl space-y-3 text-mute leading-relaxed">{idol.who.map((p, i) => <p key={p} className={i === 0 ? "text-white text-lg font-semibold" : ""}>{p}</p>)}</div></Reveal>
@@ -51,8 +52,6 @@ export default function Page() {
         </section>
       ))}
       <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl">Give your Child the stage they deserve</h2><p className="mt-3 text-mute">These are not one-off experiences — they are part of a structured pathway we build for every student.</p></Reveal></div></section>
-      <LogoMarquee />
-      <section className="py-16 text-center bg-ink-2 border-t border-line"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
       <FinalCta image="/images/classes/age-10-18/age-10-18-09.jpg" />
     </Shell>
   );

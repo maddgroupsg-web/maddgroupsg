@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
-import { achievementsPage, stories, studentJourneys, everyChild } from "@/content/achievements";
-import { awards, BOOK_TRIAL_URL } from "@/content/site";
+import { achievementsPage, stories, studentJourneys } from "@/content/achievements";
+import { BOOK_TRIAL_URL } from "@/content/site";
 import { Reveal, SectionHeading, Button } from "@/components/ui";
 import LogoMarquee from "@/components/LogoMarquee";
+import AwardsRotator from "@/components/AwardsRotator";
 import VideoEmbed from "@/components/VideoEmbed";
 import FinalCta from "@/components/home/FinalCta";
 import { Globe, Trophy, GraduationCap, Theater } from "lucide-react";
@@ -31,6 +32,7 @@ export default function AchievementsPage() {
         </div>
       </section>
 
+      <LogoMarquee />
       <section className="py-16 border-y border-line bg-ink-2">
         <div className="container-x">
           <Reveal><SectionHeading title={achievementsPage.pillarsHeadline} sub={achievementsPage.pillarsSub} align="center" /></Reveal>
@@ -76,13 +78,11 @@ export default function AchievementsPage() {
           </>}
           <Reveal className={SHOW_JOURNEYS ? "mt-14" : ""}>
             <div className="text-center eyebrow">AWARDS & ACCREDITATIONS</div>
-            <div className="mt-6 grid grid-cols-3 sm:grid-cols-6 gap-4 items-center">{awards.map((a) => <div key={a.src} className="relative aspect-square"><Image src={a.src} alt={a.alt} fill sizes="200px" className="object-contain" /></div>)}</div>
+            <div className="mt-8"><AwardsRotator /></div>
           </Reveal>
         </div>
       </section>
 
-      <LogoMarquee />
-      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
       <FinalCta />
     </Shell>
   );

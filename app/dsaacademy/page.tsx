@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { dsa } from "@/content/typepages";
-import { everyChild } from "@/content/achievements";
 import ScaleInHero from "@/components/ScaleInHero";
 import { heroLoops, byId } from "@/content/videos";
 import LogoMarquee from "@/components/LogoMarquee";
@@ -25,6 +24,7 @@ export default function Page() {
         <Button href={DSA_ACADEMY_URL}>VISIT THE ACADEMY</Button>
         <Button href="/contact" variant="outline">BOOK A FREE DSA CONSULTATION</Button>
       </ScaleInHero>
+      <LogoMarquee />
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
         <div className="container-x">
           <Reveal><SectionHeading title={dsa.whyTitle} sub={dsa.whySub} /></Reveal>
@@ -38,8 +38,6 @@ export default function Page() {
           <div className="mt-12"><Reveal><Carousel images={g} alt="MADDspace DSA preparation students" /></Reveal></div>
         </div>
       </section>
-      <LogoMarquee />
-      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}</Reveal></div></section>
       <FinalCta image={g[0]} primary={{ label: "BOOK A FREE DSA CONSULTATION", href: "/contact" }} />
     </Shell>
   );
