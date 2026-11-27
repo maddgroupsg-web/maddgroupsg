@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui";
 import { contact, locations } from "@/content/site";
 import EnquiryForm from "@/components/EnquiryForm";
 import StudioPhotos from "@/components/StudioPhotos";
+import Image from "next/image";
 import { ArrowUpRight, Phone, Mail } from "lucide-react";
 import { WhatsAppIcon } from "@/components/Social";
 
@@ -17,13 +18,22 @@ const photos: Record<string, string[]> = { central: P("central", 6), west: P("we
 export default function ContactPage() {
   return (
     <Shell>
-      <section className="relative pt-28 lg:pt-36 pb-20">
+      {/* hero: the corridor at GR.ID with the neon sign, centred */}
+      <section className="relative flex min-h-[78svh] items-end overflow-hidden">
+        <Image src="/images/studios/contact-hero.jpg" alt="The corridor at MADDspace GR.ID with the neon sign: To sing, to dance, to act, this is MADDspace" fill priority sizes="100vw" className="object-cover object-center" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-ink/40" />
+        <div className="container-x relative pb-14 pt-40 text-center">
+          <Reveal>
+            <h1 className="display display-hero">Have any questions?</h1>
+            <p className="mx-auto mt-4 max-w-xl text-[15px] sm:text-base leading-relaxed text-white/80">If you got any questions, please do not hesitate to send us a message. We will reply as soon as possible!</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="relative pt-16 lg:pt-20 pb-20">
         <div className="container-x relative grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           <Reveal>
-            <h1 className="display">Have any questions?</h1>
-            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-mute">If you got any questions, please do not hesitate to send us a message. We will reply as soon as possible!</p>
-
-            <div className="mt-10 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/50">Address</div>
+            <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/50">Address</div>
             <ul className="mt-3 divide-y divide-white/10 border-y border-white/10">
               {locations.map((l, i) => (
                 <li key={l.key}>

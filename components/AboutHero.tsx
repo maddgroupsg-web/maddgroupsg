@@ -45,17 +45,20 @@ export default function AboutHero() {
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/40" />
 
       <div className="container-x relative z-10 flex min-h-[100svh] flex-col justify-between pt-32 pb-10 lg:pb-14">
-        <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/70">The MADD Group<span className="hidden sm:inline"> · Four pillars, one ecosystem</span></div>
+        <div>
+          <div className="font-display text-[clamp(1.25rem,0.9rem+1.4vw,2rem)] font-semibold leading-tight tracking-[-0.02em]">One group. <span className="text-[#e2b85f]">Four brands.</span> Endless possibilities.</div>
+          <div className="mt-2 text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-white/65">Learn. Achieve. Create. Launch.</div>
+        </div>
 
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <AnimatePresence mode="wait" initial={false}>
               <motion.div key={p.verb} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.6, ease: EASE }}>
                 <div className="flex items-center gap-3">
-                  <Image src={p.logo} alt="" width={120} height={120} className="h-9 w-auto object-contain" />
+                  <Image src={p.logo} alt="" width={160} height={160} className="h-14 sm:h-16 w-auto object-contain" />
                   <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/75">{p.name}</span>
                 </div>
-                <h1 className="mt-4 font-display text-[clamp(3.5rem,2rem+6vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.04em]">{p.verb}</h1>
+                <h1 className="mt-4 font-display text-[clamp(3.5rem,2rem+6vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] bg-clip-text text-transparent" style={{ backgroundImage: p.grad }}>{p.verb}</h1>
                 <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/75">{p.copy}</p>
                 <Link href={p.href} className="mt-5 inline-block text-[14px] font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">Explore {toSentence(p.name)}</Link>
               </motion.div>

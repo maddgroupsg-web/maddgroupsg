@@ -51,8 +51,9 @@ function Panel({ p, i, n, progress, reduce }: { p: Pillar; i: number; n: number;
         <motion.div className="absolute inset-0" style={still ? undefined : { filter }}>
           <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="(max-width: 1024px) 78vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
-        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-ink via-ink/85 to-transparent" />
+        <div className="absolute -inset-px bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
+        <div className="absolute -inset-x-px -bottom-px h-[60%] bg-gradient-to-t from-ink via-ink/85 to-transparent" />
+        <div className="absolute -inset-x-px -bottom-px h-6 bg-ink" />
         {i > 0 && <div className="hidden lg:block absolute inset-y-0 left-0 w-px bg-white/10" />}
         {p.logo && <div className="absolute top-4 right-4 lg:top-5 lg:right-5 h-14 w-14 sm:h-16 sm:w-16 lg:h-[72px] lg:w-[72px] flex items-start justify-end"><Image src={p.logo} alt="" width={160} height={160} className="max-h-full w-auto object-contain object-right-top drop-shadow-[0_2px_10px_rgba(0,0,0,.6)]" /></div>}
         <div className="absolute inset-x-0 top-[44%] px-5 lg:px-6">
