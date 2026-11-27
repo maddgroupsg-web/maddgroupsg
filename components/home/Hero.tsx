@@ -77,7 +77,7 @@ export default function Hero() {
               </motion.div>
 
               {/* trust: the Google rating */}
-              <motion.aside initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, delay: 0.15, ease: EASE }} className="w-fit border border-white/12 bg-ink/75 p-5 backdrop-blur-sm">
+              <motion.aside initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, delay: 0.15, ease: EASE }} className="w-fit">
                 <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="flex items-center gap-4 group" aria-label="MADDspace on Google">
                   <GoogleG size={34} />
                   <div>

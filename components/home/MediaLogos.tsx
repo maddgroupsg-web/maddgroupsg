@@ -13,7 +13,7 @@ export default function MediaLogos() {
         <div className="marquee-track items-center gap-20 px-10">
           {[...mediaLogos, ...mediaLogos].map((l, i) => (
             <div key={i} className="flex h-12 w-[170px] shrink-0 items-center justify-center">
-              <Image src={l.src} alt={i < mediaLogos.length ? l.name : ""} width={l.w} height={l.h} className="max-h-9 max-w-full w-auto object-contain opacity-60 grayscale" />
+              <Image src={l.src} alt={i < mediaLogos.length ? l.name : ""} width={l.w} height={l.h} className="max-h-9 max-w-full w-auto object-contain" />
             </div>
           ))}
         </div>
