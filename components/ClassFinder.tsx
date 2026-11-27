@@ -1,8 +1,9 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import BookTrialModal from "@/components/BookTrialModal";
 import { Calendar, Clock, MapPin, Users, Mic, Star, Music, Trophy, Sparkles } from "lucide-react";
 import { schedule, scheduleMeta, ageBands, type ClassSlot } from "@/content/schedule";
-import { BOOK_TRIAL_URL, locations } from "@/content/site";
+import { locations } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const interests = [
@@ -19,6 +20,8 @@ export default function ClassFinder() {
   const [loc, setLoc] = useState<"central" | "west" | null>(null);
   const [day, setDay] = useState<"Saturday" | "Sunday" | null>(null);
   const [view, setView] = useState<"recommended" | "all">("recommended");
+  const [booking, setBooking] = useState<ClassSlot | null>(null);
+  const closeBooking = useCallback(() => setBooking(null), []);
 
   const results = useMemo(() => {
     const band = age !== null ? ageBands[age] : null;
@@ -61,15 +64,16 @@ export default function ClassFinder() {
         <p className="mt-2 text-[11px] text-white/50">{scheduleMeta.title} · {scheduleMeta.trial} · {scheduleMeta.updated}</p>
         <div className="mt-4 space-y-3">
           {results.length === 0 && <div className="glass rounded-xl p-8 text-center text-mute">No class matches every filter yet. Try removing a filter, or <a className="text-cyan" href="/contact">chat with our team</a> — more classes after 16 Aug are coming soon.</div>}
-          {results.map((s, i) => <Row key={i} s={s} best={i === 0 && view === "recommended" && (age !== null || interest !== null)} />)}
+          {results.map((s, i) => <Row key={i} s={s} best={i === 0 && view === "recommended" && (age !== null || interest !== null)} onBook={() => setBooking(s)} />)}
         </div>
+        <BookTrialModal slot={booking} onClose={closeBooking} />
         <p className="mt-6 text-center text-sm text-white/70">Not sure which class to choose? <a href="/contact" className="text-cyan font-semibold">CHAT WITH OUR TEAM →</a></p>
       </div>
     </div>
   );
 }
 
-function Row({ s, best }: { s: ClassSlot; best: boolean }) {
+function Row({ s, best, onBook }: { s: ClassSlot; best: boolean; onBook: () => void }) {
   const locName = locations.find((l) => l.key === s.location)!;
   return (
     <article className={cn("glass rounded-xl p-4 sm:p-5 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center", best && "")}>
@@ -90,9 +94,9 @@ function Row({ s, best }: { s: ClassSlot; best: boolean }) {
       </div>
       <div className="flex sm:flex-col gap-2 sm:w-44">
         {s.status === "open" ? (
-          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-primary !py-2.5 text-[11px] flex-1">{s.audition ? "ENQUIRE / AUDITION" : "BOOK A TRIAL"}</a>
+          <button type="button" onClick={onBook} className="btn btn-primary !py-2.5 flex-1">{s.audition ? "Enquire / audition" : "Book a trial"}</button>
         ) : (
-          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 text-[11px] flex-1">JOIN WAITLIST</a>
+          <button type="button" onClick={onBook} className="btn btn-outline !py-2.5 flex-1">Join waitlist</button>
         )}
         <span className={cn("text-center text-[10px] tracking-[0.2em]", s.status === "open" ? "text-[#4ade80]" : "text-white/50")}>{s.status === "open" ? "● TRIAL SPOTS" : "WAITLIST"}</span>
       </div>

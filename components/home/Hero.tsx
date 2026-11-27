@@ -78,7 +78,7 @@ export default function Hero() {
               </motion.div>
 
               {/* trust: the Google rating */}
-              <motion.aside initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, delay: 0.15, ease: EASE }} className="w-fit">
+              <motion.aside initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, delay: 0.15, ease: EASE }} className="w-fit lg:mr-24 lg:mb-2">
                 <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="flex items-center gap-4 group" aria-label="MADDspace on Google">
                   <GoogleG size={34} />
                   <div>
@@ -86,7 +86,6 @@ export default function Hero() {
                     <div className="mt-1.5 text-[12px] text-white/60">{googleProfile.count} Google reviews</div>
                   </div>
                 </a>
-                <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="mt-4 block text-[12.5px] font-medium text-accent hover:text-white">Read all reviews on Google</a>
               </motion.aside>
             </div>
           </div>

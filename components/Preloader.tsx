@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 // Intro, once per browser session. Black stage; two spotlights swing in from the top corners and land on the
-// logo, which lights up; then the screen opens from the middle (top half up, bottom half down) onto the page.
+// logo, which lights up; then the screen opens from the middle (left half left, right half right) onto the page.
 const T = { beams: 0.3, lit: 1.15, open: 2.35, done: 3.3 }; // seconds
 const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 const SWING: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -42,8 +42,8 @@ export default function Preloader() {
     <AnimatePresence>
       {show && (
         <motion.div key="intro" className="fixed inset-0 z-[100] overflow-hidden select-none" onClick={skip} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} aria-hidden style={{ pointerEvents: open ? "none" : "auto" }}>
-          <Half side="top" open={open} />
-          <Half side="bottom" open={open} />
+          <Half side="left" open={open} />
+          <Half side="right" open={open} />
 
           {/* the two spotlights */}
           <motion.svg className="absolute inset-0 z-20 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: "blur(22px)", mixBlendMode: "screen" }} animate={{ opacity: open ? 0 : 1 }} transition={{ duration: 0.35 }}>
@@ -68,12 +68,12 @@ export default function Preloader() {
   );
 }
 
-function Half({ side, open }: { side: "top" | "bottom"; open: boolean }) {
+function Half({ side, open }: { side: "left" | "right"; open: boolean }) {
   return (
     <motion.div
-      className={`absolute left-0 right-0 z-10 h-1/2 bg-ink ${side === "top" ? "top-0" : "bottom-0"}`}
+      className={`absolute top-0 bottom-0 z-10 w-1/2 bg-ink ${side === "left" ? "left-0" : "right-0"}`}
       initial={false}
-      animate={open ? { y: side === "top" ? "-100%" : "100%" } : { y: 0 }}
+      animate={open ? { x: side === "left" ? "-100%" : "100%" } : { x: 0 }}
       transition={{ duration: 0.9, ease: EASE }}
     />
   );

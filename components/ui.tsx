@@ -16,7 +16,7 @@ export function Button({ href, children, variant = "primary", className, externa
 // Scroll-in reveal. When several Reveals sit side by side in the same parent, they queue left → right
 // automatically (each waits STEP s longer than the previous sibling), unless an explicit delay is given.
 const STEP = 0.09;
-export function Reveal({ children, className, delay, y = 16, once = true, stagger = true }: { children: ReactNode; className?: string; delay?: number; y?: number; once?: boolean; stagger?: boolean }) {
+export function Reveal({ children, className, delay, y = 16, x = 0, once = true, stagger = true, duration = 0.6 }: { children: ReactNode; className?: string; delay?: number; y?: number; x?: number; once?: boolean; stagger?: boolean; duration?: number }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [auto, setAuto] = useState(0);
@@ -28,7 +28,7 @@ export function Reveal({ children, className, delay, y = 16, once = true, stagge
     if (i > 0) setAuto(i * STEP);
   }, [delay, stagger]);
   return (
-    <motion.div ref={ref} data-reveal className={className} initial={reduce ? false : { opacity: 0, y }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once, margin: "-10% 0px" }} transition={{ duration: 0.6, delay: delay ?? auto, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.div ref={ref} data-reveal className={className} initial={reduce ? false : { opacity: 0, y, x }} whileInView={{ opacity: 1, y: 0, x: 0 }} viewport={{ once, margin: "-10% 0px" }} transition={{ duration, delay: delay ?? auto, ease: [0.22, 1, 0.36, 1] }}>
       {children}
     </motion.div>
   );

@@ -8,7 +8,7 @@ import { Reveal } from "@/components/ui";
 // other, sitting over a thin outlined frame. No cuts, no scrubbing. Ends with the four pillars of The MADD Group.
 export default function StoryReveal() {
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden border-t border-line" aria-label="How MADDspace came about">
+    <section className="relative py-20 lg:py-28 overflow-x-clip border-t border-line" aria-label="How MADDspace came about">
       <div className="container-x">
         <Reveal>
           <h2 className="display grid gap-1 lg:grid-cols-2 lg:gap-10">
@@ -22,7 +22,7 @@ export default function StoryReveal() {
             const flip = i % 2 === 1;
             return (
               <div key={s.title} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-24">
-                <Reveal className={flip ? "lg:order-2" : ""}>
+                <Reveal className={flip ? "lg:order-2" : ""} x={flip ? 90 : -90} y={0} duration={0.9} stagger={false}>
                   <div className="flex items-center gap-3 text-[12px] font-semibold tracking-[0.14em] uppercase text-white/55">
                     <span className="h-px w-8 bg-white/30" />{s.year}
                     {s.confirm && <span className="text-[9px] tracking-[0.2em] text-white/35">To confirm</span>}
@@ -32,7 +32,7 @@ export default function StoryReveal() {
                   </h3>
                   <p className="mt-4 max-w-md text-[15px] sm:text-base leading-relaxed text-mute">{s.line}</p>
                 </Reveal>
-                <Reveal delay={0.1} className={flip ? "lg:order-1" : ""}>
+                <Reveal delay={0.08} className={flip ? "lg:order-1" : ""} x={flip ? -90 : 90} y={0} duration={0.9}>
                   <div className={`relative ${flip ? "mr-6 sm:mr-10" : "ml-6 sm:ml-10"} mt-8`}>
                     {/* thin frame the photo sits over */}
                     <div className={`absolute -top-8 bottom-10 border border-white/15 ${flip ? "left-10 -right-6 sm:-right-10" : "-left-6 sm:-left-10 right-10"}`} aria-hidden />

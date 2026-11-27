@@ -8,3 +8,4 @@ next-env.d.ts
 .vercel
 # full-length videos are served from public/ but not tracked (too large for git) — see README
 public/videos/full/
+!.env.example
