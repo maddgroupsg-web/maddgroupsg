@@ -86,10 +86,10 @@ export const maddGroup = {
   tagline: "FOUR PILLARS. ONE ECOSYSTEM.",
   sub: "Built around the development of young performers and creatives.",
   pillars: [
-    { name: "MADDSPACE", verb: "LEARN", copy: "Performing arts education, certification and performances.", href: "/classes", image: "/images/classes/age-6-9/age-6-9-06.jpg", logo: "/images/brand/maddspace-logo.png" },
-    { name: "THE DSA ACADEMY", verb: "ACHIEVE", copy: "DSA preparation, auditions and portfolio building.", href: "/dsaacademy", image: "/images/classes/dsa/dsa-02.jpg", logo: "/images/brand/dsa-academy.png" },
-    { name: "IDOLLAB", verb: "CREATE", copy: "Recording, music production, filming and content.", href: "/idol-training-singapore#idollab", image: "/images/about/about-hero.jpg", logo: "/images/brand/idollab.png" },
-    { name: "MADD ENTERTAINMENT", verb: "LAUNCH", copy: "Artiste development, original music and auditions.", href: "/idol-training-singapore", image: "/images/classes/age-10-18/age-10-18-02.jpg", logo: "/images/brand/madd-entertainment.png" },
+    { name: "MADDSPACE", verb: "LEARN", copy: "Where young talents discover and develop their potential through exceptional training in Music, Dance, Drama and the Performing Arts.", grad: "linear-gradient(90deg,#22d3d3,#7ff0e6)", href: "/classes", image: "/images/classes/age-6-9/age-6-9-06.jpg", logo: "/images/brand/maddspace-logo.png" },
+    { name: "THE DSA ACADEMY", verb: "ACHIEVE", copy: "Helping students achieve their educational aspirations through specialised DSA preparation and portfolio development.", grad: "linear-gradient(90deg,#19c3c9,#7fd88a,#e9d84a)", href: "/dsaacademy", image: "/images/classes/dsa/dsa-02.jpg", logo: "/images/brand/dsa-academy.png" },
+    { name: "IDOLLAB", verb: "CREATE", copy: "Our in-house creative hub where our young artistes collaborate to create original music, content and creative productions.", grad: "linear-gradient(90deg,#a855f7,#ec4899,#f97316)", href: "/idol-training-singapore#idollab", image: "/images/about/about-hero.jpg", logo: "/images/brand/idollab.png" },
+    { name: "MADD ENTERTAINMENT", verb: "LAUNCH", copy: "Developing and launching the next generation of artistes through professional training, management and industry opportunities.", grad: "linear-gradient(90deg,#7c3aed,#c026d3,#f472b6)", href: "/idol-training-singapore", image: "/images/classes/age-10-18/age-10-18-02.jpg", logo: "/images/brand/madd-entertainment.png" },
   ],
   orbit: {
     headline: ["ONE STARTING POINT.", "MANY POSSIBILITIES."],
