@@ -52,12 +52,13 @@ function Panel({ p, i, n, progress, reduce }: { p: Pillar; i: number; n: number;
           <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="(max-width: 1024px) 78vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
+        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-ink via-ink/85 to-transparent" />
         {i > 0 && <div className="hidden lg:block absolute inset-y-0 left-0 w-px bg-white/10" />}
         {p.logo && <div className="absolute top-4 right-4 lg:top-5 lg:right-5 h-11 w-11 sm:h-12 sm:w-12 lg:h-14 lg:w-14 flex items-start justify-end"><Image src={p.logo} alt="" width={160} height={160} className="max-h-full w-auto object-contain object-right-top drop-shadow-[0_2px_10px_rgba(0,0,0,.6)]" /></div>}
         <div className="absolute inset-x-0 top-[50%] px-5 lg:px-6">
           <div className="font-display text-[2rem] lg:text-[clamp(1.9rem,2.6vw,2.5rem)] font-semibold leading-none tracking-[-0.03em] text-accent">{p.verb}</div>
           <div className="mt-2 font-display text-lg lg:text-[clamp(1rem,1.35vw,1.3rem)] font-semibold leading-tight tracking-[-0.02em] whitespace-nowrap">{toSentence(p.name)}</div>
-          <p className="mt-3 text-[13px] lg:text-[13.5px] leading-relaxed text-white/75 max-w-[30ch]">{p.copy}</p>
+          <p className="mt-3 min-h-[3.25em] text-[13px] lg:text-[13.5px] leading-relaxed text-white/80 max-w-[30ch] line-clamp-2">{p.copy}</p>
           <span className="mt-3 inline-block text-[13px] font-medium text-white underline decoration-white/40 underline-offset-4 group-hover:decoration-white">Explore</span>
         </div>
       </Link>
