@@ -51,7 +51,7 @@ export default function AboutPage() {
       <section className="py-20 lg:py-24 border-t border-line bg-ink-2">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal><SectionHeading eyebrow="ABOUT MADDSPACE" title={about.philosophyTitle} /><p className="mt-6 text-mute leading-relaxed">{about.philosophy}</p></Reveal>
-          <Reveal delay={0.1}><Carousel images={["/images/about/about-hero.jpg", "/images/about/about-1.jpg", "/images/about/about-2.jpg", "/images/about/about-3.jpg", "/images/about/about-4.jpg"]} alt="Inside MADDspace" aspect="aspect-[4/3]" slide="basis-[85%] sm:basis-[70%]" /></Reveal>
+          <Reveal delay={0.1}><Carousel images={["/images/about/about-hero.jpg", "/images/about/about-1.jpg", "/images/about/about-2.jpg", "/images/about/about-3.jpg", "/images/about/about-4.jpg"]} alt="Inside MADDspace" aspect="aspect-[4/3]" controls={false} slide="basis-[85%] sm:basis-[70%]" /></Reveal>
         </div>
       </section>
 
