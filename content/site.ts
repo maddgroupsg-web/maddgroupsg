@@ -41,7 +41,6 @@ export type NavItem = { label: string; href: string; children?: { group?: string
 
 export const nav: NavItem[] = [
   { label: "HOME", href: "/" },
-  { label: "DSA ACADEMY", href: "/dsaacademy" },
   {
     label: "PROGRAMMES",
     href: "/classes",
@@ -50,6 +49,7 @@ export const nav: NavItem[] = [
       { group: "BY AGE", label: "JUNIOR KIDS", href: "/junior-kids" },
       { group: "BY AGE", label: "PRETEENS/TEENS", href: "/preteens-teens-classes" },
       { group: "BY AGE", label: "YOUTH/ADULTS", href: "/youth-adults" },
+      { group: "BY TYPE", label: "DSA ACADEMY", href: "/dsaacademy" },
       { group: "BY TYPE", label: "IDOL ARTISTE TRAINING", href: "/idol-training-singapore" },
       { group: "BY TYPE", label: "SINGING", href: "/singing-classes-singapore" },
       { group: "BY TYPE", label: "HIP HOP", href: "/hiphop" },

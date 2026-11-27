@@ -87,6 +87,7 @@ const menuPhoto: Record<string, string> = {
   "/junior-kids": "/images/classes/age-6-9/age-6-9-06.jpg",
   "/preteens-teens-classes": "/images/classes/age-10-18/age-10-18-07.jpg",
   "/youth-adults": "/images/classes/age-18-35/age-18-35-02.jpg",
+  "/dsaacademy": "/images/video-posters/mts-2026-34-mixxie.jpg",
   "/idol-training-singapore": "/images/classes/age-10-18/age-10-18-02.jpg",
   "/singing-classes-singapore": "/images/classes/age-10-18/age-10-18-01.jpg",
   "/hiphop": "/images/video-posters/mj-2025-maddnificent.jpg",
