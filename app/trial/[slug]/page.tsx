@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { landings } from "@/content/landing";
-import { instructors } from "@/content/instructors";
 import { contact } from "@/content/site";
 import { Button, Reveal } from "@/components/ui";
 import { LearnGrid, PathSteps, TrialBox } from "@/components/Blocks";
@@ -11,6 +10,10 @@ import VideoEmbed from "@/components/VideoEmbed";
 import FAQ from "@/components/FAQ";
 import LogoMarquee from "@/components/LogoMarquee";
 import { WhatsAppIcon } from "@/components/Social";
+import { Suspense } from "react";
+import InstructorCarousel from "@/components/InstructorCarousel";
+import Testimonials from "@/components/home/Testimonials";
+import { toSentence } from "@/lib/utils";
 
 export function generateStaticParams() { return landings.map((l) => ({ slug: l.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -22,7 +25,6 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
   const { slug } = await params;
   const l = landings.find((x) => x.slug === slug);
   if (!l) notFound();
-  const mentors = l.mentors.instructorSlugs.map((s) => instructors.find((i) => i.slug === s)!).filter(Boolean);
   return (
     <div data-theme={l.theme} className="min-h-screen bg-ink text-white">
       {/* minimal campaign nav */}
@@ -60,16 +62,18 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
       <LearnGrid title={l.learn.headline} items={l.learn.items} images={l.learn.items.map((i) => i.image)} />
       <PathSteps title={l.journey.headline} steps={l.journey.steps} images={l.journey.steps.map((s) => s.image)} />
 
-      {/* Mentors */}
-      <section className="py-16 lg:py-24">
-        <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <Reveal><div className="eyebrow">{l.mentors.eyebrow}</div><h2 className="display mt-3 text-5xl sm:text-6xl">{l.mentors.headline}</h2><p className="mt-4 text-mute">{l.mentors.copy}</p><div className="mt-6"><Button href="/instructors" variant="outline">MEET THE INSTRUCTORS</Button></div></Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">{mentors.map((m, i) => <Reveal key={m.slug} delay={i * 0.09}><figure className="rounded-lg overflow-hidden border border-line bg-ink-3"><div className="relative aspect-[3/4]"><Image src={m.image} alt={m.name} fill sizes="25vw" className="object-cover object-top" /></div><figcaption className="p-3"><div className="font-semibold text-sm uppercase">{m.name}</div><div className="text-[10px] tracking-wider uppercase text-accent">{m.role}</div></figcaption></figure></Reveal>)}</div>
+      {/* Instructors: the same scrolling carousel as the Instructors page */}
+      <section className="py-16 lg:py-24 overflow-hidden">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <h2 className="display">{toSentence(l.mentors.headline)}</h2>
+            <p className="mt-4 text-mute">{l.mentors.copy}</p>
+          </Reveal>
         </div>
+        <div className="mt-10"><Suspense fallback={null}><InstructorCarousel initial={l.slug === "kpop" || l.slug === "hiphop" ? "dance" : "vocal"} /></Suspense></div>
       </section>
 
-      {/* Quote */}
-      <section className="py-16 bg-ink-2 relative overflow-hidden"><div className="container-x relative text-center max-w-3xl mx-auto"><Reveal><div className="eyebrow">PARENTS SAY IT BEST</div><blockquote className="mt-5 text-2xl sm:text-3xl italic leading-relaxed">“{l.quote.text}”</blockquote><div className="mt-4 text-xs tracking-[0.2em] uppercase text-accent">— {l.quote.name}</div></Reveal></div></section>
+      <Testimonials />
 
       <TrialBox title={l.trial.headline} lead={l.trial.copy} included={l.trial.included} meta={l.trial.price} guarantee={l.trial.guarantee} cta={l.trial.cta} url={l.trial.url} />
 

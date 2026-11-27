@@ -13,9 +13,10 @@ const EVERY = 4000; // ms between automatic moves
 
 // Instructors as a centred carousel of tall portrait cards. The middle card is in full colour; the cards either
 // side are greyed and dimmed. It glides on by itself, pauses on hover, and the arrows sit underneath.
-export default function InstructorCarousel() {
+export default function InstructorCarousel({ initial = "vocal" }: { initial?: "vocal" | "dance" }) {
   const params = useSearchParams();
-  const wanted = params.get("d") === "dance" ? "dance" : "vocal";
+  const d = params.get("d");
+  const wanted = d === "dance" || d === "vocal" ? d : initial;
   // the URL (?d=vocal|dance) picks the discipline; the toggle can override it until the URL changes again
   const [pick, setPick] = useState<{ when: string; val: (typeof filters)[number]["key"] } | null>(null);
   const filter = pick && pick.when === wanted ? pick.val : wanted;
