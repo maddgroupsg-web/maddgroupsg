@@ -65,7 +65,7 @@ export default function ClassesTiles() {
           {tiles.map((t, i) => (
             <Reveal key={t.title} delay={i * 0.07}>
               <Link href={t.href} onMouseEnter={() => enter(i)} onFocus={() => enter(i)} onBlur={() => setHov(null)}
-                className={cn("group relative block aspect-[4/5] overflow-hidden transition-all duration-500", hov !== null && hov !== i && "opacity-45 grayscale")}>
+                className={cn("group relative block aspect-[4/5] overflow-hidden transition-all duration-500", hov !== null && hov !== i && "brightness-[0.3] grayscale")}>
                 <Image src={t.image} alt={t.alt} fill sizes="(max-width: 1024px) 50vw, 20vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/10 to-ink/40" />
                 <h3 className="absolute left-4 top-4 right-4 sm:left-5 sm:top-5 font-display text-[15px] sm:text-lg font-semibold uppercase leading-tight tracking-[0.02em]">{toSentence(t.title)}<span className="mt-1 block text-[11px] font-medium normal-case tracking-normal text-white/70 lg:hidden">{t.sub}</span></h3>

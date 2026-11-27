@@ -22,7 +22,7 @@ export default function MaddGroupPanels() {
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
           <h2 className="display">The MADD Group</h2>
-          <p className="mt-3 text-lg sm:text-xl text-white/60">More than a performing arts school.</p>
+          <p className="mt-3 text-lg sm:text-xl font-medium text-white/80">One group. <span className="text-[#e2b85f]">Four brands.</span> Endless possibilities.</p>
           <p className="mt-4 text-mute [@media(max-height:760px)]:hidden">{maddGroup.copy[0]}</p>
         </Reveal>
 
