@@ -20,16 +20,16 @@ export default function Page() {
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button>
         <Button href="#programmes" variant="outline">SEE PROGRAMMES</Button>
       </PageHero>
-      <section className="py-16 border-b border-line">
-        <div className="container-x">
-          <Reveal><SectionHeading eyebrow="IN CLASS & ON STAGE" title="OUR STUDENTS" sub="Real MADDspace students from this age group — in class, at showcases and on stage." /></Reveal>
-          <div className="mt-8"><Carousel images={images} alt={"MADDspace " + page.h1 + " students"} /></div>
-        </div>
-      </section>
       <section id="programmes" className="py-16 lg:py-20 scroll-mt-20">
         <div className="container-x">
           <Reveal><SectionHeading eyebrow="PROGRAMMES" title="WHAT WE OFFER" /></Reveal>
           <div className="mt-8"><ProgrammeList items={page.items} galleryImages={images} /></div>
+        </div>
+      </section>
+      <section className="py-16 border-t border-line">
+        <div className="container-x">
+          <Reveal><SectionHeading eyebrow="IN CLASS & ON STAGE" title="OUR STUDENTS" sub="Real MADDspace students from this age group — in class, at showcases and on stage." /></Reveal>
+          <div className="mt-8"><Carousel images={images} alt={"MADDspace " + page.h1 + " students"} /></div>
         </div>
       </section>
       <FinalCta image={images[images.length - 1]} />
