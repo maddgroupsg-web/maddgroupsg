@@ -51,7 +51,7 @@ export default function PerformancesGallery() {
             </label>
           </div>
           <p className="mt-5 text-xs text-white/50">{list.length} video{list.length === 1 ? "" : "s"}</p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid gap-4 grid-cols-2 lg:grid-cols-4">
             {list.map((v) => <VideoCard key={v.slug} v={v} onOpen={() => setOpen(v)} className="!w-full !shrink" />)}
           </div>
           {list.length === 0 && <p className="mt-8 text-sm text-white/60">No performances match. Try another word or clear the filters.</p>}
