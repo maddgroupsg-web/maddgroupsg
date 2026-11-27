@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight, Mic, Music2, Pause, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Mic, Music2, Pause, Play, Ticket, User } from "lucide-react";
+import { BOOK_TRIAL_URL } from "@/content/site";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { instructors, type Instructor } from "@/content/instructors";
@@ -64,24 +65,42 @@ export default function InstructorCarousel() {
 
 function Card({ p, active, onPick, paused, onPause }: { p: Instructor; active: boolean; onPick: () => void; paused: boolean; onPause: () => void }) {
   const mp4 = p.video && !/youtu/.test(p.video) ? p.video : null;
+  const [open, setOpen] = useState(false);
+  const shown = active && open; // the details panel only ever shows on the middle card
   return (
     <div className="min-w-0 shrink-0 grow-0 basis-[72%] sm:basis-[44%] lg:basis-[30%] xl:basis-[26%] px-2 sm:px-3">
-      <div onClick={active ? undefined : onPick}
-        className={cn("group relative aspect-[3/4.3] overflow-hidden bg-ink-3 transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]", active ? "scale-100 opacity-100" : "scale-[0.93] opacity-45 grayscale cursor-pointer hover:opacity-70")}
-        onMouseEnter={(e) => { if (active) e.currentTarget.querySelector("video")?.play().catch(() => {}); }}
-        onMouseLeave={(e) => { const v = e.currentTarget.querySelector("video"); if (v) { v.pause(); v.currentTime = 0; } }}>
+      <div onClick={active ? () => setOpen((v) => !v) : onPick}
+        className={cn("group relative aspect-[3/4.3] overflow-hidden bg-ink-3 transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]", active ? "scale-100 opacity-100 cursor-pointer" : "scale-[0.93] opacity-45 grayscale cursor-pointer hover:opacity-70")}
+        onPointerEnter={(e) => { if (!active || e.pointerType !== "mouse") return; setOpen(true); e.currentTarget.querySelector("video")?.play().catch(() => {}); }}
+        onPointerLeave={(e) => { if (e.pointerType !== "mouse") return; setOpen(false); const v = e.currentTarget.querySelector("video"); if (v) { v.pause(); v.currentTime = 0; } }}>
         <Image src={p.image} alt={p.name} fill sizes="(max-width: 640px) 72vw, (max-width: 1024px) 44vw, 30vw" className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" />
         {mp4 && <video src={mp4} muted loop playsInline preload="none" className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" />}
         <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
         {active && (
-          <button type="button" onClick={onPause} aria-label={paused ? "Play carousel" : "Pause carousel"} className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center bg-ink/50 text-white/80 backdrop-blur-sm hover:text-white">
+          <button type="button" onClick={(e) => { e.stopPropagation(); onPause(); }} aria-label={paused ? "Play carousel" : "Pause carousel"} className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center bg-ink/50 text-white/80 backdrop-blur-sm hover:text-white">
             {paused ? <Play size={14} fill="currentColor" /> : <Pause size={14} fill="currentColor" />}
           </button>
         )}
-        <div className="absolute inset-x-0 bottom-0 p-6 text-center">
+
+        {/* name, role and a hint, until the panel opens */}
+        <div className={cn("absolute inset-x-0 bottom-0 p-6 text-center transition-opacity duration-300", shown ? "opacity-0" : "opacity-100")}>
           <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/65">{p.role}</div>
           <div className="mt-2 font-display text-2xl sm:text-[1.7rem] font-semibold leading-tight tracking-[-0.02em]">{p.name}</div>
-          {active && p.specialities && <div className="mt-3 flex flex-wrap justify-center gap-1.5">{p.specialities.map((s) => <span key={s} className="border border-white/25 px-2 py-0.5 text-[11px] text-white/80">{s}</span>)}</div>}
+          {active && <div className="mt-3 text-[12px] text-white/55"><span className="sm:hidden">Tap to discover +</span><span className="hidden sm:inline">Hover to discover +</span></div>}
+        </div>
+
+        {/* details panel */}
+        <div className={cn("absolute inset-x-0 bottom-0 bg-ink/90 p-6 backdrop-blur-sm transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)]", shown ? "translate-y-0" : "translate-y-full")} onClick={(e) => e.stopPropagation()} aria-hidden={!shown}>
+          <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">{p.role}</div>
+          <div className="mt-1.5 font-display text-2xl font-semibold leading-tight tracking-[-0.02em]">{p.name}</div>
+          {p.specialities && <div className="mt-3 flex flex-wrap gap-1.5">{p.specialities.map((sp) => <span key={sp} className="border border-white/25 px-2 py-0.5 text-[11px] text-white/80">{sp}</span>)}</div>}
+          <div className="mt-5 grid gap-2">
+            <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" tabIndex={shown ? 0 : -1} className="btn btn-primary w-full !py-2.5"><Ticket size={14} /><span className="btn-label" data-text="Book a trial"><span>Book a trial</span></span></a>
+            <div className="grid grid-cols-2 gap-2">
+              <a href="/allclasses-schedule" tabIndex={shown ? 0 : -1} className="btn btn-outline w-full !py-2.5 !px-2"><CalendarDays size={14} /><span className="btn-label" data-text="See classes"><span>See classes</span></span></a>
+              <a href="/contact" tabIndex={shown ? 0 : -1} className="btn btn-outline w-full !py-2.5 !px-2"><User size={14} /><span className="btn-label" data-text="Enquire"><span>Enquire</span></span></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

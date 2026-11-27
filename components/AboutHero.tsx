@@ -55,7 +55,7 @@ export default function AboutHero() {
                   <Image src={p.logo} alt="" width={120} height={120} className="h-9 w-auto object-contain" />
                   <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/75">{p.name}</span>
                 </div>
-                <h1 className="mt-4 font-display text-[clamp(3.5rem,2rem+6vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.04em]">{toSentence(p.verb)}</h1>
+                <h1 className="mt-4 font-display text-[clamp(3.5rem,2rem+6vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.04em]">{p.verb}</h1>
                 <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/75">{p.copy}</p>
                 <Link href={p.href} className="mt-5 inline-block text-[14px] font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">Explore {toSentence(p.name)}</Link>
               </motion.div>
@@ -74,7 +74,7 @@ export default function AboutHero() {
                   <Image src={byId(clips[q.verb]).poster} alt="" fill sizes="180px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-ink/30 transition-colors group-hover:bg-ink/0" />
                 </div>
-                <div className="mt-2 text-[13px] font-medium text-white/85">{toSentence(q.verb)}</div>
+                <div className="mt-2 text-[13px] font-medium text-white/85">{q.verb}</div>
                 <div className="hidden sm:block text-[10.5px] uppercase tracking-[0.12em] text-white/45">{q.name}</div>
               </button>
             ))}

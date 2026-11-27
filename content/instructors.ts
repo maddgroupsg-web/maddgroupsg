@@ -6,6 +6,7 @@ export type Instructor = {
   image: string;
   video?: string; // mp4 path or YouTube URL — drop in when available
   specialities?: string[];
+  bio?: string; // short write-up, to be supplied by MADDspace
 };
 
 export const instructors: Instructor[] = [

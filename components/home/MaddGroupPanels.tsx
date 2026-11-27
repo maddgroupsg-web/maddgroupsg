@@ -18,7 +18,7 @@ export default function MaddGroupPanels() {
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
   return (
     <section id="madd-group" ref={section} className={reduce ? "relative" : "relative lg:h-[260vh]"}>
-      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:pt-28 lg:pb-6 lg:flex lg:flex-col lg:justify-center"}`}>
+      <div className={`relative overflow-hidden ${reduce ? "py-20" : "py-20 lg:py-0 lg:sticky lg:top-0 lg:h-[100svh] lg:pt-[124px] lg:pb-6 lg:flex lg:flex-col lg:justify-start"}`}>
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
           <h2 className="display">The MADD Group</h2>
@@ -55,7 +55,7 @@ function Panel({ p, i, n, progress, reduce }: { p: Pillar; i: number; n: number;
         {i > 0 && <div className="hidden lg:block absolute inset-y-0 left-0 w-px bg-white/10" />}
         {p.logo && <div className="absolute top-4 right-4 lg:top-5 lg:right-5 h-11 w-11 sm:h-12 sm:w-12 lg:h-14 lg:w-14 flex items-start justify-end"><Image src={p.logo} alt="" width={160} height={160} className="max-h-full w-auto object-contain object-right-top drop-shadow-[0_2px_10px_rgba(0,0,0,.6)]" /></div>}
         <div className="absolute inset-x-0 top-[50%] px-5 lg:px-6">
-          <div className="font-display text-[2rem] lg:text-[clamp(1.9rem,2.6vw,2.5rem)] font-semibold leading-none tracking-[-0.03em] text-accent">{toSentence(p.verb)}</div>
+          <div className="font-display text-[2rem] lg:text-[clamp(1.9rem,2.6vw,2.5rem)] font-semibold leading-none tracking-[-0.03em] text-accent">{p.verb}</div>
           <div className="mt-2 font-display text-lg lg:text-[clamp(1rem,1.35vw,1.3rem)] font-semibold leading-tight tracking-[-0.02em] whitespace-nowrap">{toSentence(p.name)}</div>
           <p className="mt-3 text-[13px] lg:text-[13.5px] leading-relaxed text-white/75 max-w-[30ch]">{p.copy}</p>
           <span className="mt-3 inline-block text-[13px] font-medium text-white underline decoration-white/40 underline-offset-4 group-hover:decoration-white">Explore</span>
