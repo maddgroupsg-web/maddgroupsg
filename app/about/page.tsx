@@ -6,6 +6,7 @@ import { about, leader } from "@/content/team";
 import { Reveal, SectionHeading, Button } from "@/components/ui";
 import TeamCarousel from "@/components/TeamCarousel";
 import StoryReveal from "@/components/StoryReveal";
+import AboutHero from "@/components/AboutHero";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import FinalCta from "@/components/home/FinalCta";
@@ -16,12 +17,13 @@ export const metadata: Metadata = { title: seo["/about"].title, description: seo
 export default function AboutPage() {
   return (
     <Shell>
-      {/* Leadership hero — reference: "Building confidence. Creating opportunity." */}
-      <section className="relative pt-28 lg:pt-36 pb-10 overflow-hidden">
+      <AboutHero />
+      {/* Leadership — "Building confidence. Creating opportunity." */}
+      <section className="relative pt-20 lg:pt-28 pb-10 overflow-hidden">
         <div className="container-x relative grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           <Reveal>
             <div className="eyebrow">THE PEOPLE BEHIND THE STAGE</div>
-            <h1 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl">BUILDING CONFIDENCE.<br />CREATING OPPORTUNITY.</h1>
+            <h2 className="display mt-3">Building confidence.<br />Creating opportunity.</h2>
             <p className="mt-4 text-mute max-w-md">Meet the people working together to educate, develop and inspire every MADDspace student.</p>
           </Reveal>
           <Reveal delay={0.1} className="mx-auto">
