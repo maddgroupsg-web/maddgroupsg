@@ -13,6 +13,9 @@ import { Globe, Trophy, GraduationCap, Theater } from "lucide-react";
 export const metadata: Metadata = { title: seo["/achievements"].title, description: seo["/achievements"].description, alternates: { canonical: "/achievements" } };
 const icons = [Globe, Trophy, GraduationCap, Theater];
 
+// Student journey stories (Jordin Tan, Emma Wan) are hidden for now. Set to true to show them again.
+const SHOW_JOURNEYS = false;
+
 export default function AchievementsPage() {
   return (
     <Shell>
@@ -56,6 +59,7 @@ export default function AchievementsPage() {
 
       <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
         <div className="container-x">
+          {SHOW_JOURNEYS && <>
           <Reveal><SectionHeading eyebrow="STUDENT ACHIEVEMENTS & RESULTS" title="Give your Child the stage they deserve" sub="These are not one-off experiences — they are part of a structured pathway we build for every student." /></Reveal>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {studentJourneys.map((j) => (
@@ -69,7 +73,8 @@ export default function AchievementsPage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-14">
+          </>}
+          <Reveal className={SHOW_JOURNEYS ? "mt-14" : ""}>
             <div className="text-center eyebrow">AWARDS & ACCREDITATIONS</div>
             <div className="mt-6 grid grid-cols-3 sm:grid-cols-6 gap-4 items-center">{awards.map((a) => <div key={a.src} className="relative aspect-square"><Image src={a.src} alt={a.alt} fill sizes="200px" className="object-contain" /></div>)}</div>
           </Reveal>
