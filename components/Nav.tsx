@@ -54,7 +54,7 @@ export default function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px] whitespace-nowrap">Book a trial</a>
+          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px] whitespace-nowrap"><span className="btn-label" data-text="Book a trial">Book a trial</span></a>
           <button className="lg:hidden p-2 text-white" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
         </div>
       </div>
@@ -84,7 +84,7 @@ export default function Nav() {
               </div>
             ))}
             <div className="mt-6 flex flex-col gap-3">
-              <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-primary">Book a trial class</a>
+              <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-primary"><span className="btn-label" data-text="Book a trial class">Book a trial class</span></a>
               <a href={`https://wa.me/${contact.whatsappIntl}`} className="btn btn-outline"><WhatsAppIcon size={16} /> WHATSAPP {contact.whatsapp}</a>
             </div>
           </div>

@@ -1,19 +1,22 @@
 import Image from "next/image";
 import { mediaLogos } from "@/content/site";
+import { Reveal, SectionHeading } from "@/components/ui";
 
-// Plain, static strip of the media logos. No movement, no slant.
+// Media logos under a normal section heading, moving in a straight strip.
 export default function MediaLogos() {
   return (
-    <section className="border-b border-line" aria-label="As featured on">
-      <div className="container-x py-8 flex flex-col lg:flex-row lg:items-center gap-6">
-        <div className="eyebrow shrink-0 text-white/45">As featured on</div>
-        <ul className="flex flex-1 flex-wrap items-center justify-center lg:justify-between gap-x-10 gap-y-6">
-          {mediaLogos.map((l) => (
-            <li key={l.name} className="flex h-9 items-center">
-              <Image src={l.src} alt={l.name} width={l.w} height={l.h} className="max-h-8 w-auto object-contain opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0" />
-            </li>
+    <section className="py-16 lg:py-20 border-b border-line">
+      <div className="container-x">
+        <Reveal><SectionHeading align="center" title="AS FEATURED ON LEADING MEDIA PLATFORMS" /></Reveal>
+      </div>
+      <div className="marquee relative mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+        <div className="marquee-track items-center gap-20 px-10">
+          {[...mediaLogos, ...mediaLogos].map((l, i) => (
+            <div key={i} className="flex h-12 w-[170px] shrink-0 items-center justify-center">
+              <Image src={l.src} alt={i < mediaLogos.length ? l.name : ""} width={l.w} height={l.h} className="max-h-9 max-w-full w-auto object-contain opacity-60 grayscale" />
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

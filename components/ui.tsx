@@ -8,7 +8,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 export function Button({ href, children, variant = "primary", className, external, ...rest }: { href: string; children: ReactNode; variant?: "primary" | "outline" | "ghost"; className?: string; external?: boolean }) {
   const cls = cn("btn", variant === "primary" && "btn-primary", variant === "outline" && "btn-outline", variant === "ghost" && "btn-ghost", className);
   const ext = external ?? /^https?:/.test(href);
-  const label = typeof children === "string" ? toSentence(children) : children;
+  const label = typeof children === "string" ? <span className="btn-label" data-text={toSentence(children)}>{toSentence(children)}</span> : children;
   if (ext) return <a href={href} target="_blank" rel="noopener" className={cls} {...rest}>{label}{variant === "ghost" && <ArrowRight size={16} />}</a>;
   return <Link href={href} className={cls} {...rest}>{label}{variant === "ghost" && <ArrowRight size={16} />}</Link>;
 }
@@ -37,7 +37,6 @@ export function Reveal({ children, className, delay, y = 16, once = true, stagge
 export function SectionHeading({ eyebrow, title, sub, align = "left", className, as: Tag = "h2" }: { eyebrow?: string; title: ReactNode; sub?: ReactNode; align?: "left" | "center"; className?: string; as?: "h1" | "h2" | "h3" }) {
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && <div className="eyebrow mb-3">{eyebrow}</div>}
       <Tag className="display">{typeof title === "string" ? toSentence(title) : title}</Tag>
       {sub && <p className="mt-3 text-mute text-[15px] sm:text-base leading-relaxed">{sub}</p>}
     </div>

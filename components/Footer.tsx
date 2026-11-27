@@ -28,7 +28,7 @@ export default function Footer() {
           <span>GR.ID Central · The Chevrons West</span>
         </div>
       </div>
-      <a href={`https://wa.me/${contact.whatsappIntl}`} target="_blank" rel="noopener" aria-label="WhatsApp MADDspace" className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/40 hover:scale-105 transition-transform">
+      <a href={`https://wa.me/${contact.whatsappIntl}`} target="_blank" rel="noopener" aria-label="WhatsApp MADDspace" className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center bg-[#25D366] text-white shadow-lg shadow-black/40 hover:scale-105 transition-transform" style={{ borderRadius: 9999 }}>
         <WhatsAppIcon size={30} />
       </a>
     </footer>
