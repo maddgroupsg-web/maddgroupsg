@@ -61,17 +61,15 @@ export default function ClassesTiles() {
           </div>
           <div className="mt-8"><Button href="/classes" variant="outline">EXPLORE ALL PROGRAMMES</Button></div>
         </Reveal>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4" onMouseLeave={() => setHov(null)}>
+        <div className="grid grid-cols-2 lg:grid-cols-3" onMouseLeave={() => setHov(null)}>
           {tiles.map((t, i) => (
             <Reveal key={t.title} delay={i * 0.07}>
               <Link href={t.href} onMouseEnter={() => enter(i)} onFocus={() => enter(i)} onBlur={() => setHov(null)}
-                className={cn("group relative block aspect-[4/5] overflow-hidden border transition-all duration-500", hov === null ? "border-line" : hov === i ? "border-white/70" : "border-white/10 opacity-55")}>
+                className={cn("group relative block aspect-[4/5] overflow-hidden transition-all duration-500", hov !== null && hov !== i && "opacity-45 grayscale")}>
                 <Image src={t.image} alt={t.alt} fill sizes="(max-width: 1024px) 50vw, 20vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
-                  <h3 className="font-display text-lg sm:text-xl font-semibold leading-tight tracking-[-0.02em]">{toSentence(t.title)}</h3>
-                  <div className="mt-1 text-[12px] text-white/70">{t.sub}</div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/10 to-ink/40" />
+                <h3 className="absolute left-4 top-4 right-4 sm:left-5 sm:top-5 font-display text-[15px] sm:text-lg font-semibold uppercase leading-tight tracking-[0.02em]">{toSentence(t.title)}<span className="mt-1 block text-[11px] font-medium normal-case tracking-normal text-white/70 lg:hidden">{t.sub}</span></h3>
+                <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 hidden lg:block w-max max-w-[calc(125%-96px)] origin-bottom-left -rotate-90 translate-x-[1.5em] text-[10.5px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/70">{t.sub}</div>
               </Link>
             </Reveal>
           ))}
