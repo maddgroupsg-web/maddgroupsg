@@ -19,13 +19,13 @@ export default function ContactPage() {
   return (
     <Shell>
       {/* hero: the corridor at GR.ID with the neon sign, centred */}
-      <section className="relative flex min-h-[78svh] items-end overflow-hidden">
-        <Image src="/images/studios/contact-hero.jpg" alt="The corridor at MADDspace GR.ID with the neon sign: To sing, to dance, to act, this is MADDspace" fill priority sizes="100vw" className="object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-ink/40" />
-        <div className="container-x relative pb-14 pt-40 text-center">
+      <section className="relative flex h-[64svh] min-h-[500px] max-h-[720px] items-end overflow-hidden">
+        <Image src="/images/studios/contact-hero.jpg" alt="The corridor at MADDspace GR.ID with the neon sign: To sing, to dance, to act, this is MADDspace" fill priority sizes="100vw" className="object-cover object-[50%_66%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-ink/40" />
+        <div className="container-x relative pb-8 lg:pb-10 text-center">
           <Reveal>
-            <h1 className="display display-hero">Have any questions?</h1>
-            <p className="mx-auto mt-4 max-w-xl text-[15px] sm:text-base leading-relaxed text-white/80">If you got any questions, please do not hesitate to send us a message. We will reply as soon as possible!</p>
+            <h1 className="display">Have any questions?</h1>
+            <p className="mx-auto mt-3 max-w-xl text-[15px] sm:text-base leading-relaxed text-white/80">If you got any questions, please do not hesitate to send us a message. We will reply as soon as possible!</p>
           </Reveal>
         </div>
       </section>
