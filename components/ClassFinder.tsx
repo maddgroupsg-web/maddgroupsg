@@ -72,7 +72,7 @@ export default function ClassFinder() {
 function Row({ s, best }: { s: ClassSlot; best: boolean }) {
   const locName = locations.find((l) => l.key === s.location)!;
   return (
-    <article className={cn("glass rounded-xl p-4 sm:p-5 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center", best && "glow-border")}>
+    <article className={cn("glass rounded-xl p-4 sm:p-5 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center", best && "")}>
       <div>
         <div className="flex flex-wrap items-center gap-2">
           {best && <span className="rounded bg-cyan px-2 py-0.5 text-[10px] font-bold tracking-widest text-ink">BEST MATCH</span>}

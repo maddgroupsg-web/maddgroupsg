@@ -8,7 +8,7 @@ import { heroLoops, byId } from "@/content/videos";
 import LogoMarquee from "@/components/LogoMarquee";
 import Carousel from "@/components/Carousel";
 import FinalCta from "@/components/home/FinalCta";
-import { Button, Reveal, SectionHeading, Words } from "@/components/ui";
+import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { DSA_ACADEMY_URL } from "@/content/site";
 import { galleryFor } from "@/content/programmes";
 import { GraduationCap, Trophy, Award, BarChart3 } from "lucide-react";
@@ -39,7 +39,7 @@ export default function Page() {
         </div>
       </section>
       <LogoMarquee />
-      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl"><Words>{everyChild.headline}</Words></h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}</Reveal></div></section>
+      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}</Reveal></div></section>
       <FinalCta image={g[0]} primary={{ label: "BOOK A FREE DSA CONSULTATION", href: "/contact" }} />
     </Shell>
   );

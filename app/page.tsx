@@ -2,11 +2,11 @@ import Shell from "@/components/Shell";
 import Hero from "@/components/home/Hero";
 import MaddGroupPanels from "@/components/home/MaddGroupPanels";
 import ClassesTiles from "@/components/home/ClassesTiles";
-import Journeys from "@/components/home/Journeys";
 import VideoCarousel from "@/components/home/VideoCarousel";
 import Testimonials from "@/components/home/Testimonials";
-import ShowcaseWall from "@/components/home/ShowcaseWall";
 import FinalCta from "@/components/home/FinalCta";
+import MediaLogos from "@/components/home/MediaLogos";
+import PerformancesPreview from "@/components/home/PerformancesPreview";
 import Preloader from "@/components/Preloader";
 
 export default function Home() {
@@ -14,11 +14,11 @@ export default function Home() {
     <Shell>
       <Preloader />
       <Hero />
-      <ShowcaseWall />
+      <MediaLogos />
       <MaddGroupPanels />
       <ClassesTiles />
       <VideoCarousel />
-      <Journeys />
+      <PerformancesPreview />
       <Testimonials />
       <FinalCta />
     </Shell>

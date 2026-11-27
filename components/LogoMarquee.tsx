@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { mediaLogos } from "@/content/site";
-import { Words } from "@/components/ui";
+
 
 export default function LogoMarquee({ title = "AS FEATURED IN LEADING MEDIA PLATFORMS", sub = "MADDspace has been featured across major media platforms for our students' performances, achievements and unique training approach for DSA", compact = false }: { title?: string; sub?: string; compact?: boolean }) {
   const logos = [...mediaLogos, ...mediaLogos];
@@ -9,7 +9,7 @@ export default function LogoMarquee({ title = "AS FEATURED IN LEADING MEDIA PLAT
       <div className="container-x text-center">
         {!compact && <div className="eyebrow mb-3">RECOGNISED BY LEADING MEDIA</div>}
         {compact && <h2 className="text-[11px] sm:text-xs tracking-[0.35em] text-white/55 uppercase">{title}</h2>}
-        {!compact && <h2 className="display text-4xl sm:text-6xl"><Words>{title}</Words></h2>}
+        {!compact && <h2 className="display text-4xl sm:text-6xl">{title}</h2>}
         {sub && !compact && <p className="mt-4 max-w-2xl mx-auto text-mute">{sub}</p>}
       </div>
       <div className={`marquee relative ${compact ? "mt-8" : "mt-10"} overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]`}>

@@ -4,7 +4,7 @@ import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { achievementsPage, stories, studentJourneys, everyChild } from "@/content/achievements";
 import { awards, BOOK_TRIAL_URL } from "@/content/site";
-import { Reveal, SectionHeading, Button, Words } from "@/components/ui";
+import { Reveal, SectionHeading, Button } from "@/components/ui";
 import LogoMarquee from "@/components/LogoMarquee";
 import VideoEmbed from "@/components/VideoEmbed";
 import FinalCta from "@/components/home/FinalCta";
@@ -16,12 +16,12 @@ const icons = [Globe, Trophy, GraduationCap, Theater];
 export default function AchievementsPage() {
   return (
     <Shell>
-      <section className="relative min-h-[80svh] flex items-end overflow-hidden curtain">
+      <section className="relative min-h-[80svh] flex items-end overflow-hidden">
         <Image src="/images/achievements/iu-concert.jpg" alt="MADDspace students performing with IU at the Singapore Indoor Stadium" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
         <div className="container-x relative pb-16 pt-40">
           <Reveal>
-            <h1 className="display text-5xl sm:text-7xl lg:text-8xl"><Words>{achievementsPage.h1}<span className="block text-cyan text-[0.6em]">{achievementsPage.h1b}</span></Words></h1>
+            <h1 className="display text-5xl sm:text-7xl lg:text-8xl">{achievementsPage.h1}<span className="block text-cyan text-[0.6em]">{achievementsPage.h1b}</span></h1>
             <h2 className="mt-4 max-w-2xl text-lg text-white/85">{achievementsPage.sub}</h2>
             <div className="mt-7 flex flex-wrap gap-3"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button><Button href="/classes" variant="outline">EXPLORE OUR PROGRAMMES</Button></div>
           </Reveal>
@@ -41,11 +41,11 @@ export default function AchievementsPage() {
         <section key={s.slug} id={s.slug} className={`py-16 lg:py-24 scroll-mt-24 ${i % 2 ? "bg-ink-2 border-y border-line" : ""}`}>
           <div className={`container-x grid gap-10 lg:grid-cols-2 lg:items-center ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
             <Reveal>
-              {s.link?.href.includes("youtu") ? <VideoEmbed url={s.link.href} poster={s.image} title={s.title} /> : <div className="relative aspect-video rounded-xl overflow-hidden glow-border"><Image src={s.image} alt={s.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>}
+              {s.link?.href.includes("youtu") ? <VideoEmbed url={s.link.href} poster={s.image} title={s.title} /> : <div className="relative aspect-video rounded-xl overflow-hidden"><Image src={s.image} alt={s.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>}
             </Reveal>
             <Reveal delay={0.1}>
               <div className="eyebrow">{s.place}</div>
-              <h2 className="display mt-2 text-4xl sm:text-5xl"><Words>{s.title}</Words></h2>
+              <h2 className="display mt-2 text-4xl sm:text-5xl">{s.title}</h2>
               <p className="mt-4 text-mute leading-relaxed">{s.copy}</p>
               {s.bullets && <ul className="mt-4 space-y-2 text-sm text-white/85">{s.bullets.map((b) => <li key={b} className="flex gap-2"><span className="text-cyan">•</span>{b}</li>)}</ul>}
               {s.link && <div className="mt-6"><Button href={s.link.href} variant="ghost">{s.link.label}</Button></div>}
@@ -77,7 +77,7 @@ export default function AchievementsPage() {
       </section>
 
       <LogoMarquee />
-      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl"><Words>{everyChild.headline}</Words></h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
+      <section className="py-16 text-center"><div className="container-x max-w-3xl"><Reveal><h2 className="display text-5xl sm:text-6xl">{everyChild.headline}</h2>{everyChild.copy.map((p) => <p key={p} className="mt-4 text-mute">{p}</p>)}<div className="mt-8"><Button href={BOOK_TRIAL_URL}>BOOK A TRIAL CLASS</Button></div></Reveal></div></section>
       <FinalCta />
     </Shell>
   );

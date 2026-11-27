@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 import { story } from "@/content/story";
 import { maddGroup } from "@/content/home";
-import { Words } from "@/components/ui";
+
 
 // "Stage reveal" timeline. Each stop is a photo cut in two; the halves sit apart and slide together as the
 // stop scrolls into view. A waveform spine runs down the middle. The last stop widens edge to edge and
@@ -16,7 +16,7 @@ export default function StoryReveal() {
     <section className="relative py-20 lg:py-28 overflow-hidden" aria-label="How MADDspace came about">
       <div className="container-x text-center max-w-3xl mx-auto">
         <div className="eyebrow">HOW IT STARTED</div>
-        <h2 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl"><Words>From one studio<br />to a whole stage.</Words></h2>
+        <h2 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl">From one studio<br />to a whole stage.</h2>
       </div>
       <div className="relative container-x mt-16">
         <Spine />

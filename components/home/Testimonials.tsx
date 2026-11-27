@@ -5,8 +5,8 @@ import { WhatsAppIcon } from "@/components/Social";
 import { reviews, googleProfile, type Review } from "@/content/reviews";
 import { contact } from "@/content/site";
 import { GoogleG, Stars } from "@/components/GoogleLogo";
-import { Reveal, Words } from "@/components/ui";
-import { waLink } from "@/lib/utils";
+import { Reveal } from "@/components/ui";
+import { waLink, toSentence } from "@/lib/utils";
 
 // Ron & Rich style: info column on the left, two vertical auto-scrolling columns of review cards on the right.
 export default function Testimonials({ heading = "WHAT OUR PARENTS SAY.", eyebrow = "GOOGLE REVIEWS" }: { heading?: string; eyebrow?: string }) {
@@ -15,7 +15,6 @@ export default function Testimonials({ heading = "WHAT OUR PARENTS SAY.", eyebro
   const colB = reviews.filter((_, i) => i % 2 === 1);
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden">
-      <div className="absolute inset-0 spotlight opacity-60" />
       <div className="container-x relative grid gap-12 lg:grid-cols-[minmax(0,420px)_1fr] lg:items-center">
         <Reveal>
           <div className="flex items-center gap-3 text-accent">
@@ -23,12 +22,12 @@ export default function Testimonials({ heading = "WHAT OUR PARENTS SAY.", eyebro
             <span className="eyebrow">{eyebrow}</span>
             <span className="h-1.5 w-1.5 rotate-45 bg-accent" /><span className="h-px w-10 bg-accent/70" />
           </div>
-          <h2 className="display mt-4 text-5xl sm:text-6xl lg:text-7xl"><Words>{heading}</Words></h2>
+          <h2 className="display mt-4">{toSentence(heading)}</h2>
           <p className="mt-4 text-mute text-base sm:text-lg leading-relaxed">Verified Google reviews from the parents of the children we train, in their own words.</p>
           <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="mt-8 flex items-center gap-4 w-fit group" aria-label="MADDspace on Google">
             <GoogleG size={44} />
             <div>
-              <div className="flex items-center gap-3"><span className="display text-5xl leading-none">{googleProfile.rating.toFixed(1)}</span><Stars value={googleProfile.rating} size={20} /></div>
+              <div className="flex items-center gap-3"><span className="text-4xl font-semibold leading-none tracking-tight">{googleProfile.rating.toFixed(1)}</span><Stars value={googleProfile.rating} size={20} /></div>
               <div className="mt-1 text-[11px] tracking-[0.25em] text-white/60 group-hover:text-white">{googleProfile.count} GOOGLE REVIEWS</div>
             </div>
           </a>

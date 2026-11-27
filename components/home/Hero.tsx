@@ -1,42 +1,30 @@
 "use client";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { hero } from "@/content/home";
+import { kpop, hiphop, singing, dsa } from "@/content/typepages";
 import { heroLoops, byId } from "@/content/videos";
-import HeroVideo from "@/components/HeroVideo";
+import { reviews, googleProfile } from "@/content/reviews";
 import { BOOK_TRIAL_URL } from "@/content/site";
+import HeroVideo from "@/components/HeroVideo";
+import { GoogleG, Stars } from "@/components/GoogleLogo";
 import { Button } from "@/components/ui";
+import { toSentence } from "@/lib/utils";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const HOLD = 6500; // ms per headline
 
-// Each discipline arrives its own way: MUSIC rises, ART drops in, DRAMA zooms from the back, DANCE slides in from the side.
-const moves: Record<string, Variants> = {
-  MUSIC: { hidden: { opacity: 0, y: "0.7em", filter: "blur(10px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: EASE } } },
-  ART: { hidden: { opacity: 0, y: "-0.7em", filter: "blur(10px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: EASE } } },
-  DRAMA: { hidden: { opacity: 0, scale: 1.6, filter: "blur(14px)" }, show: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { duration: 1.0, ease: EASE } } },
-  DANCE: { hidden: { opacity: 0, x: "0.8em", skewX: -12, filter: "blur(10px)" }, show: { opacity: 1, x: 0, skewX: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: EASE } } },
-};
-const plain: Variants = { hidden: { opacity: 0, y: "0.3em", filter: "blur(6px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } } };
+// Each headline has its own video. The headline, the video and the review card change together.
+const slides = [
+  { line: hero.h1, video: heroLoops.home },
+  { line: kpop.h1, video: heroLoops.kpop },
+  { line: hiphop.h1, video: heroLoops.hiphop },
+  { line: singing.h1, video: heroLoops.singing },
+  { line: dsa.h1, video: heroLoops.dsa },
+];
+const quotes = reviews.filter((r) => r.source === "google");
 
-function Line({ text, className, start, step, go, accentKeys }: { text: string; className: string; start: number; step: number; go: boolean; accentKeys?: boolean }) {
-  const words = text.split(" ");
-  return (
-    <span className={className} aria-label={text}>
-      {words.map((w, i) => {
-        const key = w.replace(/[^A-Z]/g, "");
-        const v = accentKeys && moves[key] ? moves[key] : plain;
-        return (
-          <motion.span key={i} aria-hidden className="inline-block will-change-transform" variants={v} initial="hidden" animate={go ? "show" : "hidden"} transition={{ delay: start + i * step }} style={{ transformOrigin: "50% 60%" }}>
-            {w}{i < words.length - 1 ? " " : ""}
-          </motion.span>
-        );
-      })}
-    </span>
-  );
-}
-
-// Starts the headline once the intro panels have opened (first visit), or straight away on later pages.
+// Starts the text once the intro panels have opened (first visit), or straight away on later visits.
 let introOpen = false;
 function subscribeIntro(cb: () => void) {
   const on = () => { introOpen = true; cb(); };
@@ -49,34 +37,83 @@ function readIntro() {
   try { if (sessionStorage.getItem("madd-intro")) return true; } catch {}
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
-function useIntroGate() {
-  return useSyncExternalStore(subscribeIntro, readIntro, () => false);
-}
+const useIntroGate = () => useSyncExternalStore(subscribeIntro, readIntro, () => false);
 
 export default function Hero() {
   const reduce = useReducedMotion();
   const go = useIntroGate() || !!reduce;
-  const n1 = hero.eyebrow.split(" ").length;
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (reduce || paused) return;
+    const t = setInterval(() => setI((n) => (n + 1) % slides.length), HOLD);
+    return () => clearInterval(t);
+  }, [reduce, paused]);
+  const cur = slides[i];
+  const v = byId(cur.video);
+  const q = quotes[i % quotes.length];
+
   return (
-    <section className="relative min-h-[100svh] overflow-hidden curtain flex items-center">
-      <div className="absolute inset-0">
-        <HeroVideo loop={byId(heroLoops.home).loop!} poster={byId(heroLoops.home).poster} alt="MADDspace students performing on stage" position="object-center" />
-        <div className="absolute inset-0 bg-ink/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/60" />
-        <div className="absolute inset-0 spotlight opacity-80" />
-      </div>
-      <div className="container-x relative z-10 pt-28 pb-20 lg:pt-36 lg:pb-24">
-        <div className="max-w-none text-center mx-auto">
-          <h1 style={{ fontFamily: "var(--font-josefin)" }}>
-            <Line text={hero.eyebrow} go={go} start={0.1} step={0.16} accentKeys className="block font-bold uppercase text-[2.1rem] leading-[1.1] sm:text-5xl lg:text-[2.9rem] xl:text-[3.3rem] lg:whitespace-nowrap tracking-[0.01em]" />
-            <Line text={hero.h1} go={go} start={0.1 + n1 * 0.16 + 0.15} step={0.05} className="mt-4 sm:mt-6 block font-normal uppercase text-base sm:text-xl lg:text-[1.5rem] xl:text-[1.65rem] lg:whitespace-nowrap tracking-[0.04em] text-white/90" />
-          </h1>
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }} transition={{ duration: 0.7, delay: 0.1 + n1 * 0.16 + 0.15 + hero.h1.split(" ").length * 0.05 + 0.2, ease: EASE }} className="mt-9 sm:mt-11 flex justify-center">
-            <Button href={BOOK_TRIAL_URL} className="!px-10 !py-4 text-[13px]">BOOK A TRIAL</Button>
-          </motion.div>
+    <section className="pt-20 lg:pt-24 pb-4">
+      <div className="container-x">
+        <div className="relative min-h-[82svh] overflow-hidden border border-line bg-ink-2" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+          <AnimatePresence initial={false}>
+            <motion.div key={cur.video} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.1, ease: "easeInOut" }}>
+              <HeroVideo loop={v.loop!} poster={v.poster} alt="MADDspace students performing on stage" />
+            </motion.div>
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/15 to-transparent" />
+
+          <div className="relative z-10 flex min-h-[82svh] flex-col justify-end p-6 sm:p-10 lg:p-14">
+            <div className="grid gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
+              <motion.div initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, ease: EASE }}>
+                <div className="eyebrow flex items-center gap-2"><span className="h-1.5 w-1.5 bg-accent" />{toSentence(hero.eyebrow)}</div>
+                <h1 className="display display-hero mt-4 max-w-[17ch]">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span key={i} className="block" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.55, ease: EASE }}>
+                      {toSentence(cur.line)}
+                    </motion.span>
+                  </AnimatePresence>
+                </h1>
+                <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/75">{hero.copy}</p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Button href={BOOK_TRIAL_URL}>{hero.primary.label}</Button>
+                  <Button href={hero.secondary.href} variant="outline">{hero.secondary.label}</Button>
+                </div>
+                <div className="mt-7 flex gap-1.5" aria-label="Headlines">
+                  {slides.map((s, k) => (
+                    <button key={s.video} type="button" onClick={() => setI(k)} aria-label={toSentence(s.line)} aria-current={k === i} className={`h-[3px] w-8 transition-colors ${k === i ? "bg-accent" : "bg-white/25 hover:bg-white/50"}`} />
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* trust: Google rating and one review, changing with the headline */}
+              <motion.aside initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, delay: 0.15, ease: EASE }} className="border border-white/12 bg-ink/75 p-5 backdrop-blur-sm">
+                <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="flex items-center gap-3" aria-label="MADDspace on Google">
+                  <GoogleG size={28} />
+                  <div>
+                    <div className="flex items-center gap-2"><span className="text-2xl font-semibold leading-none tracking-tight">{googleProfile.rating.toFixed(1)}</span><Stars value={googleProfile.rating} size={14} /></div>
+                    <div className="mt-1 text-[11px] text-white/55">{googleProfile.count} Google reviews</div>
+                  </div>
+                </a>
+                <div className="mt-4 min-h-[6.5rem]">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.blockquote key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.45 }} className="text-[13.5px] leading-relaxed text-white/80 line-clamp-4">
+                      “{q.text}”
+                    </motion.blockquote>
+                  </AnimatePresence>
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-3 text-[11px] text-white/55">
+                  <span className="font-medium text-white/85">{q.name}</span>
+                  <span>Verified Google review</span>
+                </div>
+                <a href={googleProfile.mapsUrl} target="_blank" rel="noopener" className="mt-4 inline-block text-[12.5px] font-medium text-accent hover:text-white">Read all reviews on Google</a>
+              </motion.aside>
+            </div>
+          </div>
         </div>
       </div>
-      <a href="#madd-group" aria-label="Scroll to the MADD Group" className="absolute bottom-5 left-1/2 -translate-x-1/2 text-cyan/80 animate-bounce hidden lg:block"><ChevronDown /></a>
     </section>
   );
 }

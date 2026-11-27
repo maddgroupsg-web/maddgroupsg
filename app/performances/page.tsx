@@ -10,7 +10,6 @@ export default function Page() {
   return (
     <Shell>
       <section className="pt-28 lg:pt-36 pb-16">
-        <div className="absolute inset-0 spotlight" />
         <div className="container-x relative">
           <Reveal><SectionHeading as="h1" eyebrow="WATCH" title={<><span className="block">STUDENT PERFORMANCES</span><span className="block text-cyan">& RECORDINGS</span></>} sub="Every performance here is a MADDspace student. Filter by event or style and click to watch." /></Reveal>
           <div className="mt-10"><PerformancesGallery /></div>

@@ -10,7 +10,7 @@ export default function VideoEmbed({ url, poster, title = "Watch video", caption
   const isFile = /\.mp4($|\?)/.test(url);
   return (
     <figure className={className}>
-      <div className="relative aspect-video overflow-hidden rounded-xl border border-line glow-border bg-black">
+      <div className="relative aspect-video overflow-hidden rounded-xl border border-line bg-black">
         {play && isFile ? (
           <video src={url} poster={poster} controls autoPlay playsInline className="absolute inset-0 h-full w-full bg-black" />
         ) : play && id ? (

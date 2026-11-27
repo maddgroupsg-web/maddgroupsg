@@ -5,7 +5,7 @@ import { privateClasses } from "@/content/typepages";
 import PageHero from "@/components/PageHero";
 import FinalCta from "@/components/home/FinalCta";
 import Carousel from "@/components/Carousel";
-import { Button, Reveal, Words } from "@/components/ui";
+import { Button, Reveal } from "@/components/ui";
 import { PRIVATE_BOOKING_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/private-classes"].title, description: seo["/private-classes"].description, alternates: { canonical: "/private-classes" } };
@@ -20,7 +20,7 @@ export default function Page() {
       </PageHero>
       <section className="py-16 lg:py-24">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
-          <Reveal><h2 className="display text-5xl"><Words>{privateClasses.title}</Words></h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{privateClasses.copy.map((p) => <p key={p}>{p}</p>)}</div><div className="mt-6"><Button href={PRIVATE_BOOKING_URL}>BOOK YOUR TRIAL</Button></div></Reveal>
+          <Reveal><h2 className="display text-5xl">{privateClasses.title}</h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{privateClasses.copy.map((p) => <p key={p}>{p}</p>)}</div><div className="mt-6"><Button href={PRIVATE_BOOKING_URL}>BOOK YOUR TRIAL</Button></div></Reveal>
           <Reveal delay={0.1}><Carousel images={g} alt="MADDspace private lesson students" /></Reveal>
         </div>
       </section>

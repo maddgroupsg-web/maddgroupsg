@@ -9,7 +9,7 @@ import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
 import Carousel from "@/components/Carousel";
-import { Button, Reveal, SectionHeading, Words } from "@/components/ui";
+import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/kpop"].title, description: seo["/kpop"].description, alternates: { canonical: "/kpop" } };
@@ -28,7 +28,7 @@ export default function Page() {
       <WhyGrid title={kpop.whyTitle} items={kpop.why} images={[g[1], g[5], g[4]]} />
       <PathSteps title={kpop.pathTitle} intro={kpop.pathIntro} steps={kpop.path} images={[g[3], g[4], g[5]]} />
       <CrewBlocks title={kpop.crewsTitle} crews={kpop.crews} />
-      <section className="py-16 bg-ink-2 border-y border-line"><div className="container-x text-center max-w-3xl mx-auto"><Reveal><div className="eyebrow">{kpop.spotlightTitle}</div><h2 className="display text-5xl mt-2"><Words>{kpop.spotlight[0]}</Words></h2><p className="mt-3 text-mute">{kpop.spotlight[1]}</p><p className="display text-3xl mt-8 text-accent">{kpop.quote}</p><p className="mt-2 text-white/80">{kpop.quoteSub}</p></Reveal></div></section>
+      <section className="py-16 bg-ink-2 border-y border-line"><div className="container-x text-center max-w-3xl mx-auto"><Reveal><div className="eyebrow">{kpop.spotlightTitle}</div><h2 className="display text-5xl mt-2">{kpop.spotlight[0]}</h2><p className="mt-3 text-mute">{kpop.spotlight[1]}</p><p className="display text-3xl mt-8 text-accent">{kpop.quote}</p><p className="mt-2 text-white/80">{kpop.quoteSub}</p></Reveal></div></section>
       <Testimonials />
       <TrialBox title="SIGN UP FOR A TRIAL" lead="Our trial lesson allows your child to experience a real class before committing." included={["60-minute 1-to-1 or Group Class", "Personalised assessment of your child's level", "Guidance on the most suitable learning pathway", "Opportunity to meet our instructors"]} meta={kpop.trialMeta} guarantee="Money-Back Guarantee — If the experience is not the right fit, we'll refund your trial — no questions asked." cta="SIGN UP FOR A TRIAL LESSON" url={BOOK_TRIAL_URL} />
       <FinalCta image={g[1]} />

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Shell from "@/components/Shell";
 import { seo } from "@/content/seo";
 import { about, leader } from "@/content/team";
-import { Reveal, SectionHeading, Button, Words } from "@/components/ui";
+import { Reveal, SectionHeading, Button } from "@/components/ui";
 import TeamCarousel from "@/components/TeamCarousel";
 import StoryReveal from "@/components/StoryReveal";
 import LogoMarquee from "@/components/LogoMarquee";
@@ -17,22 +17,21 @@ export default function AboutPage() {
   return (
     <Shell>
       {/* Leadership hero — reference: "Building confidence. Creating opportunity." */}
-      <section className="relative pt-28 lg:pt-36 pb-10 curtain overflow-hidden">
-        <div className="absolute inset-0 spotlight" />
+      <section className="relative pt-28 lg:pt-36 pb-10 overflow-hidden">
         <div className="container-x relative grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           <Reveal>
             <div className="eyebrow">THE PEOPLE BEHIND THE STAGE</div>
-            <h1 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl"><Words>BUILDING CONFIDENCE.<br />CREATING OPPORTUNITY.</Words></h1>
+            <h1 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl">BUILDING CONFIDENCE.<br />CREATING OPPORTUNITY.</h1>
             <p className="mt-4 text-mute max-w-md">Meet the people working together to educate, develop and inspire every MADDspace student.</p>
           </Reveal>
           <Reveal delay={0.1} className="mx-auto">
-            <div className="relative w-[280px] sm:w-[360px] aspect-square rounded-lg overflow-hidden glow-border">
+            <div className="relative w-[280px] sm:w-[360px] aspect-square rounded-lg overflow-hidden">
               <Image src={leader.image} alt={leader.name} fill sizes="360px" className="object-cover" priority />
             </div>
           </Reveal>
           <Reveal delay={0.2}>
             <div className="text-xs tracking-[0.25em] text-cyan">01 / LEADERSHIP</div>
-            <h2 className="display mt-2 text-6xl lg:text-7xl"><Words>{leader.name}</Words></h2>
+            <h2 className="display mt-2 text-6xl lg:text-7xl">{leader.name}</h2>
             <div className="display text-cyan text-2xl mt-1">{leader.role[0]}<br />{leader.role[1]}</div>
             <p className="mt-5 text-lg text-white/85 leading-relaxed max-w-md">{leader.quote}</p>
             <ul className="mt-5 flex flex-wrap gap-5 text-[11px] tracking-[0.18em] uppercase text-white/75">
@@ -43,7 +42,7 @@ export default function AboutPage() {
             <div className="mt-6"><Button href="/instructors?d=vocal" variant="outline">MEET THE INSTRUCTORS</Button></div>
           </Reveal>
         </div>
-        <div className="container-x relative mt-14" id="anchor1"><h2 className="display text-4xl mb-2"><Words>MADDspace Team</Words></h2><TeamCarousel /></div>
+        <div className="container-x relative mt-14" id="anchor1"><h2 className="display text-4xl mb-2">MADDspace Team</h2><TeamCarousel /></div>
       </section>
 
       <StoryReveal />
@@ -71,8 +70,8 @@ export default function AboutPage() {
 
       <section className="py-20 lg:py-24 bg-ink-2 border-y border-line">
         <div className="container-x grid gap-10 lg:grid-cols-2">
-          <Reveal><h2 className="display text-5xl"><Words>{about.missionTitle}</Words></h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{about.mission.map((p) => <p key={p}>{p}</p>)}</div></Reveal>
-          <Reveal delay={0.1}><h2 className="display text-5xl"><Words>{about.visionTitle}</Words></h2><p className="mt-5 text-mute leading-relaxed">{about.vision}</p>
+          <Reveal><h2 className="display text-5xl">{about.missionTitle}</h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{about.mission.map((p) => <p key={p}>{p}</p>)}</div></Reveal>
+          <Reveal delay={0.1}><h2 className="display text-5xl">{about.visionTitle}</h2><p className="mt-5 text-mute leading-relaxed">{about.vision}</p>
             <div className="mt-8 flex gap-3 flex-wrap"><Button href="/instructors?d=vocal" variant="outline">VOCAL INSTRUCTORS</Button><Button href="/instructors?d=dance" variant="outline">DANCE INSTRUCTORS</Button></div></Reveal>
         </div>
       </section>

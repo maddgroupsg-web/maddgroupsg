@@ -59,7 +59,7 @@ function Step({ s, i, image, progress, scrub, reduce }: { s: Stage; i: number; i
       {riser > 0 && (
         <motion.div
           aria-hidden
-          className="hidden lg:block origin-bottom border-x border-b border-line bg-[linear-gradient(to_bottom,rgba(34,211,211,0.10),rgba(255,255,255,0.02))]"
+          className="hidden lg:block origin-bottom border-x border-b border-line bg-white/[0.03]"
           style={scrub ? { height: riser, scaleY: riserScale, opacity: riserOpacity } : { height: riser }}
           {...(scrub ? {} : { initial: reduce ? false : { scaleY: 0, opacity: 0 }, whileInView: { scaleY: 1, opacity: 1 }, viewport: { once: true, margin: "-12% 0px" }, transition: { duration: 0.7, delay: i * 0.22 + 0.25, ease: EASE } })}
         />

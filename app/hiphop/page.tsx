@@ -10,7 +10,7 @@ import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
 import Carousel from "@/components/Carousel";
-import { Button, Reveal, SectionHeading, Words } from "@/components/ui";
+import { Button, Reveal, SectionHeading } from "@/components/ui";
 import { BOOK_TRIAL_URL } from "@/content/site";
 
 export const metadata: Metadata = { title: seo["/hiphop"].title, description: seo["/hiphop"].description, alternates: { canonical: "/hiphop" } };
@@ -32,7 +32,7 @@ export default function Page() {
       <CrewBlocks title={hiphop.crewsTitle} crews={hiphop.crews} />
       <section className="py-16 bg-ink-2 border-y border-line">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
-          <Reveal><div className="eyebrow">{hiphop.spotlightTitle}</div><h2 className="display text-5xl mt-2"><Words>{hiphop.spotlight[0]}</Words></h2><p className="mt-3 text-mute">{hiphop.spotlight[1]}</p>
+          <Reveal><div className="eyebrow">{hiphop.spotlightTitle}</div><h2 className="display text-5xl mt-2">{hiphop.spotlight[0]}</h2><p className="mt-3 text-mute">{hiphop.spotlight[1]}</p>
             <div className="mt-8 glass rounded-xl p-6"><h3 className="display text-4xl">{j.name}</h3><p className="mt-2 text-sm text-mute">{j.intro}</p><p className="mt-3 font-semibold">🏆 Achievements & Milestones</p><ul className="mt-1 space-y-1 text-sm text-white/85">{j.steps.map((s) => <li key={s}>• {s}</li>)}</ul><p className="mt-3 text-sm text-mute">{j.outro}</p>{j.video && <div className="mt-4"><Button href={j.video} variant="ghost">WATCH VIDEO</Button></div>}</div></Reveal>
           <Reveal delay={0.1}><Carousel images={g} alt="MADDspace hip hop students" /></Reveal>
         </div>

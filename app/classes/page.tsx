@@ -6,7 +6,7 @@ import { seo } from "@/content/seo";
 import { classesHub, byAge, byType } from "@/content/programmes";
 import HoverPreviewList from "@/components/HoverPreviewList";
 import PhilosophyAccordion from "@/components/PhilosophyAccordion";
-import { Reveal, SectionHeading, Words } from "@/components/ui";
+import { Reveal, SectionHeading } from "@/components/ui";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
 
@@ -15,10 +15,10 @@ export const metadata: Metadata = { title: seo["/classes"].title, description: s
 export default function ClassesPage() {
   return (
     <Shell>
-      <section className="relative pt-28 lg:pt-36 pb-10 curtain">
+      <section className="relative pt-28 lg:pt-36 pb-10">
         <div className="container-x relative">
           <Reveal><SectionHeading as="h1" eyebrow="PROGRAMMES" title={classesHub.h1} sub={<>{classesHub.intro[0]}<br />{classesHub.intro[1]}</>} /></Reveal>
-          <h2 className="display text-3xl mt-14 mb-4"><Words>BY AGE</Words></h2>
+          <h2 className="display text-3xl mt-14 mb-4">BY AGE</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {byAge.map((t) => (
               <Link key={t.title} href={t.href} className="group relative block aspect-[4/5] overflow-hidden rounded-lg border border-line">
@@ -32,7 +32,7 @@ export default function ClassesPage() {
             <Link href="/holiday-camps" className="glass rounded-lg px-5 py-3 text-xs tracking-[0.15em] font-semibold hover:border-cyan/60 hover:text-cyan transition-colors">HOLIDAY CAMPS →</Link>
             <Link href="/dsaacademy" className="glass rounded-lg px-5 py-3 text-xs tracking-[0.15em] font-semibold hover:border-cyan/60 hover:text-cyan transition-colors">DSA PREPARATION →</Link>
           </div>
-          <h2 className="display text-3xl mt-14 mb-6"><Words>BY TYPE</Words></h2>
+          <h2 className="display text-3xl mt-14 mb-6">BY TYPE</h2>
           <HoverPreviewList rows={byType} />
         </div>
       </section>

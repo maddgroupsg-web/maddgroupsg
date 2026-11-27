@@ -16,7 +16,7 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <h3 className="display text-3xl">BROWSE</h3>
+          <h3 className="display text-3xl">Browse</h3>
           <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-[12px] tracking-[0.1em] text-white/70">
             {footerBrowse.map((b) => <li key={b.label + b.href}><Link href={b.href} className="hover:text-cyan">{b.label}</Link></li>)}
           </ul>

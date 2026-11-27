@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { Words } from "@/components/ui";
+
 
 // After osmo's "Scaling element on scroll with Flip": a small 16:9 image sits under the heading; as the
 // visitor scrolls it grows, scrubbed to the scrollbar, until it fills the whole viewport. The heading
@@ -45,13 +45,12 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
   return (
     <section ref={section} className={reduce ? "relative h-[100svh]" : "relative h-[230svh]"}>
       <div className="sticky top-0 h-[100svh] overflow-hidden bg-ink">
-        <div className="absolute inset-0 spotlight" />
         {logo && <div className="absolute right-4 sm:right-8 lg:right-10 top-24 lg:top-28 z-30 h-16 sm:h-20 lg:h-24 w-24 sm:w-32 lg:w-40 flex items-start justify-end"><Image src={logo} alt="" width={320} height={320} className="max-h-full w-auto object-contain drop-shadow-[0_4px_18px_rgba(0,0,0,.7)]" /></div>}
 
         {/* heading — fades as the image grows */}
         <div ref={head} className="absolute inset-x-0 top-[22svh] sm:top-[20svh] z-10 px-4 text-center will-change-transform">
           <div className="eyebrow">{eyebrow}</div>
-          <h1 className="display mx-auto mt-3 max-w-5xl text-[2.6rem] leading-[0.92] sm:text-6xl lg:text-7xl"><Words>{title}</Words></h1>
+          <h1 className="display mx-auto mt-3 max-w-5xl text-[2.6rem] leading-[0.92] sm:text-6xl lg:text-7xl">{title}</h1>
           {subtitle && <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base text-white/80">{subtitle}</p>}
           <div className="mt-6 text-[10px] tracking-[0.3em] text-white/40">SCROLL</div>
         </div>
@@ -73,7 +72,7 @@ export default function ScaleInHero({ eyebrow, title, sub: subtitle, image, alt,
           <div ref={cta} className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14 opacity-0 will-change-transform">
             <div className="container-x !px-0">
               <div className="eyebrow">{eyebrow}</div>
-              <div className="display mt-2 text-4xl sm:text-5xl lg:text-6xl max-w-3xl"><Words>{title}</Words></div>
+              <div className="display mt-2 text-4xl sm:text-5xl lg:text-6xl max-w-3xl">{title}</div>
               {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
             </div>
           </div>

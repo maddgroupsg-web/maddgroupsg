@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/Social";
 import { nav, BOOK_TRIAL_URL, contact } from "@/content/site";
-import { cn } from "@/lib/utils";
+import { cn, toSentence } from "@/lib/utils";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -33,8 +33,8 @@ export default function Nav() {
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {nav.map((item) => (
             <div key={item.label} className="relative group">
-              <Link href={item.href} className={cn("flex items-center gap-1 px-2 xl:px-3 py-2 text-[12px] xl:text-[12.5px] font-semibold tracking-[0.1em] xl:tracking-[0.14em] whitespace-nowrap text-white/85 hover:text-cyan transition-colors", path === item.href && "text-cyan")}>
-                {item.label}{item.children && <ChevronDown size={13} className="opacity-70" />}
+              <Link href={item.href} className={cn("flex items-center gap-1 px-2 xl:px-3 py-2 text-[13.5px] font-medium tracking-[0.005em] whitespace-nowrap text-white/85 hover:text-cyan transition-colors", path === item.href && "text-cyan")}>
+                {toSentence(item.label)}{item.children && <ChevronDown size={13} className="opacity-70" />}
               </Link>
               {item.children && (
                 <div className="absolute left-0 top-full pt-2 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
@@ -43,7 +43,7 @@ export default function Nav() {
                       <div key={g} className="py-1">
                         {g && <div className="px-3 pt-2 pb-1 text-[10px] tracking-[0.25em] text-cyan/80">{g}</div>}
                         {items.map((c) => (
-                          <Link key={c.href + c.label} href={c.href} className="block rounded px-3 py-2 text-[12px] tracking-[0.12em] text-white/80 hover:bg-white/5 hover:text-white">{c.label}</Link>
+                          <Link key={c.href + c.label} href={c.href} className="block px-3 py-2 text-[13px] text-white/80 hover:bg-white/5 hover:text-white">{toSentence(c.label)}</Link>
                         ))}
                       </div>
                     ))}
@@ -54,7 +54,7 @@ export default function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px] whitespace-nowrap">BOOK A TRIAL</a>
+          <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2.5 !px-4 text-[11px] whitespace-nowrap">Book a trial</a>
           <button className="lg:hidden p-2 text-white" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Nav() {
             {nav.map((item) => (
               <div key={item.label} className="border-b border-line">
                 <div className="flex items-center">
-                  <Link href={item.href} className="flex-1 py-4 font-semibold tracking-[0.16em] text-white">{item.label}</Link>
+                  <Link href={item.href} className="flex-1 py-4 font-medium text-white">{toSentence(item.label)}</Link>
                   {item.children && (
                     <button className="p-3 text-cyan" onClick={() => setMobileGroup(mobileGroup === item.label ? null : item.label)} aria-label={`Expand ${item.label}`}>
                       <ChevronDown className={cn("transition-transform", mobileGroup === item.label && "rotate-180")} />
@@ -76,7 +76,7 @@ export default function Nav() {
                     {groupify(item.children).map(([g, items]) => (
                       <div key={g}>
                         {g && <div className="pt-2 pb-1 text-[10px] tracking-[0.25em] text-cyan/80">{g}</div>}
-                        {items.map((c) => <Link key={c.href + c.label} href={c.href} className="block py-2 text-sm tracking-[0.1em] text-white/80">{c.label}</Link>)}
+                        {items.map((c) => <Link key={c.href + c.label} href={c.href} className="block py-2 text-sm text-white/80">{toSentence(c.label)}</Link>)}
                       </div>
                     ))}
                   </div>
@@ -84,7 +84,7 @@ export default function Nav() {
               </div>
             ))}
             <div className="mt-6 flex flex-col gap-3">
-              <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-primary">BOOK A TRIAL CLASS</a>
+              <a href={BOOK_TRIAL_URL} target="_blank" rel="noopener" className="btn btn-primary">Book a trial class</a>
               <a href={`https://wa.me/${contact.whatsappIntl}`} className="btn btn-outline"><WhatsAppIcon size={16} /> WHATSAPP {contact.whatsapp}</a>
             </div>
           </div>

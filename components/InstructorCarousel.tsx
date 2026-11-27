@@ -45,7 +45,7 @@ export default function InstructorCarousel() {
           {list.map((p, i) => <Card key={p.slug} p={p} active={i === sel} open={open && i === sel} setOpen={setOpen} onFocusCard={() => api?.scrollTo(i)} />)}
         </div>
       </div>
-      <div className="mt-6 relative h-px bg-white/10"><div className="absolute left-0 top-0 h-px bg-cyan shadow-[0_0_8px_#22d3d3] transition-all" style={{ width: `${((sel + 1) / list.length) * 100}%` }} /></div>
+      <div className="mt-6 relative h-px bg-white/10"><div className="absolute left-0 top-0 h-px bg-cyan transition-all" style={{ width: `${((sel + 1) / list.length) * 100}%` }} /></div>
       <div className="mt-6 flex flex-col items-center gap-3">
         <div className="flex items-center gap-3">
           <button onClick={prev} aria-label="Previous instructor" className="h-12 w-12 rounded-full border border-cyan/70 text-cyan flex items-center justify-center hover:bg-cyan/10"><ArrowLeft /></button>
@@ -62,7 +62,7 @@ function Card({ p, active, open, setOpen, onFocusCard }: { p: Instructor; active
   return (
     <div className={cn("shrink-0 px-1.5 sm:px-2 transition-all duration-500", active ? "basis-[86%] sm:basis-[62%] lg:basis-[46%]" : "basis-[58%] sm:basis-[30%] lg:basis-[17%]")}>
       <div onClick={() => (active ? setOpen(!open) : onFocusCard())} onMouseEnter={() => active && setOpen(true)} onMouseLeave={() => setOpen(false)}
-        className={cn("relative overflow-hidden rounded-xl border transition-all duration-500 bg-ink-3", active ? "glow-border aspect-[4/5] sm:aspect-[16/11]" : "border-line aspect-[3/4] opacity-70 scale-95 hover:opacity-100")}>
+        className={cn("relative overflow-hidden rounded-xl border transition-all duration-500 bg-ink-3", active ? " aspect-[4/5] sm:aspect-[16/11]" : "border-line aspect-[3/4] opacity-70 scale-95 hover:opacity-100")}>
         {/* video / photo */}
         <div className={cn("absolute inset-0 transition-all duration-500", active && open ? "sm:w-[58%]" : "w-full")}>
           {active && open && p.video ? (
