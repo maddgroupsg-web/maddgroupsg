@@ -25,7 +25,6 @@ export default function Page() {
       </ScaleInHero>
       <section className="py-16 lg:py-24">
         <div className="container-x">
-          <Reveal><SectionHeading align="center" eyebrow="THE DSA PATHWAY" title={dsa.stagesTitle} sub={dsa.stagesSub} /></Reveal>
           <StairStages stages={dsa.stages} images={g} />
           <div className="mt-12"><Reveal><Carousel images={g} alt="MADDspace DSA preparation students" /></Reveal></div>
         </div>
