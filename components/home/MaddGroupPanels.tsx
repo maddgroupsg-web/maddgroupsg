@@ -22,8 +22,7 @@ export default function MaddGroupPanels() {
       <div className="container-x relative">
         <Reveal className="text-center max-w-3xl mx-auto">
           <h2 className="display">Not your regular performing arts school</h2>
-          <p className="mt-3 text-lg sm:text-xl font-medium text-white/80">One group. <span className="text-[#e2b85f]">Four brands.</span> Endless possibilities.</p>
-          <p className="mt-4 text-mute [@media(max-height:760px)]:hidden">{maddGroup.copy[0]}</p>
+          <p className="mt-4 text-[15px] sm:text-base leading-relaxed text-white/70">Beyond weekly singing and dance classes, we offer dedicated pathways in internationally recognised examinations, DSA preparation, competitive performance, artiste development and professional music production through our four specialised brands.</p>
         </Reveal>
 
         <div ref={row} className="mt-10 lg:mt-8 -mx-4 px-4 lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible snap-x snap-mandatory hide-scrollbar">
