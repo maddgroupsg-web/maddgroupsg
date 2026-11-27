@@ -60,12 +60,9 @@ export default function AboutHero() {
                 <Link href={p.href} className="mt-5 inline-block text-[14px] font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">Explore {toSentence(p.name)}</Link>
               </motion.div>
             </AnimatePresence>
-            {/* counter and progress line */}
+            {/* counter */}
             <div className="mt-10 flex items-center gap-4">
               <span className="text-[13px] tabular-nums text-white/85">{String(i + 1).padStart(2, "0")} <span className="text-white/40">/ {String(pillars.length).padStart(2, "0")}</span></span>
-              <div className="relative h-px w-40 bg-white/20">
-                <motion.div key={i} className="absolute inset-y-0 left-0 bg-white" initial={{ width: "0%" }} animate={{ width: reduce ? "100%" : "100%" }} transition={{ duration: reduce ? 0 : HOLD / 1000, ease: "linear" }} />
-              </div>
             </div>
           </div>
 
