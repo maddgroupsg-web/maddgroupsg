@@ -93,10 +93,8 @@ h3.display, .display.text-2xl, .display.text-3xl, .display.text-4xl { font-size:
 .review-col:hover .review-track-up, .review-col:hover .review-track-down { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .review-track-up, .review-track-down { animation: none; } }
 
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn { from { opacity: 0; transform: translateY(18px) scale(0.98); } to { opacity: 1; transform: none; } }
 @keyframes previewIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
 
-/* about: waveform spine */
-@keyframes wavebar { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
-.wave-bar { animation: wavebar 1.6s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; } }
 

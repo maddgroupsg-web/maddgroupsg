@@ -62,6 +62,7 @@ export default function Hero() {
           <div className="container-x relative z-10 flex min-h-[100svh] flex-col justify-end pt-32 pb-12 lg:pb-16">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <motion.div initial={{ opacity: 0, y: 18 }} animate={go ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }} transition={{ duration: 0.8, ease: EASE }}>
+                <div className="text-[12.5px] sm:text-sm font-semibold tracking-[0.14em] text-white">{hero.eyebrow}</div>
                 <h1 className="display display-hero mt-4 max-w-[17ch]">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span key={i} className="block" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.55, ease: EASE }}>

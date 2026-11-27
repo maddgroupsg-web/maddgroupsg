@@ -1,114 +1,74 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 import { story } from "@/content/story";
 import { maddGroup } from "@/content/home";
+import { Reveal } from "@/components/ui";
 
-
-// "Stage reveal" timeline. Each stop is a photo cut in two; the halves sit apart and slide together as the
-// stop scrolls into view. A waveform spine runs down the middle. The last stop widens edge to edge and
-// opens into the four pillars of The MADD Group.
+// How MADDspace came about. Alternating rows: the year, title and line on one side, and the whole photo on the
+// other, sitting over a thin outlined frame. No cuts, no scrubbing. Ends with the four pillars of The MADD Group.
 export default function StoryReveal() {
-  const reduce = useReducedMotion();
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden" aria-label="How MADDspace came about">
-      <div className="container-x text-center max-w-3xl mx-auto">
-        <div className="eyebrow">HOW IT STARTED</div>
-        <h2 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl">From one studio<br />to a whole stage.</h2>
-      </div>
-      <div className="relative container-x mt-16">
-        <Spine />
-        <div className="relative space-y-24 lg:space-y-32">
-          {story.map((s, i) => <Stop key={s.title} s={s} i={i} reduce={!!reduce} />)}
+    <section className="relative py-20 lg:py-28 overflow-hidden border-t border-line" aria-label="How MADDspace came about">
+      <div className="container-x">
+        <Reveal>
+          <h2 className="display grid gap-1 lg:grid-cols-2 lg:gap-10">
+            <span className="block">From one studio</span>
+            <span className="block lg:mt-10 lg:text-right text-white/60">to a whole stage.</span>
+          </h2>
+        </Reveal>
+
+        <div className="mt-16 lg:mt-24 space-y-20 lg:space-y-32">
+          {story.map((s, i) => {
+            const flip = i % 2 === 1;
+            return (
+              <div key={s.title} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-24">
+                <Reveal className={flip ? "lg:order-2" : ""}>
+                  <div className="flex items-center gap-3 text-[12px] font-semibold tracking-[0.14em] uppercase text-white/55">
+                    <span className="h-px w-8 bg-white/30" />{s.year}
+                    {s.confirm && <span className="text-[9px] tracking-[0.2em] text-white/35">To confirm</span>}
+                  </div>
+                  <h3 className="mt-4 flex items-center gap-4 font-display text-[1.6rem] sm:text-[2rem] font-semibold leading-[1.12] tracking-[-0.02em]">
+                    <span>{s.title}</span><span className="hidden sm:block h-px w-10 shrink-0 bg-white/25" />
+                  </h3>
+                  <p className="mt-4 max-w-md text-[15px] sm:text-base leading-relaxed text-mute">{s.line}</p>
+                </Reveal>
+                <Reveal delay={0.1} className={flip ? "lg:order-1" : ""}>
+                  <div className={`relative ${flip ? "mr-6 sm:mr-10" : "ml-6 sm:ml-10"} mt-8`}>
+                    {/* thin frame the photo sits over */}
+                    <div className={`absolute -top-8 bottom-10 border border-white/15 ${flip ? "left-10 -right-6 sm:-right-10" : "-left-6 sm:-left-10 right-10"}`} aria-hidden />
+                    <div className="relative aspect-[4/3] overflow-hidden bg-ink-3">
+                      <Image src={s.image} alt={s.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <Finale reduce={!!reduce} />
+
+      <div className="container-x mt-24 lg:mt-36">
+        <Reveal>
+          <h3 className="display text-center !text-[clamp(1.75rem,1.1rem+1.9vw,2.75rem)]">The MADD Group</h3>
+          <p className="mt-3 text-center text-white/60">Four pillars. One ecosystem.</p>
+        </Reveal>
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4">
+          {maddGroup.pillars.map((p, i) => (
+            <Reveal key={p.name} delay={i * 0.08}>
+              <Link href={p.href} className="group relative block aspect-[3/4] overflow-hidden">
+                <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+                {i > 0 && <div className="absolute inset-y-0 left-0 w-px bg-white/10" />}
+                {p.logo && <div className="absolute top-4 right-4 h-10 w-10 lg:h-12 lg:w-12 flex items-start justify-end"><Image src={p.logo} alt="" width={120} height={120} className="max-h-full w-auto object-contain" /></div>}
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <div className="font-display text-2xl sm:text-3xl font-semibold leading-none tracking-[-0.02em]">{p.verb.charAt(0) + p.verb.slice(1).toLowerCase()}</div>
+                  <div className="mt-1.5 text-[11px] tracking-[0.14em] uppercase text-white/60">{p.name}</div>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
     </section>
-  );
-}
-
-function Spine() {
-  // a looping waveform, drawn down the centre; animates like audio
-  const bars = Array.from({ length: 90 }, (_, i) => i);
-  return (
-    <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 hidden md:flex w-10 flex-col items-center justify-between py-6" aria-hidden>
-      {bars.map((b) => (
-        <span key={b} className="wave-bar block h-px w-full rounded bg-cyan/50" style={{ animationDelay: `${(b % 12) * 0.12}s`, transform: `scaleX(${(0.2 + 0.8 * Math.abs(Math.sin(b * 0.7))).toFixed(3)})` }} />
-      ))}
-    </div>
-  );
-}
-
-function Stop({ s, i, reduce }: { s: (typeof story)[number]; i: number; reduce: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 90%", "center 55%"] });
-  const gap = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 1, 0]); // 1 = fully apart
-  const left = useTransform(gap, (g) => `${-g * 14}%`);
-  const right = useTransform(gap, (g) => `${g * 14}%`);
-  const seam = useTransform(gap, (g) => 1 - g);
-  const capOpacity = useTransform(scrollYProgress, [0.55, 1], [0, 1]);
-  const capY = useTransform(scrollYProgress, [0.55, 1], [16, 0]);
-  const flip = i % 2 === 1;
-  return (
-    <div ref={ref} className={`relative grid items-center gap-6 md:grid-cols-2 ${flip ? "md:[&>*:first-child]:order-2" : ""}`}>
-      {/* photo, split in two halves that close */}
-      <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-ink-3 md:px-0">
-        <motion.div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden" style={{ x: left }}>
-          <div className="relative h-full w-[200%]"><Image src={s.image} alt={s.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" /></div>
-        </motion.div>
-        <motion.div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden" style={{ x: right }}>
-          <div className="relative h-full w-[200%] -translate-x-1/2"><Image src={s.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" /></div>
-        </motion.div>
-        {/* seam glow that fades as halves meet */}
-        <motion.div className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-cyan shadow-[0_0_14px_2px_rgba(34,211,211,.7)]" style={{ opacity: useTransform(seam, (v) => 1 - v) }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
-        <div className="absolute left-4 top-4 display text-cyan text-2xl sm:text-3xl drop-shadow">{s.year}{s.confirm && <span className="ml-2 align-top text-[9px] tracking-[0.2em] text-white/50">TO CONFIRM</span>}</div>
-      </div>
-      {/* caption */}
-      <motion.div style={{ opacity: capOpacity, y: capY }} className={`md:px-10 ${flip ? "md:text-right" : ""}`}>
-        <h3 className="display text-4xl sm:text-5xl leading-none">{s.title}</h3>
-        <p className="mt-3 text-mute text-base sm:text-lg max-w-md md:max-w-none">{s.line}</p>
-      </motion.div>
-    </div>
-  );
-}
-
-function Finale({ reduce }: { reduce: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 70%"] });
-  const width = useTransform(scrollYProgress, [0, 0.6], ["62%", "100%"]);
-  const radius = useTransform(scrollYProgress, [0, 0.6], [16, 0]);
-  return (
-    <div ref={ref} className="relative mt-24 lg:mt-32">
-      <div className="container-x text-center"><div className="eyebrow">AND IT OPENS INTO</div><h3 className="display mt-3 text-5xl sm:text-6xl lg:text-7xl">The MADD Group</h3><p className="mt-3 text-white/60">Four pillars. One ecosystem.</p></div>
-      <motion.div style={reduce ? undefined : { width, borderRadius: radius }} className="mx-auto mt-10 w-full overflow-hidden rounded-2xl">
-        <div className="grid grid-cols-2 lg:grid-cols-4">
-          {maddGroup.pillars.map((p, i) => <Pillar key={p.name} p={p} i={i} progress={scrollYProgress} reduce={reduce} />)}
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
-function Pillar({ p, i, progress, reduce }: { p: (typeof maddGroup.pillars)[number]; i: number; progress: MotionValue<number>; reduce: boolean }) {
-  const a = 0.45 + i * 0.12, b = a + 0.15;
-  const filter = useTransform(progress, [a, b], ["saturate(0.1) brightness(0.4)", "saturate(1) brightness(1)"]);
-  const y = useTransform(progress, [a, b], [24, 0]);
-  const op = useTransform(progress, [a, b], [0, 1]);
-  return (
-    <Link href={p.href} className="group relative block aspect-[3/4] overflow-hidden">
-      <motion.div className="absolute inset-0" style={reduce ? undefined : { filter }}>
-        <Image src={p.image} alt={`${p.name} — ${p.verb}`} fill sizes="25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-      </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-      {i > 0 && <div className="absolute inset-y-0 left-0 w-px bg-white/10" />}
-      {p.logo && <div className="absolute top-4 right-4 h-10 w-10 lg:h-12 lg:w-12 flex items-start justify-end"><Image src={p.logo} alt="" width={120} height={120} className="max-h-full w-auto object-contain" /></div>}
-      <motion.div style={reduce ? undefined : { y, opacity: op }} className="absolute inset-x-0 bottom-0 p-5">
-        <div className="display text-3xl sm:text-4xl leading-none">{p.verb}</div>
-        <div className="mt-1 text-[11px] tracking-[0.25em] uppercase text-cyan">{p.name}</div>
-      </motion.div>
-    </Link>
   );
 }
