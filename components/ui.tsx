@@ -8,7 +8,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 export function Button({ href, children, variant = "primary", className, external, ...rest }: { href: string; children: ReactNode; variant?: "primary" | "outline" | "ghost"; className?: string; external?: boolean }) {
   const cls = cn("btn", variant === "primary" && "btn-primary", variant === "outline" && "btn-outline", variant === "ghost" && "btn-ghost", className);
   const ext = external ?? /^https?:/.test(href);
-  const label = typeof children === "string" ? <span className="btn-label" data-text={toSentence(children)}>{toSentence(children)}</span> : children;
+  const label = typeof children === "string" ? <span className="btn-label" data-text={toSentence(children)}><span>{toSentence(children)}</span></span> : children;
   if (ext) return <a href={href} target="_blank" rel="noopener" className={cls} {...rest}>{label}{variant === "ghost" && <ArrowRight size={16} />}</a>;
   return <Link href={href} className={cls} {...rest}>{label}{variant === "ghost" && <ArrowRight size={16} />}</Link>;
 }

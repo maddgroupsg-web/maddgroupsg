@@ -31,7 +31,7 @@ export default function PerformancesGallery() {
           <h1 className="display display-hero mt-4 max-w-[17ch]">Student performances &amp; recordings</h1>
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/75">Every performance here is a MADDspace student. Filter by event or style and click to watch.</p>
           <div className="mt-7 flex flex-wrap items-center gap-4">
-            <button type="button" onClick={() => setOpen(feat)} className="btn btn-primary"><Play size={15} fill="currentColor" /><span className="btn-label" data-text={`Play ${feat.title}`}>Play {feat.title}</span></button>
+            <button type="button" onClick={() => setOpen(feat)} className="btn btn-primary"><Play size={15} fill="currentColor" /><span className="btn-label" data-text={`Play ${feat.title}`}><span>Play {feat.title}</span></span></button>
             <span className="text-[12px] text-white/60">{feat.event} · {feat.style}</span>
           </div>
         </div>

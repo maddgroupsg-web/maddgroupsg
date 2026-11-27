@@ -46,9 +46,10 @@ h3.display, .display.text-2xl, .display.text-3xl, .display.text-4xl { font-size:
 
 .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 600; letter-spacing: 0; text-transform: none; font-size: 0.875rem; padding: 0.8rem 1.3rem; border-radius: 0; transition: background 0.25s, color 0.25s, border-color 0.25s; white-space: nowrap; }
 /* on hover the colour flips and the label rolls up, its twin sliding in from below */
-.btn-label { position: relative; display: inline-block; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.btn-label { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
+.btn-label > span, .btn-label::after { display: block; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
 .btn-label::after { content: attr(data-text); position: absolute; left: 0; top: 100%; }
-.btn:hover .btn-label { transform: translateY(-100%); }
+.btn:hover .btn-label > span, .btn:hover .btn-label::after { transform: translateY(-100%); }
 .btn-primary { background: var(--accent); color: #041012; }
 .btn-primary:hover { background: #fff; color: #041012; }
 .btn-outline { border: 1px solid rgba(255,255,255,0.28); color: #fff; background: transparent; }
