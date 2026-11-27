@@ -30,7 +30,7 @@ export default function AwardsRotator() {
       {shown.map((ai, slot) => {
         const a = awards[ai];
         return (
-          <div key={slot} className="relative aspect-square overflow-hidden border border-white/10 bg-white/[0.02]">
+          <div key={slot} className="relative aspect-square overflow-hidden">
             <AnimatePresence initial={false}>
               <motion.div key={a.src} className="absolute inset-0 p-6 sm:p-7" initial={{ y: "-40%", opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: "40%", opacity: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
                 <div className="relative h-full w-full"><Image src={a.src} alt={a.alt} fill sizes="(max-width: 640px) 45vw, 240px" className="object-contain" /></div>

@@ -9,10 +9,10 @@ import LogoMarquee from "@/components/LogoMarquee";
 import AwardsRotator from "@/components/AwardsRotator";
 import VideoEmbed from "@/components/VideoEmbed";
 import FinalCta from "@/components/home/FinalCta";
-import { Globe, Trophy, GraduationCap, Theater } from "lucide-react";
 
 export const metadata: Metadata = { title: seo["/achievements"].title, description: seo["/achievements"].description, alternates: { canonical: "/achievements" } };
-const icons = [Globe, Trophy, GraduationCap, Theater];
+// one photo per result, in the same order as achievementsPage.pillars
+const pillarPhotos = ["/images/achievements/iu-concert.jpg", "/images/achievements/genting-gold.jpg", "/images/achievements/k15.jpg", "/images/achievements/disneyland.jpg"];
 
 // Student journey stories (Jordin Tan, Emma Wan) are hidden for now. Set to true to show them again.
 const SHOW_JOURNEYS = false;
@@ -33,15 +33,6 @@ export default function AchievementsPage() {
       </section>
 
       <LogoMarquee />
-      <section className="py-16 border-y border-line bg-ink-2">
-        <div className="container-x">
-          <Reveal><SectionHeading title={achievementsPage.pillarsHeadline} sub={achievementsPage.pillarsSub} align="center" /></Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {achievementsPage.pillars.map((p, i) => { const I = icons[i]; return <Reveal key={p.title} delay={i * 0.09} className="glass rounded-xl p-6"><I className="text-cyan" /><h3 className="display text-3xl mt-3">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>; })}
-          </div>
-        </div>
-      </section>
-
       {stories.map((s, i) => (
         <section key={s.slug} id={s.slug} className={`py-16 lg:py-24 scroll-mt-24 ${i % 2 ? "bg-ink-2 border-y border-line" : ""}`}>
           <div className={`container-x grid gap-10 lg:grid-cols-2 lg:items-center ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
@@ -80,6 +71,26 @@ export default function AchievementsPage() {
             <div className="text-center eyebrow">AWARDS & ACCREDITATIONS</div>
             <div className="mt-8"><AwardsRotator /></div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="py-20 lg:py-24">
+        <div className="container-x">
+          <Reveal><SectionHeading title={achievementsPage.pillarsHeadline} sub={achievementsPage.pillarsSub} align="center" /></Reveal>
+        </div>
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4">
+          {achievementsPage.pillars.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.08}>
+              <div className="group relative aspect-[3/4] overflow-hidden">
+                <Image src={pillarPhotos[i]} alt={p.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/10" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <h3 className="font-display text-xl lg:text-2xl font-semibold leading-tight tracking-[-0.02em]">{p.title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-white/75">{p.copy}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 

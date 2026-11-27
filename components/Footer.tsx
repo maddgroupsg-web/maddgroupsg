@@ -2,11 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { InstagramIcon, FacebookIcon, YoutubeIcon, WhatsAppIcon } from "@/components/Social";
 import { contact, footerBrowse } from "@/content/site";
+import { toSentence } from "@/lib/utils";
 
 export default function Footer() {
   return (
     <footer className="relative border-t border-line bg-ink-2 mt-auto">
-      <div className="container-x py-14 grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+      <div className="container-x py-14 grid gap-12 lg:grid-cols-[1fr_auto]">
         <div>
           <Image src="/images/brand/maddspace-logo.png" alt="MADDspace" width={738} height={738} className="h-14 w-auto" />
           <div className="mt-6 flex gap-3">
@@ -15,10 +16,10 @@ export default function Footer() {
             <a href={contact.youtube} aria-label="YouTube" className="p-2 rounded-full border border-line hover:border-cyan hover:text-cyan"><YoutubeIcon /></a>
           </div>
         </div>
-        <div>
+        <div className="lg:justify-self-end">
           <h3 className="display text-3xl">Browse</h3>
-          <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-[12px] tracking-[0.1em] text-white/70">
-            {footerBrowse.map((b) => <li key={b.label + b.href}><Link href={b.href} className="hover:text-cyan">{b.label}</Link></li>)}
+          <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-2 text-[13px] text-white/70">
+            {footerBrowse.map((b) => <li key={b.label + b.href}><Link href={b.href} className="hover:text-white">{toSentence(b.label)}</Link></li>)}
           </ul>
         </div>
       </div>
