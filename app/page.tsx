@@ -1,7 +1,8 @@
 import Shell from "@/components/Shell";
 import Hero from "@/components/home/Hero";
 import MaddGroupPanels from "@/components/home/MaddGroupPanels";
-import ClassesTiles from "@/components/home/ClassesTiles";
+import ScrollAbout from "@/components/home/ScrollAbout";
+import ProgrammesSplit from "@/components/home/ProgrammesSplit";
 import VideoCarousel from "@/components/home/VideoCarousel";
 import Testimonials from "@/components/home/Testimonials";
 import FinalCta from "@/components/home/FinalCta";
@@ -13,10 +14,11 @@ export default function Home() {
     <Shell>
       <Preloader />
       <Hero />
-      <MediaLogos />
-      <MaddGroupPanels />
-      <ClassesTiles />
+      <ScrollAbout />
+      <ProgrammesSplit />
       <VideoCarousel />
+      <MaddGroupPanels />
+      <MediaLogos />
       <Testimonials />
       <FinalCta />
     </Shell>
