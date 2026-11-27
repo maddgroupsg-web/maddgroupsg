@@ -6,7 +6,7 @@ import { toSentence } from "@/lib/utils";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-line bg-ink-2 mt-auto">
+    <footer className="relative bg-ink-2 mt-auto">
       <div className="container-x py-14 grid gap-12 lg:grid-cols-[1fr_auto]">
         <div>
           <Image src="/images/brand/maddspace-logo.png" alt="MADDspace" width={738} height={738} className="h-14 w-auto" />
@@ -23,7 +23,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-line">
+      <div>
         <div className="container-x py-5 text-[12px] text-white/50 flex flex-col sm:flex-row justify-between gap-2">
           <span>© 2026 MADDspace. All Rights Reserved. Singing and dancing school for Kids Singapore</span>
           <span>GR.ID Central · The Chevrons West</span>

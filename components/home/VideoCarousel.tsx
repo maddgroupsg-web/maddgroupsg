@@ -35,7 +35,7 @@ export default function VideoCarousel() {
     return () => cancelAnimationFrame(raf);
   }, [open]);
   return (
-    <section className="relative py-20 lg:py-28 bg-ink-2 border-y border-line overflow-hidden">
+    <section className="relative py-20 lg:py-28 bg-ink-2 overflow-hidden">
       <div className="container-x">
         <Reveal><SectionHeading align="center" title="On stage. In the studio." sub="Recitals, competitions and recording sessions. Click any performance to watch it in full." /></Reveal>
       </div>

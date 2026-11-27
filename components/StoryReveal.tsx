@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui";
 // other, sitting over a thin outlined frame. The four MADD Group pillars now open the About page as its hero.
 export default function StoryReveal() {
   return (
-    <section className="relative py-20 lg:py-24 overflow-x-clip border-t border-line" aria-label="How MADDspace came about">
+    <section className="relative py-20 lg:py-24 overflow-x-clip" aria-label="How MADDspace came about">
       <div className="container-x">
         <Reveal>
           <h2 className="display grid gap-1 lg:grid-cols-2 lg:gap-10">

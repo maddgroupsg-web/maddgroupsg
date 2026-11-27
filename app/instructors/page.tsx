@@ -24,10 +24,10 @@ export default function InstructorsPage() {
           <div className="mt-10"><Suspense fallback={null}><InstructorCarousel /></Suspense></div>
         </div>
       </section>
-      <section id="vocal-grid" className="py-16 border-t border-line scroll-mt-24">
+      <section id="vocal-grid" className="py-16 scroll-mt-24">
         <div className="container-x"><h2 className="display">Vocal instructors</h2><InstructorGrid list={vocal} /></div>
       </section>
-      <section id="dance-grid" className="py-16 border-t border-line bg-ink-2 scroll-mt-24">
+      <section id="dance-grid" className="py-16 bg-ink-2 scroll-mt-24">
         <div className="container-x"><h2 className="display">Dance instructors</h2><InstructorGrid list={dance} /></div>
       </section>
       <FinalCta />

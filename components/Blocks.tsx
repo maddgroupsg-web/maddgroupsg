@@ -10,7 +10,7 @@ export function Checks({ items, className = "" }: { items: string[]; className?:
 
 export function WhyGrid({ title, items, images }: { title: string; items: { title: string; copy: string[] }[]; images: string[] }) {
   return (
-    <section className="py-16 lg:py-24 border-y border-line bg-ink-2">
+    <section className="py-16 lg:py-24 bg-ink-2">
       <div className="container-x">
         <Reveal><h2 className="display text-4xl sm:text-6xl max-w-3xl">{title}</h2></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -46,7 +46,7 @@ export function LearnGrid({ title, intro, items, images }: { title: string; intr
 
 export function PathSteps({ title, intro, steps, images }: { title: string; intro?: string; steps: { n: string; title: string; copy: string }[]; images: string[] }) {
   return (
-    <section id="pathway" className="py-16 lg:py-24 bg-ink-2 border-y border-line scroll-mt-20">
+    <section id="pathway" className="py-16 lg:py-24 bg-ink-2 scroll-mt-20">
       <div className="container-x">
         <Reveal><h2 className="display text-4xl sm:text-6xl">{title}</h2>{intro && <p className="mt-3 text-mute">{intro}</p>}</Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">

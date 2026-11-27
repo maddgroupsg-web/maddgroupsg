@@ -69,7 +69,7 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
       </section>
 
       {/* Quote */}
-      <section className="py-16 bg-ink-2 border-y border-line relative overflow-hidden"><div className="container-x relative text-center max-w-3xl mx-auto"><Reveal><div className="eyebrow">PARENTS SAY IT BEST</div><blockquote className="mt-5 text-2xl sm:text-3xl italic leading-relaxed">“{l.quote.text}”</blockquote><div className="mt-4 text-xs tracking-[0.2em] uppercase text-accent">— {l.quote.name}</div></Reveal></div></section>
+      <section className="py-16 bg-ink-2 relative overflow-hidden"><div className="container-x relative text-center max-w-3xl mx-auto"><Reveal><div className="eyebrow">PARENTS SAY IT BEST</div><blockquote className="mt-5 text-2xl sm:text-3xl italic leading-relaxed">“{l.quote.text}”</blockquote><div className="mt-4 text-xs tracking-[0.2em] uppercase text-accent">— {l.quote.name}</div></Reveal></div></section>
 
       <TrialBox title={l.trial.headline} lead={l.trial.copy} included={l.trial.included} meta={l.trial.price} guarantee={l.trial.guarantee} cta={l.trial.cta} url={l.trial.url} />
 
@@ -78,7 +78,7 @@ export default async function Landing({ params }: { params: Promise<{ slug: stri
 
       {/* Final */}
       <section className="relative overflow-hidden"><Image src={l.final.image} alt="" fill sizes="100vw" className="object-cover opacity-45" /><div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/50 to-ink" /><Reveal className="container-x relative py-28 lg:py-36 text-center"><h2 className="display text-6xl sm:text-8xl"><span className="block">{l.final.headline[0]}</span><span className="block text-accent">{l.final.headline[1]}</span></h2><div className="mt-8"><Button href={l.trial.url}>{l.final.cta}</Button></div></Reveal></section>
-      <footer className="border-t border-line py-6 text-center text-[11px] text-white/50">© 2026 MADDspace. All Rights Reserved. · <Link href="/" className="hover:text-accent">maddspace.com.sg</Link> · <a href={`https://wa.me/${contact.whatsappIntl}`} className="hover:text-accent">WhatsApp {contact.whatsapp}</a></footer>
+      <footer className="py-6 text-center text-[11px] text-white/50">© 2026 MADDspace. All Rights Reserved. · <Link href="/" className="hover:text-accent">maddspace.com.sg</Link> · <a href={`https://wa.me/${contact.whatsappIntl}`} className="hover:text-accent">WhatsApp {contact.whatsapp}</a></footer>
     </div>
   );
 }

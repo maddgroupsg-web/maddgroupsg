@@ -39,7 +39,7 @@ export default function ClassesTiles() {
   const enter = (i: number) => { setHov(i); setLast(i); setShot(0); };
 
   return (
-    <section className="relative overflow-hidden py-20 lg:py-28 bg-ink-2 border-y border-line">
+    <section className="relative overflow-hidden py-20 lg:py-28 bg-ink-2">
       {/* background media for the hovered card */}
       <div className={cn("pointer-events-none absolute inset-0 transition-opacity duration-700", hov === null ? "opacity-0" : "opacity-100")} aria-hidden>
         {v ? (

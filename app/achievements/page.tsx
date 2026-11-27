@@ -34,7 +34,7 @@ export default function AchievementsPage() {
 
       <LogoMarquee />
       {stories.map((s, i) => (
-        <section key={s.slug} id={s.slug} className={`py-16 lg:py-24 scroll-mt-24 ${i % 2 ? "bg-ink-2 border-y border-line" : ""}`}>
+        <section key={s.slug} id={s.slug} className={`py-16 lg:py-24 scroll-mt-24 ${i % 2 ? "bg-ink-2" : ""}`}>
           <div className={`container-x grid gap-10 lg:grid-cols-2 lg:items-center ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
             <Reveal>
               {s.link?.href.includes("youtu") ? <VideoEmbed url={s.link.href} poster={s.image} title={s.title} /> : <div className="relative aspect-video rounded-xl overflow-hidden"><Image src={s.image} alt={s.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>}
@@ -50,7 +50,7 @@ export default function AchievementsPage() {
         </section>
       ))}
 
-      <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
+      <section className="py-16 lg:py-24 bg-ink-2">
         <div className="container-x">
           {SHOW_JOURNEYS && <>
           <Reveal><SectionHeading eyebrow="STUDENT ACHIEVEMENTS & RESULTS" title="Give your Child the stage they deserve" sub="These are not one-off experiences — they are part of a structured pathway we build for every student." /></Reveal>

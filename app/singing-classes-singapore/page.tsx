@@ -24,7 +24,7 @@ export default function Page() {
         <Button href={PRIVATE_VOCAL_TRIAL_URL}>BOOK A TRIAL LESSON</Button>
         <Button href="#learn" variant="outline">EXPLORE THE PROGRAMME</Button>
       </PageHero>
-      <section className="py-12 border-b border-line bg-ink-2">
+      <section className="py-12 bg-ink-2">
         <div className="container-x grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <Checks items={singing.checks} className="grid sm:grid-cols-2 gap-x-8" />
           <div className="glass rounded-xl p-5 text-center lg:text-left"><div className="display text-2xl">{singing.trialLine}</div><div className="text-sm text-white/80 mt-1">{singing.trialMeta}</div><div className="text-xs text-accent mt-1">{singing.trialNote}</div></div>
@@ -38,7 +38,7 @@ export default function Page() {
           <Reveal delay={0.1}><Carousel images={gallery} alt="MADDspace singing students" /></Reveal>
         </div>
       </section>
-      <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
+      <section className="py-16 lg:py-24 bg-ink-2">
         <div className="container-x">
           <Reveal><SectionHeading eyebrow="STUDENT ACHIEVEMENTS & RESULTS" title={j.name} sub={j.intro} /></Reveal>
           <Reveal className="mt-8 glass rounded-xl p-6 sm:p-8 max-w-3xl">

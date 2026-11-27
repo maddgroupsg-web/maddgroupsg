@@ -27,7 +27,7 @@ export default function Page() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{idol.pillars.map((p, i) => <Reveal key={p.title} delay={i * 0.09} className="glass rounded-xl p-6"><div className="display text-accent text-4xl">0{i + 1}</div><h3 className="display text-3xl mt-2">{p.title}</h3><p className="mt-2 text-sm text-mute">{p.copy}</p></Reveal>)}</div>
         </div>
       </section>
-      <section id="idollab" className="py-16 lg:py-24 bg-ink-2 border-y border-line scroll-mt-20">
+      <section id="idollab" className="py-16 lg:py-24 bg-ink-2 scroll-mt-20">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center lg:[&>*:first-child]:order-2">
           <Reveal><VideoEmbed url={idol.idollab.video} poster={idol.idollab.image} title={idol.idollab.title} /></Reveal>
           <Reveal delay={0.1}><div className="flex items-center justify-between gap-4"><div className="eyebrow">{idol.idollab.place} · CREATE</div><Image src="/images/brand/idollab.png" alt="IDOLLAB by MADDspace" width={160} height={168} className="h-14 w-auto" /></div><h2 className="display mt-2 text-4xl sm:text-5xl">{idol.idollab.title}</h2><p className="mt-4 text-mute">{idol.idollab.copy}</p><div className="mt-5"><Button href={idol.idollab.video} variant="ghost">Watch Video</Button></div></Reveal>

@@ -36,7 +36,7 @@ export default function ClassesPage() {
           <HoverPreviewList rows={byType} />
         </div>
       </section>
-      <section className="py-20 lg:py-28 bg-ink-2 border-y border-line">
+      <section className="py-20 lg:py-28 bg-ink-2">
         <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
           <Reveal className="lg:sticky lg:top-28">
             <SectionHeading eyebrow="HOW WE TEACH" title={classesHub.philosophyTitle} sub="Open each card to see what guides every MADDspace lesson." />

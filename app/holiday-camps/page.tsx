@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <Shell>
       <PageHero eyebrow={`${hc.season} · ${hc.status}`} title="HOLIDAY CAMPS" sub={<>{hc.intro[0]} {hc.intro[1]}</>} image={g[1]} tall><Button href={HOLIDAY_1DAY_URL}>SIGN UP · 1-DAY CAMPS</Button><Button href={HOLIDAY_3DAY_URL} variant="outline">SIGN UP · 3-DAY CAMPS</Button></PageHero>
-      <section className="py-14 bg-ink-2 border-b border-line"><div className="container-x grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><Reveal><div className="space-y-2 text-mute">{hc.intro.slice(2).map((p) => <p key={p}>{p}</p>)}</div></Reveal><Reveal delay={0.1} className="glass rounded-xl p-6"><div className="display text-2xl text-accent">{hc.promoTitle}</div><div className="mt-3 grid grid-cols-2 gap-6 text-sm">{hc.promo.map((p) => <div key={p.title}><div className="font-semibold">{p.title}</div><ul className="mt-1 text-white/80">{p.rows.map((r) => <li key={r}>{r}</li>)}</ul></div>)}</div></Reveal></div></section>
+      <section className="py-14 bg-ink-2"><div className="container-x grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><Reveal><div className="space-y-2 text-mute">{hc.intro.slice(2).map((p) => <p key={p}>{p}</p>)}</div></Reveal><Reveal delay={0.1} className="glass rounded-xl p-6"><div className="display text-2xl text-accent">{hc.promoTitle}</div><div className="mt-3 grid grid-cols-2 gap-6 text-sm">{hc.promo.map((p) => <div key={p.title}><div className="font-semibold">{p.title}</div><ul className="mt-1 text-white/80">{p.rows.map((r) => <li key={r}>{r}</li>)}</ul></div>)}</div></Reveal></div></section>
       <section className="py-16 lg:py-24"><div className="container-x"><Reveal><SectionHeading title="CHOOSE YOUR CAMP" sub="Choose from a range of Singing, Dancing and Signature Sing & Dance options!" /></Reveal>
         <div className="mt-10 space-y-6">{hc.camps.map((c, i) => (
           <Reveal key={c.title} delay={i * 0.09} className={`glass rounded-xl overflow-hidden grid lg:grid-cols-[360px_1fr] ${!c.url ? "opacity-70" : ""}`}>
@@ -36,7 +36,7 @@ export default function Page() {
           </Reveal>
         ))}</div>
       </div></section>
-      <section className="py-16 bg-ink-2 border-y border-line"><div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center"><Reveal><SectionHeading title={hc.parentsTitle} /><blockquote className="mt-6 glass rounded-xl p-6 text-lg italic">“{t.quote}”<footer className="mt-3 text-xs tracking-[0.2em] uppercase text-accent not-italic">— {t.name}, {t.role}</footer></blockquote></Reveal><Reveal delay={0.1}><Carousel images={g} alt="MADDspace holiday camp participants" /></Reveal></div></section>
+      <section className="py-16 bg-ink-2"><div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center"><Reveal><SectionHeading title={hc.parentsTitle} /><blockquote className="mt-6 glass rounded-xl p-6 text-lg italic">“{t.quote}”<footer className="mt-3 text-xs tracking-[0.2em] uppercase text-accent not-italic">— {t.name}, {t.role}</footer></blockquote></Reveal><Reveal delay={0.1}><Carousel images={g} alt="MADDspace holiday camp participants" /></Reveal></div></section>
       <FinalCta image={g[4]} primary={{ label: "SIGN UP · 1-DAY CAMPS", href: HOLIDAY_1DAY_URL }} secondary={{ label: "SIGN UP · 3-DAY CAMPS", href: HOLIDAY_3DAY_URL }} />
     </Shell>
   );

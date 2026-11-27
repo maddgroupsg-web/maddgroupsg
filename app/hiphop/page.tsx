@@ -24,13 +24,13 @@ export default function Page() {
         <Button href={BOOK_TRIAL_URL}>BOOK A TRIAL LESSON</Button>
         <Button href="#learn" variant="outline">EXPLORE THE PROGRAMME</Button>
       </PageHero>
-      <section className="py-12 border-b border-line bg-ink-2"><div className="container-x grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><Checks items={hiphop.checks} className="grid sm:grid-cols-2 gap-x-8" /><div className="glass rounded-xl p-5 text-center lg:text-left"><div className="display text-2xl">{hiphop.trialLine}</div><div className="text-sm text-white/80 mt-1">{hiphop.trialMeta}</div></div></div></section>
+      <section className="py-12 bg-ink-2"><div className="container-x grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><Checks items={hiphop.checks} className="grid sm:grid-cols-2 gap-x-8" /><div className="glass rounded-xl p-5 text-center lg:text-left"><div className="display text-2xl">{hiphop.trialLine}</div><div className="text-sm text-white/80 mt-1">{hiphop.trialMeta}</div></div></div></section>
       <LogoMarquee compact title="FEATURED ON" sub="" />
       <LearnGrid title={hiphop.learnTitle} intro={hiphop.learnIntro} items={hiphop.learn} images={[g[3], g[1], g[2]]} />
       <WhyGrid title={hiphop.whyTitle} items={hiphop.why} images={[g[7], g[4], g[6]]} />
       <PathSteps title={hiphop.pathTitle} intro={hiphop.pathIntro} steps={hiphop.path} images={[g[6], g[5], "/images/achievements/dap-b.jpg"]} />
       <CrewBlocks title={hiphop.crewsTitle} crews={hiphop.crews} />
-      <section className="py-16 bg-ink-2 border-y border-line">
+      <section className="py-16 bg-ink-2">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal><div className="eyebrow">{hiphop.spotlightTitle}</div><h2 className="display text-5xl mt-2">{hiphop.spotlight[0]}</h2><p className="mt-3 text-mute">{hiphop.spotlight[1]}</p>
             <div className="mt-8 glass rounded-xl p-6"><h3 className="display text-4xl">{j.name}</h3><p className="mt-2 text-sm text-mute">{j.intro}</p><p className="mt-3 font-semibold">🏆 Achievements & Milestones</p><ul className="mt-1 space-y-1 text-sm text-white/85">{j.steps.map((s) => <li key={s}>• {s}</li>)}</ul><p className="mt-3 text-sm text-mute">{j.outro}</p>{j.video && <div className="mt-4"><Button href={j.video} variant="ghost">WATCH VIDEO</Button></div>}</div></Reveal>

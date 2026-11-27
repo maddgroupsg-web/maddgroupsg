@@ -27,7 +27,7 @@ export default function Page() {
           <div className="mt-8"><ProgrammeList items={page.items} galleryImages={images} /></div>
         </div>
       </section>
-      <section className="py-16 border-t border-line">
+      <section className="py-16">
         <div className="container-x">
           <Reveal><SectionHeading eyebrow="IN CLASS & ON STAGE" title="OUR STUDENTS" sub="Real MADDspace students from this age group — in class, at showcases and on stage." /></Reveal>
           <div className="mt-8"><Carousel images={images} alt={"MADDspace " + page.h1 + " students"} /></div>

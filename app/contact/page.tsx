@@ -61,7 +61,7 @@ export default function ContactPage() {
       </section>
 
       {/* the two studios: photos, address and a map each */}
-      <section className="border-t border-line py-20 lg:py-24">
+      <section className="py-20 lg:py-24">
         <div className="container-x">
           <Reveal><h2 className="display">Visit our studios</h2></Reveal>
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-8">

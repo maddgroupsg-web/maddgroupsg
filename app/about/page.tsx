@@ -20,7 +20,7 @@ export default function AboutPage() {
       <AboutHero />
       <StoryReveal />
       {/* Leadership — "Building confidence. Creating opportunity." */}
-      <section className="relative py-20 lg:py-28 border-t border-line overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
         <div className="container-x relative grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           <Reveal>
             <div className="eyebrow">THE PEOPLE BEHIND THE STAGE</div>
@@ -48,7 +48,7 @@ export default function AboutPage() {
         <div className="container-x relative mt-14" id="anchor1"><div className="mb-2 flex flex-wrap items-end justify-between gap-4"><h2 className="display">MADDspace team</h2><Button href="/instructors">See our instructors</Button></div><TeamCarousel /></div>
       </section>
 
-      <section className="py-20 lg:py-24 border-t border-line bg-ink-2">
+      <section className="py-20 lg:py-24 bg-ink-2">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal><SectionHeading eyebrow="ABOUT MADDSPACE" title={about.philosophyTitle} /><p className="mt-6 text-mute leading-relaxed">{about.philosophy}</p></Reveal>
           <Reveal delay={0.1}><Carousel images={["/images/about/about-hero.jpg", "/images/about/about-1.jpg", "/images/about/about-2.jpg", "/images/about/about-3.jpg", "/images/about/about-4.jpg"]} alt="Inside MADDspace" aspect="aspect-[4/3]" controls={false} slide="basis-[85%] sm:basis-[70%]" /></Reveal>
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-24 bg-ink-2 border-y border-line">
+      <section className="py-20 lg:py-24 bg-ink-2">
         <div className="container-x grid gap-10 lg:grid-cols-2">
           <Reveal><h2 className="display text-5xl">{about.missionTitle}</h2><div className="mt-5 space-y-4 text-mute leading-relaxed">{about.mission.map((p) => <p key={p}>{p}</p>)}</div></Reveal>
           <Reveal delay={0.1}><h2 className="display text-5xl">{about.visionTitle}</h2><p className="mt-5 text-mute leading-relaxed">{about.vision}</p>

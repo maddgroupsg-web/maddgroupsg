@@ -11,7 +11,7 @@ const g = ["/images/about/about-hero.jpg", "/images/about/about-1.jpg", "/images
 
 function Rooms({ h1, rooms }: { h1: string; rooms: typeof studios.central.rooms }) {
   return (
-    <section className="py-16 border-t border-line">
+    <section className="py-16">
       <div className="container-x">
         <Reveal><h2 className="display text-4xl sm:text-5xl">{h1}</h2><p className="mt-2 text-xs text-white/60">{studios.peak}</p></Reveal>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

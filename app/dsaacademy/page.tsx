@@ -29,7 +29,7 @@ export default function Page() {
           <div className="mt-12"><Reveal><Carousel images={g} alt="MADDspace DSA preparation students" /></Reveal></div>
         </div>
       </section>
-      <section className="py-16 lg:py-24 bg-ink-2 border-y border-line">
+      <section className="py-16 lg:py-24 bg-ink-2">
         <div className="container-x">
           <Reveal><SectionHeading title={dsa.whyTitle} sub={dsa.whySub} /></Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{dsa.why.map((w, i) => { const I = icons[i]; return <Reveal key={w.title} delay={i * 0.09} className="glass rounded-xl p-6"><I className="text-accent" /><h3 className="display text-3xl mt-3">{w.title}</h3><p className="mt-2 text-sm text-mute">{w.copy}</p></Reveal>; })}</div>
