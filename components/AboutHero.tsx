@@ -8,7 +8,7 @@ import { byId } from "@/content/videos";
 import { toSentence } from "@/lib/utils";
 
 // About page hero: The MADD Group's four pillars as a full-screen slideshow. Each pillar plays a performance clip,
-// with its name and line bottom-left, a counter under it, and the other pillars as 16:9
+// with its name and line bottom-left, and the other pillars as 16:9
 // thumbnails bottom-right. It moves on by itself; the page below scrolls as normal.
 const HOLD = 6500; // ms per pillar
 const clips: Record<string, string> = {
@@ -63,10 +63,6 @@ export default function AboutHero() {
                 <Link href={p.href} className="mt-5 inline-block text-[14px] font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">Explore {toSentence(p.name)}</Link>
               </motion.div>
             </AnimatePresence>
-            {/* counter */}
-            <div className="mt-10 flex items-center gap-4">
-              <span className="text-[13px] tabular-nums text-white/85">{String(i + 1).padStart(2, "0")} <span className="text-white/40">/ {String(pillars.length).padStart(2, "0")}</span></span>
-            </div>
           </div>
 
           {/* the other three pillars, 16:9 */}
